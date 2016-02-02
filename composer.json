@@ -9,6 +9,15 @@
       "email": "alphayax@gmail.com"
     }
   ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/alphayax/php_utils"
+    }
+  ],
+  "require" : {
+    "alphayax/php_utils" : "*"
+  },
   "autoload": {
     "psr-4": {"alphayax\\": "./"}
   }
