@@ -1,0 +1,12 @@
+{
+  "name": "alphayax/freebox_api_php",
+  "description": "API PHP pour la Freebox",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Yann Ponzoni",
+      "email": "alphayax@gmail.com"
+    }
+  ]
+}
