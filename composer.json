@@ -8,5 +8,8 @@
       "name": "Yann Ponzoni",
       "email": "alphayax@gmail.com"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {"alphayax\\": "./"}
+  }
 }
