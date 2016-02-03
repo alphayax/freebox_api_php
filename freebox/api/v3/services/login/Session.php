@@ -1,5 +1,5 @@
 <?php
-namespace alphayax\freebox\api\v3\login;
+namespace alphayax\freebox\api\v3\services\login;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -8,7 +8,7 @@ use alphayax\freebox\api\v3\Service;
  * @package alphayax\freebox\api\v3
  * @author <alphayax@gmail.com>
  */
-class Login extends Service {
+class Session extends Service {
 
     /// APIs services
     const API_LOGIN             = '/api/v3/login/';

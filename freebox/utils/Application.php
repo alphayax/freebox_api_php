@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\utils;
-use alphayax\freebox\api;
+use alphayax\freebox\api\v3\services;
 
 /**
  * Class Application
@@ -39,7 +39,7 @@ class Application {
      * Ask authorization to the freebox and save the app token
      */
     public function authorize(){
-        new api\v3\login\Authorize( $this);
+        new services\login\Authorize( $this);
     }
 
     /**
@@ -47,7 +47,7 @@ class Application {
      * @throws \Exception
      */
     public function openSession(){
-        $Login = new api\v3\login\Login( $this);
+        $Login = new services\login\Session( $this);
         $Login->ask_login_status();
         $Login->create_session();
 

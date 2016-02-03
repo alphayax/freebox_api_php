@@ -1,5 +1,5 @@
 <?php
-namespace alphayax\freebox\api\v3\login;
+namespace alphayax\freebox\api\v3\services\login;
 use alphayax\freebox\api\v3\Service;
 use alphayax\freebox\utils\Application;
 use alphayax\utils\cli\IO;
