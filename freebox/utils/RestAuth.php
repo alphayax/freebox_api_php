@@ -64,7 +64,7 @@ class RestAuth extends alphayax\utils\Rest {
     protected function checkResponse(){
         $response = $this->getCurlResponse();
         if( false === $response['success']){
-            throw new \Exception( $response['success']);
+            throw new \Exception( $response['msg']);
         }
     }
 
