@@ -1,5 +1,6 @@
 <?php
 namespace alphayax\freebox\utils;
+use alphayax;
 
 
 /**
@@ -7,33 +8,45 @@ namespace alphayax\freebox\utils;
  * @package alphayax\utils
  * @author <alphayax@gmail.com>
  */
-class RestAuth extends \alphayax\utils\Rest {
+class RestAuth extends alphayax\utils\Rest {
 
     /** @var string */
     protected $session_token = '';
 
     /**
-     *
+     * @param null $curl_post_data
      */
-    public function GET(){
+    public function GET( $curl_post_data = null){
         $this->add_XFbxAppAuth_Header();
-        parent::GET();
+        parent::GET( $curl_post_data);
+        $this->checkResponse();
     }
 
     /**
      * @param $curl_post_data
      */
-    public function POST( $curl_post_data){
+    public function POST( $curl_post_data = null){
         $this->add_XFbxAppAuth_Header();
         parent::POST( $curl_post_data);
+        $this->checkResponse();
     }
 
     /**
      * @param $curl_post_data
      */
-    public function PUT( $curl_post_data){
+    public function PUT( $curl_post_data = null){
         $this->add_XFbxAppAuth_Header();
         parent::PUT( $curl_post_data);
+        $this->checkResponse();
+    }
+
+    /**
+     * @param $curl_post_data
+     */
+    public function DELETE( $curl_post_data = null){
+        $this->add_XFbxAppAuth_Header();
+        parent::DELETE( $curl_post_data);
+        $this->checkResponse();
     }
 
     /**
@@ -46,9 +59,19 @@ class RestAuth extends \alphayax\utils\Rest {
     }
 
     /**
+     * @throws \Exception
+     */
+    protected function checkResponse(){
+        $response = $this->getCurlResponse();
+        if( false === $response->success){
+            throw new \Exception( $response->msg);
+        }
+    }
+
+    /**
      * @param $session_token
      */
-    public function setSessionToken($session_token){
+    public function setSessionToken( $session_token){
         $this->session_token = $session_token;
     }
 }

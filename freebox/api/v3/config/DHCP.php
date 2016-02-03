@@ -1,5 +1,5 @@
 <?php
-namespace alphayax\freebox\api\v3\dhcp;
+namespace alphayax\freebox\api\v3\config;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -19,12 +19,7 @@ class DHCP extends Service {
         $rest = $this->getAuthService( self::API_DHCP_CONFIG);
         $rest->GET();
 
-        $response = $rest->getCurlResponse();
-        if( ! $response->success){
-            throw new \Exception( __FUNCTION__ . ' Fail');
-        }
-
-        return $response;
+        return $rest->getCurlResponse();
     }
 
     /**
@@ -34,15 +29,9 @@ class DHCP extends Service {
      */
     public function set_attribute_configuration( $new_config_x = []){
         $rest = $this->getAuthService( self::API_DHCP_CONFIG);
-        $rest->setSessionToken( $this->application->getSessionToken());
         $rest->PUT( $new_config_x);
 
-        $response = $rest->getCurlResponse();
-        if( ! $response->success){
-            throw new \Exception( __FUNCTION__ . ' Fail');
-        }
-
-        return $response;
+        return $rest->getCurlResponse();
     }
 
 }
