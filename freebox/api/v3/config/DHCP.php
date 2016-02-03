@@ -1,5 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\config;
+use alphayax\freebox\api\v3\models\DhcpConfig;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -19,7 +20,7 @@ class DHCP extends Service {
         $rest = $this->getAuthService( self::API_DHCP_CONFIG);
         $rest->GET();
 
-        return $rest->getCurlResponse();
+        return new DhcpConfig( $rest->getCurlResponse()['result']);
     }
 
     /**
