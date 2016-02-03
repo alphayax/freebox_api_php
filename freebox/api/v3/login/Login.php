@@ -1,7 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\login;
 use alphayax\freebox\api\v3\Service;
-use alphayax\freebox\DNS_changer;
 
 
 /**
@@ -32,14 +31,11 @@ class Login extends Service {
         $rest = $this->getService( static::API_LOGIN);
         $rest->GET();
 
-        $response = $rest->getCurlResponse();
-        if( ! $response->success){
-            throw new \Exception( __FUNCTION__ . ' Fail');
-        }
+        $result = $rest->getCurlResponse()['result'];
 
-        $this->logged_in = $response->result->logged_in;
-        $this->challenge = $response->result->challenge;
-        $this->password_salt = $response->result->password_salt;
+        $this->logged_in     = $result['logged_in'];
+        $this->challenge     = $result['challenge'];
+        $this->password_salt = $result['password_salt'];
     }
 
     /**
@@ -48,16 +44,11 @@ class Login extends Service {
     public function create_session(){
         $rest = $this->getService( static::API_LOGIN_SESSION);
         $rest->POST([
-            'app_id'    => DNS_changer::APP_ID,
+            'app_id'    => $this->application->getId(),
             'password'  => hash_hmac( 'sha1', $this->challenge, $this->application->getAppToken()),
         ]);
 
-        $response = $rest->getCurlResponse();
-        if( ! $response->success){
-            throw new \Exception( @$response->msg . ' '. @$response->error_code);
-        }
-
-        $this->session_token = $response->result->session_token;
+        $this->session_token = $rest->getCurlResponse()['result']['session_token'];
     }
 
     /**

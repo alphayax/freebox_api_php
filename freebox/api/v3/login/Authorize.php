@@ -2,7 +2,7 @@
 namespace alphayax\freebox\api\v3\login;
 use alphayax\freebox\api\v3\Service;
 use alphayax\freebox\utils\Application;
-use alphayax\utils\Cli;
+use alphayax\utils\cli\IO;
 
 /**
  * Class Authorize
@@ -56,9 +56,9 @@ class Authorize extends Service {
 
             /// For verbose
             switch( $this->status){
-                case self::STATUS_GRANTED : Cli::stdout('Access granted !', 0, true, Cli::COLOR_GREEN); break;
-                case self::STATUS_TIMEOUT : Cli::stdout('Access denied. You take to long to authorize app', 0, true, Cli::COLOR_RED); break;
-                case self::STATUS_DENIED  : Cli::stdout('Access denied. Freebox denied app connexion', 0, true, Cli::COLOR_RED); break;
+                case self::STATUS_GRANTED : IO::stdout('Access granted !', 0, true, IO::COLOR_GREEN); break;
+                case self::STATUS_TIMEOUT : IO::stdout('Access denied. You take to long to authorize app', 0, true, IO::COLOR_RED); break;
+                case self::STATUS_DENIED  : IO::stdout('Access denied. Freebox denied app connexion', 0, true, IO::COLOR_RED); break;
             }
         }
     }
@@ -78,34 +78,28 @@ class Authorize extends Service {
         ]);
 
         $response = $rest->getCurlResponse();
-        if( ! $response->success) {
-            throw new \Exception('Authorize fail. Unable to contact the freebox');
-        }
 
-        Cli::stdout( 'Authorization send to Freebox. Waiting for response...', 0, true, Cli::COLOR_YELLOW);
+        IO::stdout( 'Authorization send to Freebox. Waiting for response...', 0, true, IO::COLOR_YELLOW);
 
-        $this->app_token = $response->result->app_token;
-        $this->track_id  = $response->result->track_id;
+        $this->app_token = $response['result']['app_token'];
+        $this->track_id  = $response['result']['track_id'];
     }
 
     /**
      * @throws \Exception
      */
     public function get_authorization_status(){
-        Cli::stdout( 'Check authorization status... ', 0, false, Cli::COLOR_YELLOW);
+        IO::stdout( 'Check authorization status... ', 0, false, IO::COLOR_YELLOW);
 
         $rest = $this->getService( self::API_LOGIN_AUTHORIZE . $this->track_id);
         $rest->GET();
 
-        $response = $rest->getCurlResponse();
-        if( ! $response->success) {
-            throw new \Exception(__FUNCTION__ . ' Fail');
-        }
+        $result = $rest->getCurlResponse()['result'];
 
-        $this->status = $response->result->status;
-        $this->challenge = $response->result->challenge;
+        $this->status    = $result['status'];
+        $this->challenge = $result['challenge'];
 
-        Cli::stdout( $this->status, 0, true, Cli::COLOR_BLUE);
+        IO::stdout( $this->status, 0, true, IO::COLOR_BLUE);
     }
 
     /**
