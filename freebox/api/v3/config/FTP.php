@@ -4,19 +4,19 @@ use alphayax\freebox\api\v3\Service;
 
 
 /**
- * Class DHCP
+ * Class FTP
  * @package alphayax\freebox\api\v3\config
  * @author <alphayax@gmail.com>
  */
-class DHCP extends Service {
+class FTP extends Service {
 
-    const API_DHCP_CONFIG = '/api/v3/dhcp/config/';
+    const API_FTP_CONFIG = '/api/v3/ftp/config/';
 
     /**
      * @throws \Exception
      */
     public function get_current_configuration(){
-        $rest = $this->getAuthService( self::API_DHCP_CONFIG);
+        $rest = $this->getAuthService( self::API_FTP_CONFIG);
         $rest->GET();
 
         return $rest->getCurlResponse();
@@ -28,7 +28,7 @@ class DHCP extends Service {
      * @throws \Exception
      */
     public function set_attribute_configuration( $new_config_x = []){
-        $rest = $this->getAuthService( self::API_DHCP_CONFIG);
+        $rest = $this->getAuthService( self::API_FTP_CONFIG);
         $rest->PUT( $new_config_x);
 
         return $rest->getCurlResponse();
