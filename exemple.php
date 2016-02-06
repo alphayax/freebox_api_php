@@ -9,9 +9,9 @@ $App->authorize();
 $App->openSession();
 
 
-$System = new \alphayax\freebox\api\v3\services\config\System( $App);
+$Downloads = new \alphayax\freebox\api\v3\services\download\Download( $App);
+$a = $Downloads->getAll();
+var_dump( $a);
 
-/** @var \alphayax\freebox\api\v3\models\SystemConfig $SystemConfig */
-$SystemConfig = $System->getConfiguration();
-
-\alphayax\utils\cli\IO::stdout( 'Uptime : '. $SystemConfig->uptime);
+$b = $Downloads->getLogFromId( 156);
+var_dump( $b);
