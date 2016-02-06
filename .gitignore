@@ -4,3 +4,6 @@
 
 # Composer
 /composer.phar
+
+# Project files
+/app_token

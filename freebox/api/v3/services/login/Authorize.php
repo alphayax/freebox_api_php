@@ -45,13 +45,14 @@ class Authorize extends Service {
 
         if( ! $this->application->haveAppToken()){
             $this->ask_authorization();
-            while( $this->status == self::STATUS_PENDING){
+            while( in_array( $this->status, [self::STATUS_UNKNOWN, self::STATUS_PENDING])){
                 $this->get_authorization_status();
                 if( $this->status == self::STATUS_GRANTED){
+                    $this->application->setAppToken( $this->app_token);
                     $this->application->saveAppToken();
                     break;
                 }
-                sleep( 10);
+                sleep( 5);
             }
 
             /// For verbose

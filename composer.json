@@ -16,7 +16,7 @@
     }
   ],
   "require" : {
-    "alphayax/php_utils" : "*"
+    "alphayax/php_utils" : "dev-master"
   },
   "autoload": {
     "psr-4": {"alphayax\\": "./"}

@@ -116,7 +116,9 @@ class Application {
      * Write the app token in a file for later use
      */
     public function saveAppToken(){
-        file_put_contents( 'app_token', $this->app_token);
+        if( ! file_put_contents( 'app_token', $this->app_token)){
+            throw new \Exception('Unable to save app token in file');
+        }
     }
 
 }
