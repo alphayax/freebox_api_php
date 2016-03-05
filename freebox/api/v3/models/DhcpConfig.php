@@ -32,4 +32,11 @@ class DhcpConfig extends Model {
     /** @var array of string   List of dns servers to include in DHCP reply */
     protected $dns = [];
 
+    /**
+     * @return array
+     */
+    public function getDNS(){
+        return $this->dns;
+    }
+
 }

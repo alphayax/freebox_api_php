@@ -53,10 +53,9 @@ class RestAuth extends alphayax\utils\Rest {
      * Add the session token in the X-Fbx-App-Auth Header
      */
     protected function add_XFbxAppAuth_Header(){
-        curl_setopt( $this->_curl_handler, CURLOPT_HTTPHEADER, array(
-            'X-Fbx-App-Auth: '. $this->session_token,
-        ));
+        $this->http_headers[ 'X-Fbx-App-Auth'] = $this->session_token;
     }
+
 
     /**
      * @throws \Exception
@@ -64,7 +63,7 @@ class RestAuth extends alphayax\utils\Rest {
     protected function checkResponse(){
         $response = $this->getCurlResponse();
         if( false === $response['success']){
-            throw new \Exception( $response['msg']);
+            throw new \Exception( $response['msg'] . ' ('. $response['error_code'] . ')');
         }
     }
 
