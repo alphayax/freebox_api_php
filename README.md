@@ -1,11 +1,11 @@
 
 # Freebox v6 PHP API v3
 
-Implementation PHP de l'API de la freebox.
+Implementation PHP de l'API de la freebox (dans sa version 3).
 
 ## Prérequis
 
-Ce projet est basé sur composer. Pensez a installer les dependences :)
+Ce projet est basé sur **composer**. Pensez à installer les dependences :)
 
 ## Utilisation
 
@@ -22,8 +22,10 @@ $App->openSession();
 ```
 
 ### Services
-Les appels aux services de l'API se font de la maniere suivante :
-Voiuci un exemple d'utilisation de l'API System. 
+Les appels aux services de l'API se font par l'intermédiaire de services.
+Ces derniers possedent les méthodes pour récuperer, ajouter ou mettre a jour des données.
+
+Voici un exemple d'utilisation de l'API System. 
 1. Nous créons un nouveau service "System"
 2. Nous demandons de récuperer la configuration actuelle
 3. Nous utilisons le modele retourné pour acceder a la donnée `uptime`
@@ -36,3 +38,10 @@ $SystemConfig = $System->getConfiguration();
 
 \alphayax\utils\cli\IO::stdout( 'Uptime : '. $SystemConfig->uptime);
 ```
+
+### Exemples
+
+Les exemples sont disponibles dans le repertoire `exemple`:
+- `dhcp_config` : Un script pour récuperer la configuration courrante du DHCP
+- `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere
+ 

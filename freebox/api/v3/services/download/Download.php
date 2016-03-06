@@ -136,11 +136,11 @@ class Download extends Service {
         }
 
         if( ! empty( $archive_password)){
-            $params['archive_password'] = $password;
+            $params['archive_password'] = $archive_password;
         }
 
         if( ! empty( $cookies)){
-            $params['cookies'] = $password;
+            $params['cookies'] = $cookies;
         }
 
         $data = http_build_query( $params);

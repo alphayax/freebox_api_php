@@ -6,4 +6,5 @@
 /composer.phar
 
 # Project files
+/exemple/dl_rss/app_token
 /app_token
