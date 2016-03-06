@@ -7,6 +7,18 @@ Implementation PHP de l'API de la freebox (dans sa version 3).
 
 Ce projet est basé sur **composer**. Pensez à installer les dependences :)
 
+## Fonctionnalités
+
+Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
+
+- Downloads
+    - Download
+- Configuration
+    - DHCP
+    - FTP
+    - System
+
+
 ## Utilisation
 
 ### Application
@@ -39,7 +51,7 @@ $SystemConfig = $System->getConfiguration();
 \alphayax\utils\cli\IO::stdout( 'Uptime : '. $SystemConfig->uptime);
 ```
 
-### Exemples
+## Exemples
 
 Les exemples sont disponibles dans le repertoire `exemple`:
 - `dhcp_config` : Un script pour récuperer la configuration courrante du DHCP
