@@ -52,12 +52,13 @@ $System = new \alphayax\freebox\api\v3\services\config\System( $App);
 /** @var \alphayax\freebox\api\v3\models\SystemConfig $SystemConfig */
 $SystemConfig = $System->getConfiguration();
 
-\alphayax\utils\cli\IO::stdout( 'Uptime : '. $SystemConfig->uptime);
+\alphayax\utils\cli\IO::stdout( 'Uptime : '. $SystemConfig->getUptime());
 ```
 
 ## Exemples
 
 Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés par services :
+- `AirMedia` : Exemple de lancement d'une video sur le Freebox Player
 - `config` 
     - `check_dns` : Un script pour récuperer la configuration courrante du DHCP
     - `DMZ` : Récupération de la confiugration de votre zone démilitarisée

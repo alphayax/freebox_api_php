@@ -8,6 +8,7 @@
 /vendor/*
 
 # Project files
+/exemple/AirMedia/app_token
 /exemple/config/app_token
 /exemple/download/app_token
 /app_token
