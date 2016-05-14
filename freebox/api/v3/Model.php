@@ -20,30 +20,11 @@ abstract class Model {
     }
 
     /**
-     * Magic getter
-     * @param $name
-     * @return null
+     * Return an array representation of the model properties
+     * @return array
      */
-    function __get( $name){
-        if( property_exists( static::class, $name)){
-            return $this->$name;
-        }
-        return null;    // TODO : maybe throw exception ?
-    }
-
-    /**
-     * Magic setter
-     * @param $name
-     * @param $value
-     */
-    public function __set( $name, $value){
-        if( property_exists( static::class, $name)){
-            $this->$name = $value;
-        }
-    }
-
     public function toArray(){
-
+        return get_object_vars( $this);
     }
 
 }

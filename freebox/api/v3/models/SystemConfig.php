@@ -41,4 +41,81 @@ class SystemConfig extends Model {
     /** @var bool   (Read-only) is the box authenticated (“étape 6”) */
     protected $box_authenticated;
 
+    /**
+     * @return string
+     */
+    public function getFirmwareVersion(){
+        return $this->firmware_version;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMac(){
+        return $this->mac;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSerial(){
+        return $this->serial;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUptime(){
+        return $this->uptime;
+    }
+
+    /**
+     * @return int
+     */
+    public function getUptimeVal(){
+        return $this->uptime_val;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBoardName(){
+        return $this->board_name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTempCpum(){
+        return $this->temp_cpum;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTempSw(){
+        return $this->temp_sw;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTempCpub(){
+        return $this->temp_cpub;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFanRpm(){
+        return $this->fan_rpm;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isBoxAuthenticated(){
+        return $this->box_authenticated;
+    }
+
 }

@@ -4,7 +4,10 @@
 
 # Composer
 /composer.phar
+/composer.lock
+/vendor/*
 
 # Project files
-/exemple/dl_rss/app_token
+/exemple/config/app_token
+/exemple/download/app_token
 /app_token

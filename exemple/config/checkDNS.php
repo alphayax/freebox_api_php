@@ -8,6 +8,9 @@ $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.example', 
 $App->authorize();
 $App->openSession();
 
-
+/// DNS
 $toto = new \alphayax\freebox\api\v3\services\config\DHCP( $App);
-var_dump( $toto->get_current_configuration());
+$DHCPConfig = $toto->getConfiguration();
+echo 'gateway : ' . $DHCPConfig->getGateway() . PHP_EOL;
+echo 'netmask : ' . $DHCPConfig->getNetmask() . PHP_EOL;
+echo 'DHCP IP range : ' . $DHCPConfig->getIpRangeStart() . ' => '. $DHCPConfig->getIpRangeEnd() . PHP_EOL;

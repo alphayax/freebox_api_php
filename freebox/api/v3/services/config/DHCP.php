@@ -15,8 +15,9 @@ class DHCP extends Service {
 
     /**
      * @throws \Exception
+     * @return DhcpConfig
      */
-    public function get_current_configuration(){
+    public function getConfiguration(){
         $rest = $this->getAuthService( self::API_DHCP_CONFIG);
         $rest->GET();
 
@@ -24,15 +25,15 @@ class DHCP extends Service {
     }
 
     /**
-     * @param array $new_config_x
-     * @return array
+     * @param DhcpConfig $new_DhcpConfig
+     * @return DhcpConfig
      * @throws \Exception
      */
-    public function set_attribute_configuration( $new_config_x = []){
+    public function setConfiguration( DhcpConfig $new_DhcpConfig){
         $rest = $this->getAuthService( self::API_DHCP_CONFIG);
-        $rest->PUT( $new_config_x);
+        $rest->PUT( $new_DhcpConfig->toArray());
 
-        return $rest->getCurlResponse();
+        return new DhcpConfig( $rest->getCurlResponse()['result']);
     }
 
 }

@@ -17,6 +17,10 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - DHCP
     - FTP
     - System
+    - NAT
+        - Dmz
+        - Port Forwarding
+        - Incoming Port
 
 
 ## Utilisation
@@ -53,7 +57,13 @@ $SystemConfig = $System->getConfiguration();
 
 ## Exemples
 
-Les exemples sont disponibles dans le repertoire `exemple`:
-- `dhcp_config` : Un script pour récuperer la configuration courrante du DHCP
-- `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere
+Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés par services :
+- `config` 
+    - `check_dns` : Un script pour récuperer la configuration courrante du DHCP
+    - `DMZ` : Récupération de la confiugration de votre zone démilitarisée
+    - `IncomingPort` : Retourne la configuration actuelle du port d'entrée HTTP
+    - `PortForwarding` : Exemple d'ajout d'une redirection de port
+- `download`
+    - `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere
+ 
  
