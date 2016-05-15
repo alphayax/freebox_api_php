@@ -30,11 +30,13 @@ abstract class Service {
     }
 
     /**
-     * @param $service
+     * @param string $service
+     * @param bool   $isJson
+     * @param bool   $returnAsArray
      * @return \alphayax\freebox\utils\RestAuth
      */
-    protected function getAuthService( $service){
-        $rest = new \alphayax\freebox\utils\RestAuth( static::API_HOST . $service);
+    protected function getAuthService( $service, $isJson = true, $returnAsArray = true){
+        $rest = new \alphayax\freebox\utils\RestAuth( static::API_HOST . $service, $isJson, $returnAsArray);
         $rest->setSessionToken( $this->application->getSessionToken());
         return $rest;
     }

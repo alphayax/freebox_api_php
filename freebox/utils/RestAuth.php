@@ -15,11 +15,15 @@ class RestAuth extends alphayax\utils\Rest {
 
     /**
      * @param null $curl_post_data
+     * @param bool $checkResponse
+     * @throws \Exception
      */
-    public function GET( $curl_post_data = null){
+    public function GET( $curl_post_data = null, $checkResponse = true){
         $this->add_XFbxAppAuth_Header();
         parent::GET( $curl_post_data);
-        $this->checkResponse();
+        if( $checkResponse){
+            $this->checkResponse();
+        }
     }
 
     /**

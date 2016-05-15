@@ -11,6 +11,9 @@ Ce projet est basé sur **composer**. Pensez à installer les dependences :)
 
 Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
 
+- AirMedia
+- FileSystem
+    - FileSystem (Core)
 - Downloads
     - Download
 - Configuration
