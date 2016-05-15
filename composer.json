@@ -20,5 +20,6 @@
   },
   "autoload": {
     "psr-4": {"alphayax\\": "./"}
-  }
+  },
+  "license": "MIT"
 }
