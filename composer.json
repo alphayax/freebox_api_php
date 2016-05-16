@@ -2,21 +2,16 @@
   "name": "alphayax/freebox_api_php",
   "description": "API PHP pour la Freebox",
   "minimum-stability": "dev",
-  "license": "proprietary",
+  "prefer-stable": true,
   "authors": [
     {
       "name": "Yann Ponzoni",
       "email": "alphayax@gmail.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/alphayax/php_utils"
-    }
-  ],
   "require" : {
-    "alphayax/php_utils" : "dev-master"
+    "alphayax/php_utils" : "^0.1.0"
+    "php": ">=5.5.0"
   },
   "autoload": {
     "psr-4": {"alphayax\\": "./"}
