@@ -14,6 +14,10 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
 - AirMedia
 - FileSystem
     - FileSystem (Core)
+        - FsTask
+        - FsOperation
+        - FsListing
+    - FileSharing
 - Downloads
     - Download
 - Configuration
@@ -62,6 +66,10 @@ $SystemConfig = $System->getConfiguration();
 
 Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés par services :
 - `AirMedia` : Exemple de lancement d'une video sur le Freebox Player
+- `FileSystem`
+    - `fileSharing` : Un exemple de partage de fichier sur le net
+    - `fsListing` : Un exemple de scan de repertoires de la freebox
+    - `fsOperation` : Un exemple d'operations sur le fichiers (copies, déplacement, renommage, par2..)
 - `config` 
     - `check_dns` : Un script pour récuperer la configuration courrante du DHCP
     - `DMZ` : Récupération de la confiugration de votre zone démilitarisée
