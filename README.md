@@ -24,6 +24,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - DHCP
     - FTP
     - System
+    - LCD
     - NAT
         - Dmz
         - Port Forwarding
@@ -75,6 +76,7 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `DMZ` : Récupération de la confiugration de votre zone démilitarisée
     - `IncomingPort` : Retourne la configuration actuelle du port d'entrée HTTP
     - `PortForwarding` : Exemple d'ajout d'une redirection de port
+    - `LCD` : Exemple de modification de la luminosité du cadrant LCD de la freebox server
 - `download`
     - `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere
  
