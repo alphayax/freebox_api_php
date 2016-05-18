@@ -29,12 +29,12 @@ class FileSystemListing extends Service {
             'removeHidden'      => $removeHidden,
         ]);
 
-        $FsTask_xs = $rest->getCurlResponse()['result'];
-        $FsTasks   = [];
-        foreach( $FsTask_xs as $fsTask_x) {
-            $FsTasks[] = new FileInfo( $fsTask_x);
+        $FileInfo_xs = $rest->getCurlResponse()['result'];
+        $FileInfos   = [];
+        foreach( $FileInfo_xs as $FileInfo_x) {
+            $FileInfos[] = new FileInfo( $FileInfo_x);
         }
-        return $FsTasks;
+        return $FileInfos;
     }
 
     /**
