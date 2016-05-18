@@ -20,11 +20,48 @@ abstract class Model {
     }
 
     /**
+     * Convert a property into a given class
+     * @param string $propertyName
+     * @param string $propertyClass
+     */
+    protected function initProperty( $propertyName, $propertyClass){
+        if( property_exists( static::class, $propertyName)){
+            $this->$propertyName = new $propertyClass( $this->$propertyName);
+        }
+    }
+
+    /**
+     * Convert a property into an array of the given class
+     * @param string $propertyName
+     * @param string $propertyClass
+     */
+    protected function initPropertyArray( $propertyName, $propertyClass){
+        if( property_exists( static::class, $propertyName) && is_array( $this->$propertyName)){
+            $newProperty = [];
+            foreach( $this->$propertyName as $PropertyItem){
+                if( is_array( $PropertyItem)){
+                    $newProperty[] = new $propertyClass( $PropertyItem);
+                }
+            }
+            $this->$propertyName = $newProperty;
+        }
+    }
+
+    /**
      * Return an array representation of the model properties
      * @return array
      */
     public function toArray(){
-        return get_object_vars( $this);
+        $ModelArray = [];
+        foreach( get_object_vars( $this) as $propertyName => $propertyValue){
+            if( is_subclass_of( $propertyValue, Model::class)){
+                /** @var $propertyValue Model */
+                $ModelArray[$propertyName] = $propertyValue->toArray();
+            } else {
+                $ModelArray[$propertyName] = $propertyValue;
+            }
+        }
+        return $ModelArray;
     }
 
 }
