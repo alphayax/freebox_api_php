@@ -10,7 +10,7 @@ $App->openSession();
 
 
 $toto = new \alphayax\freebox\api\v3\services\config\NAT\PortForwarding( $App);
-$a = new \alphayax\freebox\api\v3\models\PortForwardingConfig();
+$a = new \alphayax\freebox\api\v3\models\NAT\PortForwardingConfig();
 $a->setEnabled( false);
 $a->setComment('test');
 $a->setLanPort( 4242);

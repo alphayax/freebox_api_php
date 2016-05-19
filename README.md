@@ -23,6 +23,10 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
 - Configuration
     - DHCP
     - FTP
+    - LAN
+        - Lan (Core)
+        - Lan Browser
+        - Wake On Lan
     - System
     - LCD
     - NAT
@@ -74,9 +78,11 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
 - `config` 
     - `check_dns` : Un script pour récuperer la configuration courrante du DHCP
     - `DMZ` : Récupération de la confiugration de votre zone démilitarisée
+    - `Freeplug` : Affichage de votre configuration de Freeplug
     - `IncomingPort` : Retourne la configuration actuelle du port d'entrée HTTP
-    - `PortForwarding` : Exemple d'ajout d'une redirection de port
     - `LCD` : Exemple de modification de la luminosité du cadrant LCD de la freebox server
+    - `LAN` : Configuration du LAN et exploration des machines en réseau
+    - `PortForwarding` : Exemple d'ajout d'une redirection de port
 - `download`
     - `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere
  

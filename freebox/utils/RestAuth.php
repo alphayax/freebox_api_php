@@ -77,4 +77,5 @@ class RestAuth extends alphayax\utils\Rest {
     public function setSessionToken( $session_token){
         $this->session_token = $session_token;
     }
+
 }

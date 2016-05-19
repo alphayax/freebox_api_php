@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\LAN;
-use alphayax\freebox\api\v3\models\LanConfig;
+use alphayax\freebox\api\v3\models\LAN\LanConfig;
 use alphayax\freebox\api\v3\Service;
 
 

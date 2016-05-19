@@ -1,8 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NAT;
-use alphayax\freebox\api\v3\models\DmzConfig;
-use alphayax\freebox\api\v3\models\IncomingPortConfig;
-use alphayax\freebox\api\v3\models\PortForwardingConfig;
+use alphayax\freebox\api\v3\models\NAT\IncomingPortConfig;
 use alphayax\freebox\api\v3\Service;
 
 

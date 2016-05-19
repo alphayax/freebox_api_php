@@ -1,6 +1,7 @@
 <?php
-namespace alphayax\freebox\api\v3\models;
+namespace alphayax\freebox\api\v3\models\NAT;
 use alphayax\freebox\api\v3\Model;
+use alphayax\freebox\api\v3\models\LAN\LanHost;
 
 /**
  * Class PortForwardingConfig

@@ -14,6 +14,10 @@ class FreeplugNetwork extends Model {
     /** @var Freeplug[] (Read-only) List of freeplugs member of this network */
     protected $members;
 
+    /**
+     * FreeplugNetwork constructor.
+     * @param array $properties_x
+     */
     public function __construct(array $properties_x){
         parent::__construct( $properties_x);
         $this->initPropertyArray( 'members', Freeplug::class);
