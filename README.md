@@ -53,10 +53,11 @@ $App->openSession();
 Les appels aux services de l'API se font par l'intermédiaire de services.
 Ces derniers possedent les méthodes pour récuperer, ajouter ou mettre a jour des données.
 
-Voici un exemple d'utilisation de l'API System. 
+Voici un exemple d'utilisation de l'API System :
+
 1. Nous créons un nouveau service "System"
 2. Nous demandons de récuperer la configuration actuelle
-3. Nous utilisons le modele retourné pour acceder a la donnée `uptime`
+3. Affichage du modele retourné
  
 ```php
 $System = new \alphayax\freebox\api\v3\services\config\System( $App);
@@ -64,7 +65,25 @@ $System = new \alphayax\freebox\api\v3\services\config\System( $App);
 /** @var \alphayax\freebox\api\v3\models\SystemConfig $SystemConfig */
 $SystemConfig = $System->getConfiguration();
 
-\alphayax\utils\cli\IO::stdout( 'Uptime : '. $SystemConfig->getUptime());
+print_r( $SystemConfig);
+```
+
+Résultat : 
+```php
+alphayax\freebox\api\v3\models\SystemConfig Object
+(
+    [firmware_version:protected] => 3.3.1
+    [mac:protected] => 77:77:77:77:77:77
+    [serial:protected] => 7777777777777777
+    [uptime:protected] => 44 jours 16 heures 35 minutes 16 secondes
+    [uptime_val:protected] => 3861316
+    [board_name:protected] => fbxgw2r
+    [temp_cpum:protected] => 63
+    [temp_sw:protected] => 52
+    [temp_cpub:protected] => 58
+    [fan_rpm:protected] => 2253
+    [box_authenticated:protected] => 1
+)
 ```
 
 ## Exemples
@@ -77,12 +96,13 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `fsOperation` : Un exemple d'operations sur le fichiers (copies, déplacement, renommage, par2..)
 - `config` 
     - `check_dns` : Un script pour récuperer la configuration courrante du DHCP
-    - `DMZ` : Récupération de la confiugration de votre zone démilitarisée
+    - `DMZ` : Récupération de la configuration de votre zone démilitarisée
     - `Freeplug` : Affichage de votre configuration de Freeplug
     - `IncomingPort` : Retourne la configuration actuelle du port d'entrée HTTP
     - `LCD` : Exemple de modification de la luminosité du cadrant LCD de la freebox server
     - `LAN` : Configuration du LAN et exploration des machines en réseau
     - `PortForwarding` : Exemple d'ajout d'une redirection de port
+    - `System` : Affichage de la configuration système de la freebox
 - `download`
     - `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere
  
