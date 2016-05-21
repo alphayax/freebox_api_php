@@ -12,6 +12,13 @@ Ce projet est basé sur **composer**. Pensez à installer les dependences :)
 Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
 
 - AirMedia
+- Call
+    - CallEntry
+    - ContactEntry
+        - ContactAddress
+        - ContactEmail
+        - ContactNumber
+        - ContactUrl
 - FileSystem
     - FileSystem (Core)
         - FsTask
@@ -90,6 +97,9 @@ alphayax\freebox\api\v3\models\SystemConfig Object
 
 Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés par services :
 - `AirMedia` : Exemple de lancement d'une video sur le Freebox Player
+- `Call` : 
+    - `Call` : Liste les appels recus et emis sur la freebox (avec exemple de supression et de marquage comme lu) 
+    - `Contact` : Liste les contacts, ajoute et retire un numéro de téléphone au premier contact de la liste
 - `FileSystem`
     - `fileSharing` : Un exemple de partage de fichier sur le net
     - `fsListing` : Un exemple de scan de repertoires de la freebox
