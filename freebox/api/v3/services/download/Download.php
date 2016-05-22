@@ -157,11 +157,18 @@ class Download extends Service {
      * @param $download_file_rdi
      * @param string $download_dir_rdi
      * @param string $archive_password
+     * @return bool
      */
     public function addFromFile( $download_file_rdi, $download_dir_rdi = '', $archive_password = ''){
         $rest = $this->getAuthService( self::API_DOWNLOAD_ADD);
-        // TODO
+        $rest->setContentType_MultipartFormData();
+        $rest->POST([
+            'download_file'     => new \CURLFile( $download_file_rdi),
+            'download_dir'      => base64_encode( $download_dir_rdi),
+            'archive_password'  => $archive_password,
+        ]);
 
+        return $rest->getCurlResponse()['result']['id'];
     }
 
 }
