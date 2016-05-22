@@ -28,6 +28,11 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
 - Downloads
     - Download
 - Configuration
+    - Connection
+        - Connection (Core)
+        - xDSL
+        - FTTH
+        - DynDns
     - DHCP
     - FTP
     - LAN
@@ -106,6 +111,7 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `fsOperation` : Un exemple d'operations sur le fichiers (copies, déplacement, renommage, par2..)
 - `config` 
     - `check_dns` : Un script pour récuperer la configuration courrante du DHCP
+    - `Connection` : Récupere diverses informations sur la connexion de la freebox (xDSL, FTTH, DynDns...)
     - `DMZ` : Récupération de la configuration de votre zone démilitarisée
     - `Freeplug` : Affichage de votre configuration de Freeplug
     - `IncomingPort` : Retourne la configuration actuelle du port d'entrée HTTP
