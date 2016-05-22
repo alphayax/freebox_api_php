@@ -11,7 +11,8 @@
   ],
   "require" : {
     "alphayax/php_utils" : "^0.1.1",
-    "php": ">=5.5.0"
+    "php": ">=5.5.0",
+    "monolog/monolog": "1.9.*"
   },
   "autoload": {
     "psr-4": {"alphayax\\": "./"}

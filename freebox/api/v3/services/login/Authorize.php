@@ -2,7 +2,6 @@
 namespace alphayax\freebox\api\v3\services\login;
 use alphayax\freebox\api\v3\Service;
 use alphayax\freebox\utils\Application;
-use alphayax\utils\cli\IO;
 
 /**
  * Class Authorize
@@ -57,9 +56,9 @@ class Authorize extends Service {
 
             /// For verbose
             switch( $this->status){
-                case self::STATUS_GRANTED : IO::stdout('Access granted !', 0, true, IO::COLOR_GREEN); break;
-                case self::STATUS_TIMEOUT : IO::stdout('Access denied. You take to long to authorize app', 0, true, IO::COLOR_RED); break;
-                case self::STATUS_DENIED  : IO::stdout('Access denied. Freebox denied app connexion', 0, true, IO::COLOR_RED); break;
+                case self::STATUS_GRANTED : $this->application->getLogger()->addInfo( 'Access granted !'); break;
+                case self::STATUS_TIMEOUT : $this->application->getLogger()->addCritical( 'Access denied. You take to long to authorize app'); break;
+                case self::STATUS_DENIED  : $this->application->getLogger()->addCritical( 'Access denied. Freebox denied app connexion'); break;
             }
         }
     }
@@ -80,7 +79,7 @@ class Authorize extends Service {
 
         $response = $rest->getCurlResponse();
 
-        IO::stdout( 'Authorization send to Freebox. Waiting for response...', 0, true, IO::COLOR_YELLOW);
+        $this->application->getLogger()->addInfo( 'Authorization send to Freebox. Waiting for response...');
 
         $this->app_token = $response['result']['app_token'];
         $this->track_id  = $response['result']['track_id'];
@@ -90,8 +89,6 @@ class Authorize extends Service {
      * @throws \Exception
      */
     public function get_authorization_status(){
-        IO::stdout( 'Check authorization status... ', 0, false, IO::COLOR_YELLOW);
-
         $rest = $this->getService( self::API_LOGIN_AUTHORIZE . $this->track_id);
         $rest->GET();
 
@@ -100,7 +97,7 @@ class Authorize extends Service {
         $this->status    = $result['status'];
         $this->challenge = $result['challenge'];
 
-        IO::stdout( $this->status, 0, true, IO::COLOR_BLUE);
+        $this->application->getLogger()->addInfo( 'Freebox authorization status : '. $this->status);
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php
 namespace alphayax\freebox\utils;
 use alphayax\freebox\api\v3\services;
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Logger;
 
 /**
  * Class Application
@@ -23,6 +25,9 @@ class Application {
     /** @var string */
     private $session_token = '';
 
+    /** @var Logger */
+    protected $logger;
+
     /**
      * Application constructor.
      * @param $app_id
@@ -33,6 +38,9 @@ class Application {
         $this->id      = $app_id;
         $this->name    = $app_name;
         $this->version = $app_version;
+        /// Logger
+        $this->logger  = new Logger('fbx_api_logger');
+        $this->logger->pushHandler( new ErrorLogHandler());
     }
 
     /**
@@ -119,6 +127,13 @@ class Application {
         if( ! file_put_contents( 'app_token', $this->app_token)){
             throw new \Exception('Unable to save app token in file');
         }
+    }
+
+    /**
+     * @return Logger
+     */
+    public function getLogger() {
+        return $this->logger;
     }
 
 }
