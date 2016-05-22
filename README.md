@@ -24,6 +24,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - FsTask
         - FsOperation
         - FsListing
+        - FileUpload
     - FileSharing
 - Downloads
     - Download
