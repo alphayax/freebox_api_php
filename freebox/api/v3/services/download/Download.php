@@ -1,5 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\download;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -15,24 +16,32 @@ class Download extends Service {
     const API_DOWNLOAD_ADD    = '/api/v3/downloads/add/';
 
     /**
-     * Get the current system info
+     * Returns the collection of all Download tasks
      * @throws \Exception
+     * @return models\Download\Task[]
      */
     public function getAll(){
         $rest = $this->getAuthService( self::API_DOWNLOAD);
         $rest->GET();
-        return $rest->getCurlResponse()['result'];
+
+        $DownloadTask_xs = @$rest->getCurlResponse()['result'] ?: [];
+        $DownloadTasks   = [];
+        foreach( $DownloadTask_xs as $DownloadTask_x) {
+            $DownloadTasks[] = new models\Download\Task( $DownloadTask_x);
+        }
+        return $DownloadTasks;
     }
 
     /**
-     * Get the current system info
+     * Returns the Download task with the given id
      * @param int $download_id
-     * @return
+     * @return models\Download\Task
      */
     public function getFromId( $download_id){
         $rest = $this->getAuthService( self::API_DOWNLOAD . $download_id);
         $rest->GET();
-        return $rest->getCurlResponse()['result'];
+
+        return new models\Download\Task( $rest->getCurlResponse()['result']);
     }
 
     /**
@@ -44,6 +53,7 @@ class Download extends Service {
         $logService = sprintf( self::API_DOWNLOAD_LOG, $download_id);
         $rest = $this->getAuthService( $logService);
         $rest->GET();
+
         return $rest->getCurlResponse()['result'];
     }
 
@@ -56,7 +66,8 @@ class Download extends Service {
     public function deleteFromId( $download_id){
         $rest = $this->getAuthService( self::API_DOWNLOAD . $download_id);
         $rest->DELETE();
-        return $rest->getCurlResponse()['result'];
+
+        return $rest->getCurlResponse()['success'];
     }
 
     /**
@@ -68,21 +79,22 @@ class Download extends Service {
         $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $download_id);
         $rest = $this->getAuthService( $eraseService);
         $rest->DELETE();
-        return $rest->getCurlResponse()['result'];
+
+        return $rest->getCurlResponse()['success'];
     }
 
 
     /**
-     * Delete a download task (erase data)
-     * @param int $download_id
-     * @param array $data
-     * @return
+     * Update a download task
+     * @param models\Download\Task $downloadTask
+     * @return models\Download\Task
      */
-    public function updateFromId( $download_id, $data){
-        $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $download_id);
+    public function update( models\Download\Task $downloadTask){
+        $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $downloadTask->getId());
         $rest = $this->getAuthService( $eraseService);
-        $rest->PUT( $data);
-        return $rest->getCurlResponse()['result'];
+        $rest->PUT( $downloadTask->toArray());
+
+        return new models\Download\Task( $rest->getCurlResponse()['result']);
     }
 
     /**

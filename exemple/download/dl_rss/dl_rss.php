@@ -2,7 +2,7 @@
 use alphayax\utils\cli\IO;
 
 /// Require Composer AutoLoader
-require_once '../../vendor/autoload.php';
+require_once '../../../vendor/autoload.php';
 
 /// Define our application
 $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.example', 'Freebox PHP API Example', '0.0.2');
