@@ -8,7 +8,11 @@ $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.download',
 $App->authorize();
 $App->openSession();
 
-/// Download
+/// List of all downloads
 $DownloadService = new \alphayax\freebox\api\v3\services\download\Download( $App);
 $Downloads = $DownloadService->getAll();
 print_r( $Downloads);
+
+/// Stats
+$Stats = $DownloadService->getStats();
+print_r( $Stats);

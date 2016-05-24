@@ -14,6 +14,7 @@ class Download extends Service {
     const API_DOWNLOAD_LOG    = '/api/v3/downloads/%s/log/';
     const API_DOWNLOAD_ERASE  = '/api/v3/downloads/%s/erase/';
     const API_DOWNLOAD_ADD    = '/api/v3/downloads/add/';
+    const API_DOWNLOAD_STATS  = '/api/v3/downloads/stats';
 
     /**
      * Returns the collection of all Download tasks
@@ -181,6 +182,19 @@ class Download extends Service {
         ]);
 
         return $rest->getCurlResponse()['result']['id'];
+    }
+
+
+
+    /**
+     * Returns the Download task with the given id
+     * @return models\Download\Task
+     */
+    public function getStats( ){
+        $rest = $this->getAuthService( self::API_DOWNLOAD_STATS);
+        $rest->GET();
+
+        return new models\Download\Stats\DownloadStats( $rest->getCurlResponse()['result']);
     }
 
 }

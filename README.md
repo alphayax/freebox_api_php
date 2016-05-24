@@ -27,7 +27,8 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - FileUpload
     - FileSharing
 - Downloads
-    - Download
+    - Download (core)
+    - Download Stats
 - Configuration
     - Connection
         - Connection (Core)

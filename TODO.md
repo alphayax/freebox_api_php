@@ -1,6 +1,6 @@
 - Downloads
     - ~~Download~~
-    - Download Stats
+    - ~~Download Stats~~
     - Download Files
     - Download Trackers [UNSTABLE]
     - Download Peers [UNSTABLE]
