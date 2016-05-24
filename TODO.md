@@ -31,7 +31,7 @@
     - UPnP IGD
     - ~~LCD~~
     - Network Share
-    - UPnP AV
+    - ~~UPnP AV~~
     - Switch
     - Wi-Fi
     - ~~System~~

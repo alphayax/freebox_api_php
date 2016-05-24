@@ -8,11 +8,7 @@ $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.config', '
 $App->authorize();
 $App->openSession();
 
-// LCD Configuration
-$LCDService = new \alphayax\freebox\api\v3\services\config\LCD( $App);
-$a = $LCDService->getConfiguration();
-var_dump( $a);
-
-$a->setBrightness( 10);
-$b = $LCDService->setConfiguration( $a);
-var_dump( $b);
+// UPnP AV
+$UPnPAvService = new \alphayax\freebox\api\v3\services\config\UPnP\AV( $App);
+$UPnPAvConfig = $UPnPAvService->getConfiguration();
+print_r( $UPnPAvConfig);

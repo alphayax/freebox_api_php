@@ -48,6 +48,8 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - Dmz
         - Port Forwarding
         - Incoming Port
+    - UPnP
+        - AV
 
 
 ## Utilisation
