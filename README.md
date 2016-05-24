@@ -26,7 +26,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - FsListing
         - FileUpload
     - FileSharing
-- DownloadStats
+- Download
     - Download (core)
     - Download Stats
     - Download Files
