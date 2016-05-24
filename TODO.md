@@ -1,7 +1,7 @@
 - Downloads
     - ~~Download~~
     - ~~Download Stats~~
-    - Download Files
+    - ~~Download Files~~
     - Download Trackers [UNSTABLE]
     - Download Peers [UNSTABLE]
     - Download Blacklist [UNSTABLE]

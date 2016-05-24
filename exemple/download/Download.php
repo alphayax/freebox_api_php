@@ -16,3 +16,14 @@ print_r( $Downloads);
 /// Stats
 $Stats = $DownloadService->getStats();
 print_r( $Stats);
+
+/// Files
+$Files = $DownloadService->getFilesFromId( $Downloads[0]->getId());
+print_r( $Files);
+
+/// Priority
+$Success = $DownloadService->updateFilePriority( $Downloads[0]->getId(), $Files[0]->getId(), \alphayax\freebox\api\v3\symbols\Download\File\Priority::HIGH);
+print_r( $Success);
+$Files = $DownloadService->getFilesFromId( $Downloads[0]->getId());
+print_r( $Files);
+

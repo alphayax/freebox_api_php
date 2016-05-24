@@ -15,6 +15,7 @@ class Download extends Service {
     const API_DOWNLOAD_ERASE  = '/api/v3/downloads/%s/erase/';
     const API_DOWNLOAD_ADD    = '/api/v3/downloads/add/';
     const API_DOWNLOAD_STATS  = '/api/v3/downloads/stats';
+    const API_DOWNLOAD_FILES  = '/api/v3/downloads/%u/files';
 
     /**
      * Returns the collection of all Download tasks
@@ -184,8 +185,6 @@ class Download extends Service {
         return $rest->getCurlResponse()['result']['id'];
     }
 
-
-
     /**
      * Returns the Download task with the given id
      * @return models\Download\Task
@@ -195,6 +194,41 @@ class Download extends Service {
         $rest->GET();
 
         return new models\Download\Stats\DownloadStats( $rest->getCurlResponse()['result']);
+    }
+
+    /**
+     * Returns the Download task with the given id
+     * @param int $taskId
+     * @return models\Download\File[]
+     */
+    public function getFilesFromId( $taskId){
+        $Service = sprintf( self::API_DOWNLOAD_FILES, $taskId);
+        $rest = $this->getAuthService( $Service);
+        $rest->GET();
+
+        $DownloadFile_xs = @$rest->getCurlResponse()['result'] ?: [];
+        $DownloadFiles   = [];
+        foreach( $DownloadFile_xs as $DownloadFile_x) {
+            $DownloadFiles[] = new models\Download\File( $DownloadFile_x);
+        }
+        return $DownloadFiles;
+    }
+
+    /**
+     * @param int $downloadTaskId
+     * @param string $FileId
+     * @param string $Priority
+     * @see alphayax\freebox\api\v3\symbols\Download\File\Priority
+     * @return
+     */
+    public function updateFilePriority( $downloadTaskId, $FileId, $Priority){
+        $Service = sprintf( self::API_DOWNLOAD_FILES, $downloadTaskId);
+        $rest = $this->getAuthService( $Service . DIRECTORY_SEPARATOR . $FileId);
+        $rest->PUT([
+            'priority'  => $Priority,
+        ]);
+
+        return $rest->getCurlResponse()['success'];
     }
 
 }
