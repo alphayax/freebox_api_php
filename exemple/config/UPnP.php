@@ -12,3 +12,12 @@ $App->openSession();
 $UPnPAvService = new \alphayax\freebox\api\v3\services\config\UPnP\AV( $App);
 $UPnPAvConfig = $UPnPAvService->getConfiguration();
 print_r( $UPnPAvConfig);
+
+// UPnP IGD
+$UPnPIgdService = new \alphayax\freebox\api\v3\services\config\UPnP\IGD( $App);
+$UPnPIgdConfig = $UPnPIgdService->getConfiguration();
+print_r( $UPnPIgdConfig);
+
+$UPnPIgdRedirections = $UPnPIgdService->getRedirections();
+print_r( $UPnPIgdRedirections);
+

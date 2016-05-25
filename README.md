@@ -50,6 +50,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - Incoming Port
     - UPnP
         - AV
+        - IGD
 
 
 ## Utilisation
@@ -124,6 +125,7 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `LAN` : Configuration du LAN et exploration des machines en réseau
     - `PortForwarding` : Exemple d'ajout d'une redirection de port
     - `System` : Affichage de la configuration système de la freebox
+    - `UPnP` : Affichage des configuration UPnP
 - `download`
     - `Download` : Listage des téléchargement en cours, liste des fichiers d'un téléchargement et mise a jour de la priorité de téléchargement 
     - `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere

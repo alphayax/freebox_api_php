@@ -28,7 +28,7 @@
     - ~~NAT~~
     - ~~Port Forwarding~~
     - ~~Incoming port configuration~~
-    - UPnP IGD
+    - ~~UPnP IGD~~
     - ~~LCD~~
     - Network Share
     - ~~UPnP AV~~
