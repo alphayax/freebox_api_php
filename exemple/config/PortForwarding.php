@@ -1,4 +1,4 @@
-.<?php
+<?php
 
 /// Require Composer AutoLoader
 require_once '../../vendor/autoload.php';
