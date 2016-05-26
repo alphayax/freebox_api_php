@@ -14,18 +14,28 @@ class DlThrottlingConfig extends Model {
     /** @var DlRate : download rate for normal slow slot (in B/s) */
     protected $slow;
 
-    /** @var string
+    /** @var string[168]
      * The schedule array represent the list of week hours timeslot, starting on monday a midnight.
      * Therefore the complete week is represented in a array of 168 elements (24 * 7)
      * @see alphayax\freebox\api\v3\symbols\Download\Config\DlThrottlingConfig\Schedule
      */
-    protected $schedule;
+    protected $schedule = [];
 
     /**
      * @var string
      * @see alphayax\freebox\api\v3\symbols\Download\Config\DlThrottlingConfig\Mode
      */
     protected $mode;
+
+    /**
+     * DlThrottlingConfig constructor.
+     * @param array $properties_x
+     */
+    public function __construct( array $properties_x){
+        parent::__construct( $properties_x);
+        $this->initProperty( '$normal'  , DlRate::class);
+        $this->initProperty( 'slow'     , DlRate::class);
+    }
 
     /**
      * @return DlRate

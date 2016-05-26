@@ -6,7 +6,7 @@
     - Download Peers [UNSTABLE]
     - Download Blacklist [UNSTABLE]
     - Download Feeds
-    - Download Configuration
+    - ~~Download Configuration~~
 - ~~File System Api~~
     - ~~File System~~
     - ~~File Sharing Link~~
