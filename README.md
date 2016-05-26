@@ -37,6 +37,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - Download Stats
     - Download Files
     - Download Configuration
+    - Bittorent Trackers
 - Configuration
     - Connection
         - Connection (Core)
