@@ -1,7 +1,7 @@
 <?php
 namespace alphayax\freebox\api\v3\models\Download\Stats;
 use alphayax\freebox\api\v3\Model;
-use alphayax\freebox\api\v3\models\Download\DlRate;
+use alphayax\freebox\api\v3\models\Download\Config\DlRate;
 
 /**
  * Class Stats
