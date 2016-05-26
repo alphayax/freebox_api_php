@@ -13,9 +13,14 @@ $DownloadService = new \alphayax\freebox\api\v3\services\download\Download( $App
 $Downloads = $DownloadService->getAll();
 print_r( $Downloads);
 
-
+/// Trackers
 $TrackerService = new \alphayax\freebox\api\v3\services\download\Tracker( $App);
-$a = $TrackerService->getAll( $Downloads[1]->getId());
+$Trackers = $TrackerService->getAll( $Downloads[1]->getId());
+print_r( $Trackers);
 
-print_r( $a);
+/// Peers
+$PeerService = new \alphayax\freebox\api\v3\services\download\Peer( $App);
+$Peers = $PeerService->getAll( $Downloads[0]->getId());
+print_r( $Peers);
+
 

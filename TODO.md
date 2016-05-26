@@ -3,7 +3,7 @@
     - ~~Download Stats~~
     - ~~Download Files~~
     - ~~Download Trackers [UNSTABLE]~~
-    - Download Peers [UNSTABLE]
+    - ~~Download Peers [UNSTABLE]~~
     - Download Blacklist [UNSTABLE]
     - Download Feeds
     - ~~Download Configuration~~
