@@ -40,6 +40,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - Bittorent 
         - Trackers
         - Peers
+        - BlackList
 - Configuration
     - Connection
         - Connection (Core)

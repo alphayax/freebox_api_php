@@ -4,6 +4,7 @@ namespace alphayax\freebox\api\v3\symbols\Download\BlackListEntry;
 /**
  * Symbol Reason
  * @package alphayax\freebox\api\v3\symbols\Download\BlackListEntry
+ * @see alphayax\freebox\api\v3\models\Download\BlackListEntry
  */
 interface Reason {
 

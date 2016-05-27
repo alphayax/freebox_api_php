@@ -4,7 +4,7 @@
     - ~~Download Files~~
     - ~~Download Trackers [UNSTABLE]~~
     - ~~Download Peers [UNSTABLE]~~
-    - Download Blacklist [UNSTABLE]
+    - ~~Download Blacklist [UNSTABLE]~~
     - Download Feeds
     - ~~Download Configuration~~
 - ~~File System Api~~
