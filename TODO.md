@@ -30,7 +30,7 @@
     - ~~Incoming port configuration~~
     - ~~UPnP IGD~~
     - ~~LCD~~
-    - Network Share
+    - ~~Network Share~~
     - ~~UPnP AV~~
     - Switch
     - Wi-Fi

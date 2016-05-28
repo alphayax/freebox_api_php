@@ -55,6 +55,9 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - Lan (Core)
         - Lan Browser
         - Wake On Lan
+    - Network Share
+        - Samba
+        - Afp
     - System
     - LCD
     - NAT
