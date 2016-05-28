@@ -32,7 +32,7 @@
     - ~~LCD~~
     - ~~Network Share~~
     - ~~UPnP AV~~
-    - Switch
+    - ~~Switch~~
     - Wi-Fi
     - ~~System~~
     - VPN Server [UNSTABLE]

@@ -58,6 +58,10 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - Network Share
         - Samba
         - Afp
+    - Switch
+        - Statistics
+        - Status
+        - Config
     - System
     - LCD
     - NAT
