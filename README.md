@@ -42,6 +42,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - Trackers
         - Peers
         - BlackList
+- RRD
 - Configuration
     - Connection
         - Connection (Core)

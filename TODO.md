@@ -1,4 +1,4 @@
-- Downloads
+- ~~Downloads~~
     - ~~Download~~
     - ~~Download Stats~~
     - ~~Download Files~~
@@ -13,8 +13,8 @@
     - ~~File Upload~~
 - ~~Air Media~~
     - ~~AirMedia API~~
-- RRD
-    - RRD [UNSTABLE]
+- ~~RRD~~
+    - ~~RRD [UNSTABLE]~~
 - ~~Calls / Contacts~~
     - ~~Call~~
     - ~~Contacts~~
