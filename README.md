@@ -2,7 +2,8 @@
 # Freebox v6 PHP API v3
 
 ![license](https://img.shields.io/packagist/l/alphayax/freebox_api_php.svg)
-![tag](https://img.shields.io/github/tag/alphayax/freebox_api_php.svg)
+![unstable](https://poser.pugx.org/alphayax/freebox_api_php/v/unstable)
+![stable](https://poser.pugx.org/alphayax/freebox_api_php/v/stable)
 ![pakagist](https://img.shields.io/packagist/v/alphayax/freebox_api_php.svg)
 ![codacy](https://api.codacy.com/project/badge/Grade/f3569cf671f04b8ab6d699be3fd011e5)
 
@@ -71,6 +72,8 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - UPnP
         - AV
         - IGD
+    - VPN
+        - Server
 
 
 ## Utilisation
@@ -146,6 +149,7 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `PortForwarding` : Exemple d'ajout d'une redirection de port
     - `System` : Affichage de la configuration système de la freebox
     - `UPnP` : Affichage des configuration UPnP
+    - `VPN` : Affiche la configuration des serveurs VPN, liste les utilisateurs...
 - `download`
     - `Download` : Listage des téléchargement en cours, liste des fichiers d'un téléchargement et mise a jour de la priorité de téléchargement
     - `DlConfig` : Affichage des configurations de téléchargement (bt, nntp...)

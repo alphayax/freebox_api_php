@@ -35,7 +35,7 @@
     - ~~Switch~~
     - Wi-Fi
     - ~~System~~
-    - VPN Server [UNSTABLE]
+    - ~~VPN Server [UNSTABLE]~~
     - VPN Client [UNSTABLE]
 - Storage
     - Storage API [UNSTABLE]

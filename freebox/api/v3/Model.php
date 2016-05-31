@@ -25,7 +25,7 @@ abstract class Model {
      * @param string $propertyClass
      */
     protected function initProperty( $propertyName, $propertyClass){
-        if( property_exists( static::class, $propertyName)){
+        if( property_exists( static::class, $propertyName) && ! empty( $this->$propertyName)){
             $this->$propertyName = new $propertyClass( $this->$propertyName);
         }
     }

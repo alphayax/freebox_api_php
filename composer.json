@@ -1,6 +1,7 @@
 {
   "name": "alphayax/freebox_api_php",
   "description": "API PHP pour la Freebox",
+  "license": "MIT",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "authors": [
@@ -10,12 +11,16 @@
     }
   ],
   "require" : {
-    "alphayax/php_utils" : "^0.1.1",
     "php": ">=5.5.0",
+    "alphayax/php_utils" : "^0.1.1",
     "monolog/monolog": "^1.9.1"
   },
   "autoload": {
-    "psr-4": {"alphayax\\": "./"}
+    "psr-4": {
+      "alphayax\\": "./"
+    }
   },
-  "license": "MIT"
+  "support": {
+    "issues": "https://github.com/alphayax/freebox_api_php/issues"
+  }
 }
