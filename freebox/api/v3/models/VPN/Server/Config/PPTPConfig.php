@@ -17,9 +17,9 @@ class PPTPConfig extends Model {
 
     /** @var bool[] : allowed authentication methods */
     protected $allowed_auth = [
-        'pap'      => null,
-        'chap'     => null,
-        'mschapv2' => null,
+        'pap'      => false,
+        'chap'     => false,
+        'mschapv2' => false,
     ];
 
     /**

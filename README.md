@@ -73,6 +73,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - AV
         - IGD
     - VPN
+        - Client
         - Server
 
 

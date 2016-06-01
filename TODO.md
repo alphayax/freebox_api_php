@@ -36,7 +36,7 @@
     - Wi-Fi
     - ~~System~~
     - ~~VPN Server [UNSTABLE]~~
-    - VPN Client [UNSTABLE]
+    - ~~VPN Client [UNSTABLE]~~
 - Storage
     - Storage API [UNSTABLE]
 - Parental filter

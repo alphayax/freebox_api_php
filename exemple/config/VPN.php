@@ -27,3 +27,16 @@ $CnxService = new \alphayax\freebox\api\v3\services\config\VPN\Server\Connection
 $connections = $CnxService->getAll();
 print_r( $connections);
 */
+
+/*
+$VPNClientService = new \alphayax\freebox\api\v3\services\config\VPN\Client\Config( $App);
+$VPNClientConfigurations = $VPNClientService->getAll();
+print_r( $VPNClientConfigurations);
+
+$VPNClientStatus = new \alphayax\freebox\api\v3\services\config\VPN\Client\Status( $App);
+$VPNStatus = $VPNClientStatus->getStatus();
+print_r( $VPNStatus);
+
+$VPNLogs = $VPNClientStatus->getLogs();
+print_r( $VPNLogs);
+*/
