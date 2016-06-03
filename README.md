@@ -77,6 +77,8 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - VPN
         - Client
         - Server
+    - WiFi
+        - Config (core)
 
 
 ## Utilisation
@@ -153,6 +155,7 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `System` : Affichage de la configuration système de la freebox
     - `UPnP` : Affichage des configuration UPnP
     - `VPN` : Affiche la configuration des serveurs VPN, liste les utilisateurs...
+    - `WiFi` : Affiche la configuration globale du wifi
 - `download`
     - `Download` : Listage des téléchargement en cours, liste des fichiers d'un téléchargement et mise a jour de la priorité de téléchargement
     - `DlConfig` : Affichage des configurations de téléchargement (bt, nntp...)

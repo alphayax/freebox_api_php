@@ -61,4 +61,28 @@ class RestAuth extends Rest {
         $this->session_token = $session_token;
     }
 
+    /**
+     * @throws \Exception
+     */
+    protected function checkResponse(){
+        $response = $this->getCurlResponse();
+
+        echo ">> ". explode( "\r\n", $this->_curl_getinfo['request_header'])[0] . PHP_EOL;
+
+        if( false === $this->getSuccess()){
+            $request = explode( PHP_EOL, @$this->_curl_getinfo['request_header'])[0];
+            switch( $response['error_code']){
+                case 'invalid_request' :
+                    $a = new alphayax\freebox\Exception\InvalidRequestException();
+                    $a->setHttpRequestHeader( $this->_curl_getinfo['request_header']);
+                    $a->setHttpUrl( $this->_curl_getinfo['url']);
+                    echo PHP_EOL . '---' . PHP_EOL;
+                    echo $this->_curl_getinfo['request_header'];
+                    echo PHP_EOL . '---' . PHP_EOL;
+                    throw $a;
+            }
+            throw new \Exception( $request .' - '. $response['msg'] . ' ('. $response['error_code'] . ')');
+        }
+    }
+
 }

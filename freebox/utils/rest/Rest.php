@@ -75,7 +75,7 @@ class Rest extends alphayax\utils\Rest {
 
     /**
      * @param string $className
-     * @return array
+     * @return array|alphayax\freebox\api\v3\Model
      */
     public function getResult( $className = ''){
         $Model = @$this->getCurlResponse()['result'];
