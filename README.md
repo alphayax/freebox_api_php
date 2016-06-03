@@ -1,11 +1,13 @@
 
 # Freebox v6 PHP API v3
 
-![license](https://img.shields.io/packagist/l/alphayax/freebox_api_php.svg)
-![unstable](https://poser.pugx.org/alphayax/freebox_api_php/v/unstable)
 ![stable](https://poser.pugx.org/alphayax/freebox_api_php/v/stable)
+![unstable](https://poser.pugx.org/alphayax/freebox_api_php/v/unstable)
 ![pakagist](https://img.shields.io/packagist/v/alphayax/freebox_api_php.svg)
+
 ![codacy](https://api.codacy.com/project/badge/Grade/f3569cf671f04b8ab6d699be3fd011e5)
+
+![license](https://img.shields.io/packagist/l/alphayax/freebox_api_php.svg)
 
 
 Implementation PHP de l'API de la freebox (dans sa version 3).

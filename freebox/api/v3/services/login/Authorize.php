@@ -78,6 +78,10 @@ class Authorize extends Service {
         ]);
 
         $response = $rest->getCurlResponse();
+        if( ! $response['success']){
+            $this->application->getLogger()->addCritical( 'Freebox Error : '. $response['error_code'] .' - '. $response['msg']);
+            throw new \Exception( $response['msg'], $response['error_code']);
+        }
 
         $this->application->getLogger()->addInfo( 'Authorization send to Freebox. Waiting for response...');
 

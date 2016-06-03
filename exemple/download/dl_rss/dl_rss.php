@@ -5,7 +5,7 @@ use alphayax\utils\cli\IO;
 require_once '../../../vendor/autoload.php';
 
 /// Define our application
-$App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.example', 'Freebox PHP API Example', '0.0.2');
+$App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.dl_rss', 'Alphayax RSS Downloader', '1.0.0');
 $App->authorize();
 $App->openSession();
 
