@@ -80,6 +80,9 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
     - WiFi
         - Config (core)
         - Access Points
+            - AP (core)
+            - Allowed Comb
+            - Stations
 
 
 ## Utilisation

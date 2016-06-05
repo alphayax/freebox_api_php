@@ -16,8 +16,13 @@ print_r( $a);
 
 $WiFiAccessPointService = new \alphayax\freebox\api\v3\services\config\WiFi\AccessPoint( $App);
 $AccessPoints = $WiFiAccessPointService->getAll();
+/*
 print_r( $AccessPoints);
 
 $AllowedComb = $WiFiAccessPointService->getAllowedCombFromId( $AccessPoints[0]->getId());
 print_r( $AllowedComb);
+*/
+
+$Stations = $WiFiAccessPointService->getStationsFromId( $AccessPoints[1]->getId());
+print_r( $Stations);
 
