@@ -79,6 +79,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - Server
     - WiFi
         - Config (core)
+        - Access Points
 
 
 ## Utilisation
