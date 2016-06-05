@@ -78,7 +78,7 @@ class Authorize extends Service {
         ]);
 
         $response = $rest->getCurlResponse();
-        if( ! $response['success']){
+        if( ! $rest->getSuccess()){
             $this->application->getLogger()->addCritical( 'Freebox Error : '. $response['error_code'] .' - '. $response['msg']);
             throw new \Exception( $response['msg'], $response['error_code']);
         }
@@ -96,7 +96,7 @@ class Authorize extends Service {
         $rest = $this->getService( self::API_LOGIN_AUTHORIZE . $this->track_id);
         $rest->GET();
 
-        $result = $rest->getCurlResponse()['result'];
+        $result = $rest->getResult();
 
         $this->status    = $result['status'];
         $this->challenge = $result['challenge'];
