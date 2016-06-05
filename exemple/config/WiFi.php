@@ -8,6 +8,13 @@ $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.config', '
 $App->authorize();
 $App->openSession();
 
+/*
 $WiFiConfigService = new \alphayax\freebox\api\v3\services\config\WiFi\Config( $App);
 $a = $WiFiConfigService->getConfiguration();
 print_r( $a);
+*/
+
+$WiFiAccessPointService = new \alphayax\freebox\api\v3\services\config\WiFi\AccessPoint( $App);
+$AccessPoints = $WiFiAccessPointService->getAll();
+print_r( $AccessPoints);
+
