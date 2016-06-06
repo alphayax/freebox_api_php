@@ -12,8 +12,13 @@
   ],
   "require" : {
     "php": ">=5.5.0",
-    "alphayax/php_utils" : "^1.0.0",
+    "alphayax/php_utils" : "^1.0.2",
     "monolog/monolog": "^1.9.1"
+  },
+  "require-dev" : {
+    "phpunit/phpunit": "^5.4.0",
+    "zf1/zend-reflection": "1.12.*",
+    "codacy/coverage": "<2.0.0"
   },
   "autoload": {
     "psr-4": {

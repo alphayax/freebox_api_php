@@ -4,7 +4,7 @@
 require_once '../../vendor/autoload.php';
 
 /// Define our application
-$App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.example_airmedia', 'Freebox PHP API Example (AirMedia)', '1.0.0');
+$App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.airmedia', 'PHP API Example (AirMedia)', '1.0.0');
 $App->authorize();
 $App->openSession();
 
@@ -13,8 +13,8 @@ $AirMediaService = new \alphayax\freebox\api\v3\services\AirMedia\AirMedia( $App
 
 // AirMedia Config
 $Configuration = $AirMediaService->getConfiguration();
-var_dump( $Configuration);
-
+print_r( $Configuration);
+/*
 // AirMedia Receivers
 $Receivers = $AirMediaService->getAirMediaReceivers();
 var_dump( $Receivers);
@@ -27,3 +27,4 @@ $Request->setMedia( 'http://anon.nasa-global.edgesuite.net/HD_downloads/GRAIL_la
 
 $Status = $AirMediaService->sendRequestToAirMediaReceiver( 'Freebox Player', $Request);
 var_dump( $Status);
+*/
