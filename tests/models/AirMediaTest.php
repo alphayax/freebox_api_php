@@ -6,38 +6,56 @@ use alphayax\freebox\api\v3\models\AirMedia\AirMediaConfig;
 
 class AirMediaConfigTest extends \PHPUnit_Framework_TestCase {
 
+    public function modelProvider(){
 
-    public function testConstruct(){
         $data = [
             'enabled' => true,
         ];
-        $AM_Config = new AirMediaConfig( $data);
 
-        $this->assertAttributeEquals( $data['enabled'], 'enabled', $AM_Config);
+        return [
+            [new AirMediaConfig( $data), $data],
+        ];
     }
 
-    public function testGetters() {
-
-        $data = [
-            'enabled' => true,
-        ];
-        $AM_Config = new AirMediaConfig( $data);
-
-        $this->assertEquals( $AM_Config->isEnabled(), $data['enabled']);
+    /**
+     * @dataProvider modelProvider
+     * @param AirMediaConfig $model
+     * @param array $data
+     */
+    public function testConstruct( $model, $data){
+        $this->assertAttributeEquals( $data['enabled'], 'enabled', $model);
     }
 
-    public function testSetters() {
+    /**
+     * @dataProvider modelProvider
+     * @param AirMediaConfig $model
+     * @param array $data
+     */
+    public function testGetters( $model, $data) {
+        $this->assertEquals( $model->isEnabled(), $data['enabled']);
+    }
 
-        $data = [
-            'enabled' => true,
-        ];
-        $AM_Config = new AirMediaConfig( $data);
+    /**
+     * @dataProvider modelProvider
+     * @param AirMediaConfig $model
+     * @param array $data
+     */
+    public function testSetters( $model, $data) {
+        $model->setEnabled( false);
+        $this->assertAttributeEquals( false, 'enabled', $model);
 
-        $AM_Config->setEnabled( false);
-        $this->assertAttributeEquals( false, 'enabled', $AM_Config);
+        $model->setPassword( 'azerty');
+        $this->assertAttributeEquals( 'azerty', 'password', $model);
+    }
 
-        $AM_Config->setPassword( 'azerty');
-        $this->assertAttributeEquals( 'azerty', 'password', $AM_Config);
+    /**
+     * @dataProvider modelProvider
+     * @param AirMediaConfig $model
+     * @param array $data
+     */
+    public function testSerialize( $model, $data){
+        $json = json_encode( $model);
+        $this->assertNotFalse( $json);
     }
 
 }
