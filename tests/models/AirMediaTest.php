@@ -1,17 +1,20 @@
 <?php
 namespace alphayax\tests\models;
-
-
 use alphayax\freebox\api\v3\models\AirMedia\AirMediaConfig;
 
+/**
+ * Class AirMediaConfigTest
+ * @package alphayax\tests\models
+ */
 class AirMediaConfigTest extends \PHPUnit_Framework_TestCase {
 
+    /**
+     * @return array
+     */
     public function modelProvider(){
-
         $data = [
             'enabled' => true,
         ];
-
         return [
             [new AirMediaConfig( $data), $data],
         ];

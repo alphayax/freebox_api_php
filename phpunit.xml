@@ -1,4 +1,9 @@
 <phpunit bootstrap="vendor/autoload.php">
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">freebox</directory>
+        </whitelist>
+    </filter>
     <testsuites>
         <testsuite name="all">
             <directory>tests</directory>
