@@ -13,6 +13,7 @@ class AccessPoint extends Service {
     const API_WIFI_AP_ALLOWED_COMB  = '/api/v3/wifi/ap/%u/allowed_channel_comb';
     const API_WIFI_AP_STATIONS      = '/api/v3/wifi/ap/%u/stations/';
     const API_WIFI_AP_NEIGHBORS     = '/api/v3/wifi/ap/%u/neighbors/';
+    const API_WIFI_AP_CHANNEL_USAGE = '/api/v3/wifi/ap/%u/channel_usage/';
 
     /**
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP[]
@@ -84,5 +85,18 @@ class AccessPoint extends Service {
 
         return $rest->getResultAsArray( models\WiFi\Radar\Neighbor::class);
     }
+
+    /**
+     * @param int $accessPointId
+     * @return models\WiFi\Radar\Neighbor[]
+     */
+    public function getChannelUsageFromId( $accessPointId) {
+        $service = sprintf( self::API_WIFI_AP_CHANNEL_USAGE, $accessPointId);
+        $rest = $this->getAuthService( $service);
+        $rest->GET();
+
+        return $rest->getResultAsArray( models\WiFi\Radar\ChannelUsage::class);
+    }
+
 
 }

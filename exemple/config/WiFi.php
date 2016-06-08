@@ -25,11 +25,13 @@ print_r( $AllowedComb);
 
 $Stations = $WiFiAccessPointService->getStationsFromId( $AccessPoints[1]->getId());
 print_r( $Stations);
-*/
 
 $Neighbors = $WiFiAccessPointService->getNeighborsFromId( $AccessPoints[1]->getId());
 print_r( $Neighbors);
+*/
 
+$ChannelUsages = $WiFiAccessPointService->getChannelUsageFromId( $AccessPoints[1]->getId());
+print_r( $ChannelUsages);
 
 /*
 $WiFiBssService = new \alphayax\freebox\api\v3\services\config\WiFi\Bss( $App);

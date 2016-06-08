@@ -86,6 +86,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
             - Allowed Comb
             - Stations
             - Radar
+            - Channel Usage
         - BSS
 
 
