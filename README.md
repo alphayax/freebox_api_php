@@ -85,6 +85,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
             - AP (core)
             - Allowed Comb
             - Stations
+            - BSS
 
 
 ## Utilisation

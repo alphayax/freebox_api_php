@@ -50,7 +50,7 @@ class AccessPoint extends Service {
     /**
      * To be able to allow user to pick a valid channel combination for a given AP you should use the following api to retrieve the list of allowed channel combination.
      * @param int $accessPointId
-     * @return models\WiFi\AccessPoint\AllowedComb[]
+     * @return models\WiFi\APStation\Station[]
      */
     public function getStationsFromId( $accessPointId) {
         $service = sprintf( self::API_WIFI_AP_STATIONS, $accessPointId);
