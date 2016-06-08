@@ -89,6 +89,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
             - Channel Usage
         - BSS
         - Planning
+        - Mac Filter
 
 
 ## Utilisation

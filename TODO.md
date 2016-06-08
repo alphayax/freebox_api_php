@@ -18,7 +18,7 @@
 - ~~Calls / Contacts~~
     - ~~Call~~
     - ~~Contacts~~
-- Configuration
+- ~~Configuration~~
     - ~~Connection API~~
     - ~~Lan~~
     - ~~Lan Browser~~
@@ -33,7 +33,7 @@
     - ~~Network Share~~
     - ~~UPnP AV~~
     - ~~Switch~~
-    - Wi-Fi
+    - ~~Wi-Fi~~
     - ~~System~~
     - ~~VPN Server [UNSTABLE]~~
     - ~~VPN Client [UNSTABLE]~~
