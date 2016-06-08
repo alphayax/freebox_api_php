@@ -88,6 +88,7 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
             - Radar
             - Channel Usage
         - BSS
+        - Planning
 
 
 ## Utilisation
