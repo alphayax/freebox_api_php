@@ -12,6 +12,7 @@ class AccessPoint extends Service {
     const API_WIFI_AP               = '/api/v3/wifi/ap/';
     const API_WIFI_AP_ALLOWED_COMB  = '/api/v3/wifi/ap/%u/allowed_channel_comb';
     const API_WIFI_AP_STATIONS      = '/api/v3/wifi/ap/%u/stations/';
+    const API_WIFI_AP_NEIGHBORS     = '/api/v3/wifi/ap/%u/neighbors/';
 
     /**
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP[]
@@ -69,6 +70,19 @@ class AccessPoint extends Service {
         $rest->PUT( $accessPoint);
 
         return $rest->getResult( models\WiFi\AccessPoint\AP::class);
+    }
+
+    /**
+     * Get the list of Neighbor seen by the AP
+     * @param int $accessPointId
+     * @return models\WiFi\Radar\Neighbor[]
+     */
+    public function getNeighborsFromId( $accessPointId) {
+        $service = sprintf( self::API_WIFI_AP_NEIGHBORS, $accessPointId);
+        $rest = $this->getAuthService( $service);
+        $rest->GET();
+
+        return $rest->getResultAsArray( models\WiFi\Radar\Neighbor::class);
     }
 
 }
