@@ -39,5 +39,5 @@
     - ~~VPN Client [UNSTABLE]~~
 - ~~Storage~~
     - ~~Storage API [UNSTABLE]~~
-- Parental filter
-    - Parental Control
+- ~~Parental filter~~
+    - ~~Parental Control~~

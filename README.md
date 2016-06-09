@@ -16,11 +16,12 @@ Implementation PHP de l'API de la freebox (dans sa version 3).
 
 ## Prérequis
 
-Ce projet est basé sur **composer**. Pensez à installer les dependences :)
+Ce projet est basé sur **composer**. 
+Pensez à installer les dependences :)
 
 ## Fonctionnalités
 
-Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
+L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
 
 - AirMedia
 - Call
@@ -93,6 +94,9 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - BSS
         - Planning
         - Mac Filter
+    - Parental Control
+        - Filter
+        - Planning
 
 
 ## Utilisation
