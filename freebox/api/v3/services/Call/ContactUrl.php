@@ -20,7 +20,7 @@ class ContactUrl extends Service {
         $rest = $this->getAuthService( self::API_URL . $ContactUrlId);
         $rest->GET();
 
-        return new models\Call\ContactUrl( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactUrl::class);
     }
 
     /**
@@ -29,9 +29,9 @@ class ContactUrl extends Service {
      */
     public function create( models\Call\ContactUrl $ContactUrl){
         $rest = $this->getAuthService( self::API_URL);
-        $rest->POST( $ContactUrl->toArray());
+        $rest->POST( $ContactUrl);
 
-        return new models\Call\ContactUrl( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactUrl::class);
     }
 
     /**
@@ -50,7 +50,7 @@ class ContactUrl extends Service {
         $rest = $this->getAuthService( self::API_URL . $ContactUrlId);
         $rest->DELETE();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -59,9 +59,9 @@ class ContactUrl extends Service {
      */
     public function update( models\Call\ContactUrl $ContactUrl){
         $rest = $this->getAuthService( self::API_URL . $ContactUrl->getId());
-        $rest->PUT( $ContactUrl->toArray());
+        $rest->PUT( $ContactUrl);
 
-        return new models\Call\ContactUrl( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactUrl::class);
     }
 
 }

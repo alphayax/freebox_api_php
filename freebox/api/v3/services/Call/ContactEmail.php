@@ -20,7 +20,7 @@ class ContactEmail extends Service {
         $rest = $this->getAuthService( self::API_EMAIL . $ContactEmailId);
         $rest->GET();
 
-        return new models\Call\ContactEmail( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactEmail::class);
     }
 
     /**
@@ -29,9 +29,9 @@ class ContactEmail extends Service {
      */
     public function create( models\Call\ContactEmail $ContactEmail){
         $rest = $this->getAuthService( self::API_EMAIL);
-        $rest->POST( $ContactEmail->toArray());
+        $rest->POST( $ContactEmail);
 
-        return new models\Call\ContactEmail( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactEmail::class);
     }
 
     /**
@@ -50,7 +50,7 @@ class ContactEmail extends Service {
         $rest = $this->getAuthService( self::API_EMAIL . $ContactEmailId);
         $rest->DELETE();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -59,9 +59,9 @@ class ContactEmail extends Service {
      */
     public function update( models\Call\ContactEmail $ContactEmail){
         $rest = $this->getAuthService( self::API_EMAIL . $ContactEmail->getId());
-        $rest->PUT( $ContactEmail->toArray());
+        $rest->PUT( $ContactEmail);
 
-        return new models\Call\ContactEmail( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactEmail::class);
     }
 
 }

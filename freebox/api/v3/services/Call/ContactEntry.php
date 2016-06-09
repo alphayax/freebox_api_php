@@ -24,12 +24,7 @@ class ContactEntry extends Service {
         $rest = $this->getAuthService( self::API_CONTACT);
         $rest->GET();
 
-        $ContactEntry_xs = $rest->getCurlResponse()['result'];
-        $ContactEntries  = [];
-        foreach( $ContactEntry_xs as $ContactEntry_x) {
-            $ContactEntries[] = new models\Call\ContactEntry( $ContactEntry_x);
-        }
-        return $ContactEntries;
+        return $rest->getResultAsArray( models\Call\ContactEntry::class);
     }
 
     /**
@@ -40,7 +35,7 @@ class ContactEntry extends Service {
         $rest = $this->getAuthService( self::API_CONTACT . $ContactEntryId);
         $rest->GET();
 
-        return new models\Call\ContactEntry( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactEntry::class);
     }
 
     /**
@@ -49,9 +44,9 @@ class ContactEntry extends Service {
      */
     public function create( models\Call\ContactEntry $ContactEntry){
         $rest = $this->getAuthService( self::API_CONTACT);
-        $rest->POST( $ContactEntry->toArray());
+        $rest->POST( $ContactEntry);
 
-        return new models\Call\ContactEntry( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactEntry::class);
     }
 
     /**
@@ -60,9 +55,9 @@ class ContactEntry extends Service {
      */
     public function update( models\Call\ContactEntry $ContactEntry){
         $rest = $this->getAuthService( self::API_CONTACT . $ContactEntry->getId());
-        $rest->PUT( $ContactEntry->toArray());
+        $rest->PUT( $ContactEntry);
 
-        return new models\Call\ContactEntry( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\ContactEntry::class);
     }
 
     /**
@@ -81,7 +76,7 @@ class ContactEntry extends Service {
         $rest = $this->getAuthService( self::API_CONTACT);
         $rest->DELETE( $ContactEntryId);
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -93,12 +88,7 @@ class ContactEntry extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $ContactNumber_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $ContactNumbers   = [];
-        foreach( $ContactNumber_xs as $ContactNumber_x) {
-            $ContactNumbers[] = new models\Call\ContactNumber( $ContactNumber_x);
-        }
-        return $ContactNumbers;
+        return $rest->getResultAsArray( models\Call\ContactNumber::class);
     }
 
     /**
@@ -110,12 +100,7 @@ class ContactEntry extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $ContactAddress_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $ContactAddresses  = [];
-        foreach( $ContactAddress_xs as $ContactAddress_x) {
-            $ContactAddresses[] = new models\Call\ContactAddress( $ContactAddress_x);
-        }
-        return $ContactAddresses;
+        return $rest->getResultAsArray( models\Call\ContactAddress::class);
     }
 
     /**
@@ -127,12 +112,7 @@ class ContactEntry extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $ContactEmail_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $ContactEmails   = [];
-        foreach( $ContactEmail_xs as $ContactEmail_x) {
-            $ContactEmails[] = new models\Call\ContactEmail( $ContactEmail_x);
-        }
-        return $ContactEmails;
+        return $rest->getResultAsArray( models\Call\ContactEmail::class);
     }
 
     /**
@@ -144,12 +124,7 @@ class ContactEntry extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $ContactUrl_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $ContactUrls   = [];
-        foreach( $ContactUrl_xs as $ContactUrl_x) {
-            $ContactUrls[] = new models\Call\ContactUrl( $ContactUrl_x);
-        }
-        return $ContactUrls;
+        return $rest->getResultAsArray( models\Call\ContactUrl::class);
     }
 
 }

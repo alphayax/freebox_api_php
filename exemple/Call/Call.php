@@ -12,7 +12,7 @@ $CallService = new \alphayax\freebox\api\v3\services\Call\CallEntry( $App);
 
 /// Get last 100 call entries
 $CallEntries = $CallService->getAll();
-//print_r( $CallEntries);
+print_r( $CallEntries);
 
 /// Get a specific call entry
 $CallEntry = $CallService->getFromId( $CallEntries[0]->getId());

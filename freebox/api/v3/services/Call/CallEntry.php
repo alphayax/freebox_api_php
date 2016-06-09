@@ -10,7 +10,7 @@ use alphayax\freebox\api\v3\models;
  */
 class CallEntry extends Service {
 
-    const API_CALL_LOG       = '/api/v3/call/log/';
+    const API_CALL_LOG = '/api/v3/call/log/';
 
     /**
      * List every calls
@@ -21,12 +21,7 @@ class CallEntry extends Service {
         $rest = $this->getAuthService( self::API_CALL_LOG);
         $rest->GET();
 
-        $CallEntry_xs = $rest->getCurlResponse()['result'];
-        $CallEntries  = [];
-        foreach( $CallEntry_xs as $CallEntry_x) {
-            $CallEntries[] = new models\Call\CallEntry( $CallEntry_x);
-        }
-        return $CallEntries;
+        return $rest->getResultAsArray( models\Call\CallEntry::class);
     }
 
     /**
@@ -38,7 +33,7 @@ class CallEntry extends Service {
         $rest = $this->getAuthService( self::API_CALL_LOG . $CallId);
         $rest->GET();
 
-        return new models\Call\CallEntry( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\CallEntry::class);
     }
 
     /**
@@ -59,7 +54,7 @@ class CallEntry extends Service {
         $rest = $this->getAuthService( self::API_CALL_LOG . $CallId);
         $rest->DELETE();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -69,9 +64,9 @@ class CallEntry extends Service {
      */
     public function update( models\Call\CallEntry $CallEntry){
         $rest = $this->getAuthService( self::API_CALL_LOG . $CallEntry->getId());
-        $rest->PUT( $CallEntry->toArray());
+        $rest->PUT( $CallEntry);
 
-        return new models\Call\CallEntry( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Call\CallEntry::class);
     }
     
 }

@@ -24,13 +24,7 @@ Pensez à installer les dependences :)
 L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
 
 - [AirMedia](docs/AirMedia)
-- Call
-    - CallEntry
-    - ContactEntry
-        - ContactAddress
-        - ContactEmail
-        - ContactNumber
-        - ContactUrl
+- [Call](docs/Call)
 - FileSystem
     - FileSystem (Core)
         - FsTask
