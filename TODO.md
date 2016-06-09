@@ -37,7 +37,7 @@
     - ~~System~~
     - ~~VPN Server [UNSTABLE]~~
     - ~~VPN Client [UNSTABLE]~~
-- Storage
-    - Storage API [UNSTABLE]
+- ~~Storage~~
+    - ~~Storage API [UNSTABLE]~~
 - Parental filter
     - Parental Control

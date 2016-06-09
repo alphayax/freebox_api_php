@@ -48,6 +48,9 @@ Jusqu'a présent, les fonctionalités suivantes ont été implémentées :
         - Peers
         - BlackList
 - RRD
+- Storage
+    - Disk
+    - Partition
 - Configuration
     - Connection
         - Connection (Core)
