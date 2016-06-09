@@ -10,9 +10,10 @@
 
 ## CallEntry
 
-|---|
-| Namespace   |`alphayax\freebox\api\v3\services\Call` |
-| Classe   | `CallEntry`|
+| Namespace  | Class |
+|---|---|
+| alphayax\freebox\api\v3\services\Call | CallEntry |
+
 
 - getAll : Retourne tous les appels
 - getFromId : Retourne un appel donné
@@ -22,9 +23,9 @@
 
 ## ContactEntry
 
-|---|
-| Namespace   |`alphayax\freebox\api\v3\services\Call` |
-| Classe   | `ContactEntry`|
+| Namespace  | Class |
+|---|---|
+| alphayax\freebox\api\v3\services\Call | ContactEntry |
 
 - getAll : Retourne la liste de tous les contacts
 - getFromId : Retourne un contact donné
@@ -39,9 +40,9 @@
 
 ### Contact Email
 
-|---|
-| Namespace   |`alphayax\freebox\api\v3\services\Call` |
-| Classe   | `ContactEmail`|
+| Namespace  | Class |
+|---|---|
+| alphayax\freebox\api\v3\services\Call | ContactEmail |
 
 - getFromId
 - create
@@ -51,9 +52,9 @@
 
 ### Contact Address
 
-|---|
-| Namespace   |`alphayax\freebox\api\v3\services\Call` |
-| Classe   | `ContactAddress`|
+| Namespace  | Class |
+|---|---|
+| alphayax\freebox\api\v3\services\Call | ContactAddress |
 
 - getFromId
 - create
@@ -63,9 +64,9 @@
 
 ### Contact Number
 
-|---|
-| Namespace   |`alphayax\freebox\api\v3\services\Call` |
-| Classe   | `ContactNumber`|
+| Namespace  | Class |
+|---|---|
+| alphayax\freebox\api\v3\services\Call | ContactNumber |
 
 - getFromId
 - create
@@ -75,9 +76,9 @@
 
 ### Contact URL
 
-|---|
-| Namespace   |`alphayax\freebox\api\v3\services\Call` |
-| Classe   | `ContactUrl`|
+| Namespace  | Class |
+|---|---|
+| alphayax\freebox\api\v3\services\Call | ContactUrl |
 
 - getFromId
 - create

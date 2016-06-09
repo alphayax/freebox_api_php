@@ -23,8 +23,8 @@ Pensez à installer les dependences :)
 
 L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
 
-- [AirMedia](docs/AirMedia)
-- [Call](docs/Call)
+- [AirMedia](docs/AirMedia.md)
+- [Call](docs/Call.md)
 - FileSystem
     - FileSystem (Core)
         - FsTask

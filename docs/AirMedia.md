@@ -3,9 +3,9 @@
 
 ## AirMedia
 
-|---|
-| Namespace   |`alphayax\freebox\api\v3\services\AirMedia\` |
-| Classe   | `AirMedia`|
+| Namespace  | Class |
+|---|---|
+| alphayax\freebox\api\v3\services\AirMedia | AirMedia |
 
 ### Configuration
 
