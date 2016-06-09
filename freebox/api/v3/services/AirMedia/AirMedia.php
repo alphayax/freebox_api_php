@@ -1,8 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\AirMedia;
-use alphayax\freebox\api\v3\models\AirMedia\AirMediaConfig;
-use alphayax\freebox\api\v3\models\AirMedia\AirMediaReceiver;
-use alphayax\freebox\api\v3\models\AirMedia\AirMediaReceiverRequest;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -17,53 +15,48 @@ class AirMedia extends Service {
 
     /**
      * @throws \Exception
-     * @return AirMediaConfig
+     * @return models\AirMedia\AirMediaConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_AIRMEDIA_CONFIG);
         $rest->GET();
 
-        return new AirMediaConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\AirMedia\AirMediaConfig::class);
     }
 
     /**
-     * @param AirMediaConfig $new_AirMediaConfig
-     * @return AirMediaConfig
+     * @param models\AirMedia\AirMediaConfig $new_AirMediaConfig
+     * @return models\AirMedia\AirMediaConfig
      * @throws \Exception
      */
-    public function setConfiguration( AirMediaConfig $new_AirMediaConfig){
+    public function setConfiguration( models\AirMedia\AirMediaConfig $new_AirMediaConfig){
         $rest = $this->getAuthService( self::API_AIRMEDIA_CONFIG);
-        $rest->PUT( $new_AirMediaConfig->toArray());
+        $rest->PUT( $new_AirMediaConfig);
 
-        return new AirMediaConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\AirMedia\AirMediaConfig::class);
     }
 
     /**
      * Get the list of AirMediaReceiver connected to the Freebox Server
-     * @return AirMediaReceiver[]
+     * @return models\AirMedia\AirMediaReceiver[]
      */
     public function getAirMediaReceivers(){
         $rest = $this->getAuthService( self::API_AIRMEDIA_RECEIVERS);
         $rest->GET();
 
-        $AirMediaReceiver_xs = $rest->getCurlResponse()['result'];
-        $AirMediaReceivers   = [];
-        foreach( $AirMediaReceiver_xs as $airMediaReceiver_x) {
-            $AirMediaReceivers[] = new AirMediaReceiver( $airMediaReceiver_x);
-        }
-        return $AirMediaReceivers;
+        return $rest->getResultAsArray( models\AirMedia\AirMediaReceiver::class);
     }
 
     /**
-     * @param string                  $AirMediaReceiver_name
-     * @param AirMediaReceiverRequest $AirMediaReceiverRequest
+     * @param string $AirMediaReceiver_name
+     * @param models\AirMedia\AirMediaReceiverRequest $AirMediaReceiverRequest
      * @return bool
      */
-    public function sendRequestToAirMediaReceiver( $AirMediaReceiver_name, AirMediaReceiverRequest $AirMediaReceiverRequest){
+    public function sendRequestToAirMediaReceiver( $AirMediaReceiver_name, models\AirMedia\AirMediaReceiverRequest $AirMediaReceiverRequest){
         $rest = $this->getAuthService( self::API_AIRMEDIA_RECEIVERS . $AirMediaReceiver_name . DIRECTORY_SEPARATOR);
-        $rest->POST( $AirMediaReceiverRequest->toArray());
+        $rest->POST( $AirMediaReceiverRequest);
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

@@ -14,10 +14,10 @@ $AirMediaService = new \alphayax\freebox\api\v3\services\AirMedia\AirMedia( $App
 // AirMedia Config
 $Configuration = $AirMediaService->getConfiguration();
 print_r( $Configuration);
-/*
+
 // AirMedia Receivers
 $Receivers = $AirMediaService->getAirMediaReceivers();
-var_dump( $Receivers);
+print_r( $Receivers);
 
 // AirMedia Request
 $Request = new \alphayax\freebox\api\v3\models\AirMedia\AirMediaReceiverRequest();
@@ -26,5 +26,4 @@ $Request->setMediaType( \alphayax\freebox\api\v3\symbols\AirMedia\MediaType::VID
 $Request->setMedia( 'http://anon.nasa-global.edgesuite.net/HD_downloads/GRAIL_launch_480.mov');
 
 $Status = $AirMediaService->sendRequestToAirMediaReceiver( 'Freebox Player', $Request);
-var_dump( $Status);
-*/
+print_r( $Status);

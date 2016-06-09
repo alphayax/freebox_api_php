@@ -23,7 +23,7 @@ Pensez à installer les dependences :)
 
 L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
 
-- AirMedia
+- [AirMedia](docs/AirMedia)
 - Call
     - CallEntry
     - ContactEntry
