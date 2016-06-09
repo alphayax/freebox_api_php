@@ -18,7 +18,7 @@ class FreeplugNetwork extends Model {
      * FreeplugNetwork constructor.
      * @param array $properties_x
      */
-    public function __construct(array $properties_x){
+    public function __construct( array $properties_x){
         parent::__construct( $properties_x);
         $this->initPropertyArray( 'members', Freeplug::class);
     }
