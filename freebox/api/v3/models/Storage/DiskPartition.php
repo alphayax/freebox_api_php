@@ -31,7 +31,7 @@ class DiskPartition extends Model {
     /** @var string : partition name */
     protected $label;
 
-    /** @var string (Read-only) : partition mount point (encoded in base64 as explained in fs API) */
+    /** @var string (Read-only) : partition mount point */
     protected $path;
 
     /** @var int (Read-only) : partition size (in bytes) */
@@ -117,7 +117,7 @@ class DiskPartition extends Model {
      * @return string
      */
     public function getPath() {
-        return $this->path;
+        return base64_decode( $this->path);
     }
 
     /**
