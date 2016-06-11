@@ -1,7 +1,10 @@
-
 # Client
 
+- [Config](#Config)
+- [Status](#Status)
 
+
+<a name="Config"></a>"
 ## Config
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Client
@@ -17,6 +20,7 @@
 | `deleteFromId` |  | 
 | `update` |  | 
 
+<a name="Status"></a>"
 ## Status
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Client

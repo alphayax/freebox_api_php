@@ -1,7 +1,10 @@
-
 # login
 
+- [Authorize](#Authorize)
+- [Session](#Session)
 
+
+<a name="Authorize"></a>"
 ## Authorize
 
 **Namespace**  : alphayax\freebox\api\v3\services\login
@@ -16,6 +19,7 @@
 | `getStatus` |  | 
 | `getAppToken` |  | 
 
+<a name="Session"></a>"
 ## Session
 
 **Namespace**  : alphayax\freebox\api\v3\services\login

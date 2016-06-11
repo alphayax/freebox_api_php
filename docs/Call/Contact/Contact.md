@@ -1,7 +1,13 @@
-
 # Contact
 
+- [ContactAddress](#ContactAddress)
+- [ContactEmail](#ContactEmail)
+- [ContactEntry](#ContactEntry)
+- [ContactNumber](#ContactNumber)
+- [ContactUrl](#ContactUrl)
 
+
+<a name="ContactAddress"></a>"
 ## ContactAddress
 
 **Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
@@ -16,6 +22,7 @@
 | `deleteFromId` | Remove an address (with the given id) | 
 | `update` | Update an address | 
 
+<a name="ContactEmail"></a>"
 ## ContactEmail
 
 **Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
@@ -30,6 +37,7 @@
 | `deleteFromId` | Remove an email contact (with the given id) | 
 | `update` | Update an email contact | 
 
+<a name="ContactEntry"></a>"
 ## ContactEntry
 
 **Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
@@ -49,6 +57,7 @@
 | `getContactEmailsFromContactId` | Get all email addresses associated to a given contact id | 
 | `getContactUrlsFromContactId` | Get all URLs associated to a given contact id | 
 
+<a name="ContactNumber"></a>"
 ## ContactNumber
 
 **Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
@@ -63,6 +72,7 @@
 | `deleteFromId` | Remove a contact number (with the specified id) | 
 | `update` | Update a contact number | 
 
+<a name="ContactUrl"></a>"
 ## ContactUrl
 
 **Namespace**  : alphayax\freebox\api\v3\services\Call\Contact

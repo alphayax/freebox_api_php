@@ -1,7 +1,11 @@
-
 # NAT
 
+- [DMZ](#DMZ)
+- [IncomingPort](#IncomingPort)
+- [PortForwarding](#PortForwarding)
 
+
+<a name="DMZ"></a>"
 ## DMZ
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\NAT
@@ -13,6 +17,7 @@
 | `getConfiguration` | Get the current Dmz configuration | 
 | `setConfiguration` | Update the current Dmz configuration | 
 
+<a name="IncomingPort"></a>"
 ## IncomingPort
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\NAT
@@ -25,6 +30,7 @@
 | `getById` | Getting a specific incoming port | 
 | `update` | Updating an incoming port | 
 
+<a name="PortForwarding"></a>"
 ## PortForwarding
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\NAT

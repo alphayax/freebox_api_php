@@ -1,7 +1,10 @@
-
 # LAN
 
+- [Browser](#Browser)
+- [LAN](#LAN)
 
+
+<a name="Browser"></a>"
 ## Browser
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\LAN
@@ -17,6 +20,7 @@
 | `updateHostFromInterfaceId` |  | 
 | `wakeOnLan` | Send Wake ok Lan packet to an host | 
 
+<a name="LAN"></a>"
 ## LAN
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\LAN

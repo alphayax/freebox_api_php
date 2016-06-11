@@ -1,7 +1,12 @@
-
 # Server
 
+- [Config](#Config)
+- [Connection](#Connection)
+- [IpPool](#IpPool)
+- [User](#User)
 
+
+<a name="Config"></a>"
 ## Config
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Server
@@ -13,6 +18,7 @@
 | `getConfigurationFromId` | Get a VPN config | 
 | `setConfiguration` | Update the VPN configuration | 
 
+<a name="Connection"></a>"
 ## Connection
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Server
@@ -24,6 +30,7 @@
 | `getAll` | Get the list of connections | 
 | `closeFromId` | Close a given connection | 
 
+<a name="IpPool"></a>"
 ## IpPool
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Server
@@ -34,6 +41,7 @@
 |---|---|
 | `getReservations` | Get the VPN server IP pool reservations | 
 
+<a name="User"></a>"
 ## User
 
 **Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Server
