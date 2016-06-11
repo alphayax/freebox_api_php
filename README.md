@@ -23,75 +23,16 @@ Pensez à installer les dependences :)
 
 L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
 
-- [AirMedia](docs/AirMedia.md)
-- [Call](docs/Call.md)
-- FileSystem
-    - FileSystem (Core)
-        - FsTask
-        - FsOperation
-        - FsListing
-        - FileUpload
-    - FileSharing
-- Download
-    - Download (core)
-    - Download Stats
-    - Download Files
-    - Download Configuration
-    - RSS Feed
-    - Bittorent 
-        - Trackers
-        - Peers
-        - BlackList
-- RRD
-- Storage
-    - Disk
-    - Partition
-- Configuration
-    - Connection
-        - Connection (Core)
-        - xDSL
-        - FTTH
-        - DynDns
-    - DHCP
-    - FTP
-    - LAN
-        - Lan (Core)
-        - Lan Browser
-        - Wake On Lan
-    - Network Share
-        - Samba
-        - Afp
-    - Switch
-        - Statistics
-        - Status
-        - Config
-    - System
-    - LCD
-    - NAT
-        - Dmz
-        - Port Forwarding
-        - Incoming Port
-    - UPnP
-        - AV
-        - IGD
-    - VPN
-        - Client
-        - Server
-    - WiFi
-        - Config (core)
-        - Access Points
-            - AP (core)
-            - Allowed Comb
-            - Stations
-            - Radar
-            - Channel Usage
-        - BSS
-        - Planning
-        - Mac Filter
-- Parental Control
-    - Filter
-    - Planning
+- [AirMedia](docs/AirMedia/AirMedia.md)
+- [Call](docs/Call/Call.md)
+- [Configuration](docs/config/config.md)
+- [Download](docs/download/download.md)
+- [FileSystem](docs/FileSystem/FileSystem.md)
+- [Parental Control](docs/ParentalControl/ParentalControl.md)
+- [RRD](docs/RRD/RRD.md)
+- [Storage](docs/Storage/Storage.md)
 
+Un document complet repertorie l'ensemble des services implémentées : [services.md](docs/services.md)
 
 ## Utilisation
 

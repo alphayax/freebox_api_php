@@ -1,10 +1,17 @@
-
 # Client
 
+**Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Client
 
+# Overview
+
+- [Config](Client.md#Config)
+- [Status](Client.md#Status)
+
+
+<a name="Config"></a>
 ## Config
 
-**Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Client
+**Class**  : alphayax\freebox\api\v3\services\config\VPN\Client\Config
 
 ### Public methods
 
@@ -17,9 +24,10 @@
 | `deleteFromId` |  | 
 | `update` |  | 
 
+<a name="Status"></a>
 ## Status
 
-**Namespace**  : alphayax\freebox\api\v3\services\config\VPN\Client
+**Class**  : alphayax\freebox\api\v3\services\config\VPN\Client\Status
 
 ### Public methods
 

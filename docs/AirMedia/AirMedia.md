@@ -1,10 +1,17 @@
-
 # AirMedia
 
+**Namespace**  : alphayax\freebox\api\v3\services\AirMedia
 
+# Overview
+
+- [AirMediaReceiver](AirMedia.md#AirMediaReceiver)
+- [Config](AirMedia.md#Config)
+
+
+<a name="AirMediaReceiver"></a>
 ## AirMediaReceiver
 
-**Namespace**  : alphayax\freebox\api\v3\services\AirMedia
+**Class**  : alphayax\freebox\api\v3\services\AirMedia\AirMediaReceiver
 
 ### Public methods
 
@@ -13,9 +20,10 @@
 | `getAll` | Get the list of AirMediaReceiver connected to the Freebox Server | 
 | `sendRequest` | Sending a request to an AirMedia receiver | 
 
+<a name="Config"></a>
 ## Config
 
-**Namespace**  : alphayax\freebox\api\v3\services\AirMedia
+**Class**  : alphayax\freebox\api\v3\services\AirMedia\Config
 
 ### Public methods
 

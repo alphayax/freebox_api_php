@@ -1,10 +1,20 @@
-
 # Contact
 
+**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
 
+# Overview
+
+- [ContactAddress](Contact.md#ContactAddress)
+- [ContactEmail](Contact.md#ContactEmail)
+- [ContactEntry](Contact.md#ContactEntry)
+- [ContactNumber](Contact.md#ContactNumber)
+- [ContactUrl](Contact.md#ContactUrl)
+
+
+<a name="ContactAddress"></a>
 ## ContactAddress
 
-**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+**Class**  : alphayax\freebox\api\v3\services\Call\Contact\ContactAddress
 
 ### Public methods
 
@@ -16,9 +26,10 @@
 | `deleteFromId` | Remove an address (with the given id) | 
 | `update` | Update an address | 
 
+<a name="ContactEmail"></a>
 ## ContactEmail
 
-**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+**Class**  : alphayax\freebox\api\v3\services\Call\Contact\ContactEmail
 
 ### Public methods
 
@@ -30,9 +41,10 @@
 | `deleteFromId` | Remove an email contact (with the given id) | 
 | `update` | Update an email contact | 
 
+<a name="ContactEntry"></a>
 ## ContactEntry
 
-**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+**Class**  : alphayax\freebox\api\v3\services\Call\Contact\ContactEntry
 
 ### Public methods
 
@@ -43,15 +55,16 @@
 | `create` | Add a contact entry | 
 | `update` | Update a contact entry | 
 | `delete` | Remove a contact entry | 
-| `deleteFromId` | remove a contact entry (with the specified id) | 
+| `deleteFromId` | Remove a contact entry (with the specified id) | 
 | `getContactNumbersFromContactId` | Get all numbers associated to a given contact id | 
 | `getContactAddressesFromContactId` | Get all addresses associated to a given contact id | 
 | `getContactEmailsFromContactId` | Get all email addresses associated to a given contact id | 
 | `getContactUrlsFromContactId` | Get all URLs associated to a given contact id | 
 
+<a name="ContactNumber"></a>
 ## ContactNumber
 
-**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+**Class**  : alphayax\freebox\api\v3\services\Call\Contact\ContactNumber
 
 ### Public methods
 
@@ -63,9 +76,10 @@
 | `deleteFromId` | Remove a contact number (with the specified id) | 
 | `update` | Update a contact number | 
 
+<a name="ContactUrl"></a>
 ## ContactUrl
 
-**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+**Class**  : alphayax\freebox\api\v3\services\Call\Contact\ContactUrl
 
 ### Public methods
 
