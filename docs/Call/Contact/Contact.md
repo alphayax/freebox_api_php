@@ -1,0 +1,78 @@
+
+# Contact
+
+
+## ContactAddress
+
+**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getFromId` | Get the address (with the given id) | 
+| `create` | Add an address | 
+| `delete` | Remove an address | 
+| `deleteFromId` | Remove an address (with the given id) | 
+| `update` | Update an address | 
+
+## ContactEmail
+
+**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getFromId` | Get the email contact (with the given id) | 
+| `create` | Create a new email contact | 
+| `delete` | Remove an email contact | 
+| `deleteFromId` | Remove an email contact (with the given id) | 
+| `update` | Update an email contact | 
+
+## ContactEntry
+
+**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getAll` | List all contacts | 
+| `getFromId` | Get a specific contact entry | 
+| `create` | Add a contact entry | 
+| `update` | Update a contact entry | 
+| `delete` | Remove a contact entry | 
+| `deleteFromId` | remove a contact entry (with the specified id) | 
+| `getContactNumbersFromContactId` | Get all numbers associated to a given contact id | 
+| `getContactAddressesFromContactId` | Get all addresses associated to a given contact id | 
+| `getContactEmailsFromContactId` | Get all email addresses associated to a given contact id | 
+| `getContactUrlsFromContactId` | Get all URLs associated to a given contact id | 
+
+## ContactNumber
+
+**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getFromId` | Get the contact number (with the given id) | 
+| `create` | Add a new contact number | 
+| `delete` | Remove a contact number | 
+| `deleteFromId` | Remove a contact number (with the specified id) | 
+| `update` | Update a contact number | 
+
+## ContactUrl
+
+**Namespace**  : alphayax\freebox\api\v3\services\Call\Contact
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getFromId` | Get the contact url (with the given id) | 
+| `create` | Add a new contact url | 
+| `delete` | Remove a contact url | 
+| `deleteFromId` | Remove a contact url (with the given id) | 
+| `update` | Update a contact url | 
