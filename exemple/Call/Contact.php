@@ -8,27 +8,14 @@ $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.call', 'PH
 $App->authorize();
 $App->openSession();
 
-$ContactService = new \alphayax\freebox\api\v3\services\Call\ContactEntry( $App);
-
+/// Get calls
+$ContactService = new \alphayax\freebox\api\v3\services\Call\Contact\ContactEntry( $App);
 $ContactEntries = $ContactService->getAll();
 print_r( $ContactEntries);
 
 
-/*
-$ContactNumber = new \alphayax\freebox\api\v3\models\Call\ContactNumber();
-$ContactNumber->setContactId( 1);
-$ContactNumber->setNumber( '0213456789');
-$ContactNumber->setType( \alphayax\freebox\api\v3\symbols\Call\ContactNumberType::HOME);
-
-$ContactNumber = $ContactService->addContactNumber( $ContactNumber);
-print_r( $ContactNumber);
-
-$ContactNumbers = $ContactService->getContactNumbersFromContactId( 1);
-print_r( $ContactNumbers);
-*/
-
-/*
-$ContactAddressService = new \alphayax\freebox\api\v3\services\Call\ContactAddress( $App);
+/// Contact Address
+$ContactAddressService = new \alphayax\freebox\api\v3\services\Call\Contact\ContactAddress( $App);
 
 $ContactAddress = new \alphayax\freebox\api\v3\models\Call\ContactAddress();
 $ContactAddress->setContactId( $ContactEntries[0]->getId());
@@ -41,10 +28,10 @@ print_r( $ContactAddressCreated);
 
 $ContactAddressDeleted = $ContactAddressService->delete( $ContactAddressCreated);
 print_r( $ContactAddressDeleted);
-*/
 
 
-$ContactNumbersService = new \alphayax\freebox\api\v3\services\Call\ContactNumber( $App);
+/// Contact number
+$ContactNumbersService = new \alphayax\freebox\api\v3\services\Call\Contact\ContactNumber( $App);
 
 $Number = new \alphayax\freebox\api\v3\models\Call\ContactNumber();
 $Number->setType(\alphayax\freebox\api\v3\symbols\Call\ContactNumberType::HOME);

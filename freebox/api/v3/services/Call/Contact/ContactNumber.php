@@ -1,5 +1,5 @@
 <?php
-namespace alphayax\freebox\api\v3\services\Call;
+namespace alphayax\freebox\api\v3\services\Call\Contact;
 use alphayax\freebox\api\v3\Service;
 use alphayax\freebox\api\v3\models;
 
@@ -13,6 +13,7 @@ class ContactNumber extends Service {
     const API_NUMBER = '/api/v3/number/';
 
     /**
+     * Get the contact number (with the given id)
      * @param int $ContactNumberId
      * @return models\Call\ContactNumber
      */
@@ -24,6 +25,7 @@ class ContactNumber extends Service {
     }
 
     /**
+     * Add a new contact number
      * @param models\Call\ContactNumber  $ContactNumber
      * @return models\Call\ContactNumber
      */
@@ -35,6 +37,7 @@ class ContactNumber extends Service {
     }
 
     /**
+     * Remove a contact number
      * @param models\Call\ContactNumber  $ContactNumber
      * @return bool
      */
@@ -43,6 +46,7 @@ class ContactNumber extends Service {
     }
 
     /**
+     * Remove a contact number (with the specified id)
      * @param int $ContactNumberId
      * @return bool
      */
@@ -54,6 +58,7 @@ class ContactNumber extends Service {
     }
 
     /**
+     * Update a contact number
      * @param models\Call\ContactNumber  $ContactNumber
      * @return models\Call\ContactNumber
      */

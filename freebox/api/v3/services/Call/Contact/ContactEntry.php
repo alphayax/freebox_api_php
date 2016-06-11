@@ -1,5 +1,5 @@
 <?php
-namespace alphayax\freebox\api\v3\services\Call;
+namespace alphayax\freebox\api\v3\services\Call\Contact;
 use alphayax\freebox\api\v3\Service;
 use alphayax\freebox\api\v3\models;
 
@@ -17,8 +17,8 @@ class ContactEntry extends Service {
     const API_CONTACT_EMAILS    = '/api/v3/contact/%u/emails/';
 
     /**
-     * List every calls
-     * @return models\Call\CallEntry[]
+     * List all contacts
+     * @return models\Call\ContactEntry[]
      */
     public function getAll(){
         $rest = $this->getAuthService( self::API_CONTACT);
@@ -28,6 +28,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Get a specific contact entry
      * @param int $ContactEntryId
      * @return models\Call\ContactEntry
      */
@@ -39,6 +40,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Add a contact entry
      * @param models\Call\ContactEntry $ContactEntry
      * @return models\Call\ContactEntry
      */
@@ -50,6 +52,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Update a contact entry
      * @param models\Call\ContactEntry $ContactEntry
      * @return models\Call\ContactEntry
      */
@@ -61,6 +64,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Remove a contact entry
      * @param models\Call\ContactEntry $ContactEntry
      * @return models\Call\ContactEntry
      */
@@ -69,6 +73,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Remove a contact entry (with the specified id)
      * @param int $ContactEntryId
      * @return models\Call\ContactEntry
      */
@@ -80,6 +85,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Get all numbers associated to a given contact id
      * @param int $ContactEntryId
      * @return models\Call\ContactNumber[]
      */
@@ -92,6 +98,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Get all addresses associated to a given contact id
      * @param int $ContactEntryId
      * @return models\Call\ContactAddress[]
      */
@@ -104,6 +111,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Get all email addresses associated to a given contact id
      * @param int $ContactEntryId
      * @return models\Call\ContactEmail[]
      */
@@ -116,6 +124,7 @@ class ContactEntry extends Service {
     }
 
     /**
+     * Get all URLs associated to a given contact id
      * @param int $ContactEntryId
      * @return models\Call\ContactUrl[]
      */

@@ -1,4 +1,7 @@
 <?php
+use alphayax\freebox\api\v3\services;
+use alphayax\freebox\api\v3\symbols;
+use alphayax\freebox\api\v3\models;
 
 /// Require Composer AutoLoader
 require_once '../../vendor/autoload.php';
@@ -9,21 +12,21 @@ $App->authorize();
 $App->openSession();
 
 
-$AirMediaService = new \alphayax\freebox\api\v3\services\AirMedia\AirMedia( $App);
-
 // AirMedia Config
+$AirMediaService = new services\AirMedia\Config( $App);
 $Configuration = $AirMediaService->getConfiguration();
 print_r( $Configuration);
 
 // AirMedia Receivers
-$Receivers = $AirMediaService->getAirMediaReceivers();
+$AirMediaService = new services\AirMedia\AirMediaReceiver( $App);
+$Receivers = $AirMediaService->getAll();
 print_r( $Receivers);
 
 // AirMedia Request
-$Request = new \alphayax\freebox\api\v3\models\AirMedia\AirMediaReceiverRequest();
-$Request->setAction(    \alphayax\freebox\api\v3\symbols\AirMedia\Action::START);
-$Request->setMediaType( \alphayax\freebox\api\v3\symbols\AirMedia\MediaType::VIDEO);
+$Request = new models\AirMedia\AirMediaReceiverRequest();
+$Request->setAction(    symbols\AirMedia\Action::START);
+$Request->setMediaType( symbols\AirMedia\MediaType::VIDEO);
 $Request->setMedia( 'http://anon.nasa-global.edgesuite.net/HD_downloads/GRAIL_launch_480.mov');
 
-$Status = $AirMediaService->sendRequestToAirMediaReceiver( 'Freebox Player', $Request);
+$Status = $AirMediaService->sendRequest( 'Freebox Player', $Request);
 print_r( $Status);

@@ -1,5 +1,5 @@
 <?php
-namespace alphayax\freebox\api\v3\services\Call;
+namespace alphayax\freebox\api\v3\services\Call\Contact;
 use alphayax\freebox\api\v3\Service;
 use alphayax\freebox\api\v3\models;
 
@@ -13,6 +13,7 @@ class ContactEmail extends Service {
     const API_EMAIL = '/api/v3/email/';
 
     /**
+     * Get the email contact (with the given id)
      * @param int $ContactEmailId
      * @return models\Call\ContactEmail
      */
@@ -24,6 +25,7 @@ class ContactEmail extends Service {
     }
 
     /**
+     * Create a new email contact
      * @param models\Call\ContactEmail  $ContactEmail
      * @return models\Call\ContactEmail
      */
@@ -35,6 +37,7 @@ class ContactEmail extends Service {
     }
 
     /**
+     * Remove an email contact
      * @param models\Call\ContactEmail  $ContactEmail
      * @return bool
      */
@@ -43,6 +46,7 @@ class ContactEmail extends Service {
     }
 
     /**
+     * Remove an email contact (with the given id)
      * @param int $ContactEmailId
      * @return bool
      */
@@ -54,6 +58,7 @@ class ContactEmail extends Service {
     }
 
     /**
+     * Update an email contact
      * @param models\Call\ContactEmail  $ContactEmail
      * @return models\Call\ContactEmail
      */

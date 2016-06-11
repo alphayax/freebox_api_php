@@ -7,7 +7,7 @@
 
 [![Build Status](https://travis-ci.org/alphayax/freebox_api_php.svg?branch=master)](https://travis-ci.org/alphayax/freebox_api_php)
 [![Coverage](https://api.codacy.com/project/badge/Coverage/f3569cf671f04b8ab6d699be3fd011e5)](https://www.codacy.com/app/alphayax/freebox_api_php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alphayax/freebox_api_php&amp;utm_campaign=Badge_Coverage)
-![codacy](https://api.codacy.com/project/badge/Grade/f3569cf671f04b8ab6d699be3fd011e5)
+[![Codacy](https://api.codacy.com/project/badge/Grade/f3569cf671f04b8ab6d699be3fd011e5)](https://www.codacy.com/app/alphayax/freebox_api_php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alphayax/freebox_api_php&amp;utm_campaign=Badge_Grade)
 
 ![license](https://img.shields.io/packagist/l/alphayax/freebox_api_php.svg)
 
@@ -88,9 +88,9 @@ L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
         - BSS
         - Planning
         - Mac Filter
-    - Parental Control
-        - Filter
-        - Planning
+- Parental Control
+    - Filter
+    - Planning
 
 
 ## Utilisation
