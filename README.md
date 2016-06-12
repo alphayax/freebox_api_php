@@ -9,7 +9,8 @@
 [![Coverage](https://api.codacy.com/project/badge/Coverage/f3569cf671f04b8ab6d699be3fd011e5)](https://www.codacy.com/app/alphayax/freebox_api_php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alphayax/freebox_api_php&amp;utm_campaign=Badge_Coverage)
 [![Codacy](https://api.codacy.com/project/badge/Grade/f3569cf671f04b8ab6d699be3fd011e5)](https://www.codacy.com/app/alphayax/freebox_api_php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alphayax/freebox_api_php&amp;utm_campaign=Badge_Grade)
 
-![license](https://img.shields.io/packagist/l/alphayax/freebox_api_php.svg)
+[![License](https://poser.pugx.org/alphayax/freebox_api_php/license)](https://packagist.org/packages/alphayax/freebox_api_php)
+[![Total Downloads](https://poser.pugx.org/alphayax/freebox_api_php/downloads)](https://packagist.org/packages/alphayax/freebox_api_php)
 
 
 Implementation PHP de l'API de la freebox (dans sa version 3).
@@ -23,16 +24,16 @@ Pensez à installer les dependences :)
 
 L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
 
-- [AirMedia](docs/AirMedia/AirMedia.md)
-- [Call](docs/Call/Call.md)
-- [Configuration](docs/config/config.md)
-- [Download](docs/download/download.md)
-- [FileSystem](docs/FileSystem/FileSystem.md)
-- [Parental Control](docs/ParentalControl/ParentalControl.md)
-- [RRD](docs/RRD/RRD.md)
-- [Storage](docs/Storage/Storage.md)
+- [AirMedia](docs/services/AirMedia/AirMedia.md)
+- [Call](docs/services/Call/Call.md)
+- [Configuration](docs/services/config/config.md)
+- [Download](docs/services/download/download.md)
+- [FileSystem](docs/services/FileSystem/FileSystem.md)
+- [Parental Control](docs/services/ParentalControl/ParentalControl.md)
+- [RRD](docs/services/RRD/RRD.md)
+- [Storage](docs/services/Storage/Storage.md)
 
-Un document complet repertorie l'ensemble des services implémentées : [services.md](docs/services.md)
+Un document complet repertorie l'ensemble des services implémentées : [services.md](docs/services/services.md)
 
 ## Utilisation
 
