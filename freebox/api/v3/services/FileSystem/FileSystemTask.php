@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\FileSystem;
-use alphayax\freebox\api\v3\models\FileSystem\FsTask;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -14,36 +14,31 @@ class FileSystemTask extends Service {
 
     /**
      * @throws \Exception
-     * @return FsTask[]
+     * @return models\FileSystem\FsTask[]
      */
     public function getAllTasks(){
         $rest = $this->getAuthService( self::API_FS_TASK);
         $rest->GET();
 
-        $FsTask_xs = $rest->getCurlResponse()['result'];
-        $FsTasks   = [];
-        foreach( $FsTask_xs as $fsTask_x) {
-            $FsTasks[] = new FsTask( $fsTask_x);
-        }
-        return $FsTasks;
+        return $rest->getResultAsArray( models\FileSystem\FsTask::class);
     }
 
     /**
      * @param int $TaskId
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function getTaskById( $TaskId){
         $rest = $this->getAuthService( self::API_FS_TASK . $TaskId);
         $rest->GET();
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
-     * @param FsTask $FsTask
+     * @param models\FileSystem\FsTask $FsTask
      * @return bool
      */
-    public function deleteTask( FsTask $FsTask){
+    public function deleteTask( models\FileSystem\FsTask $FsTask){
         return $this->deleteTaskById( $FsTask->getId());
     }
 
@@ -55,18 +50,18 @@ class FileSystemTask extends Service {
         $rest = $this->getAuthService( self::API_FS_TASK . $TaskId);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
-     * @param FsTask $FsTask
+     * @param models\FileSystem\FsTask $FsTask
      * @return bool
      */
-    public function updateTask( FsTask $FsTask){
+    public function updateTask( models\FileSystem\FsTask $FsTask){
         $rest = $this->getAuthService( self::API_FS_TASK . $FsTask->getId());
-        $rest->PUT( $FsTask->toArray());
+        $rest->PUT( $FsTask);
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

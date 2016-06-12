@@ -27,12 +27,7 @@ class Feed extends Service {
         $rest = $this->getAuthService( self::API_DOWNLOAD_FEEDS);
         $rest->GET();
 
-        $DownloadFeed_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $DownloadFeeds   = [];
-        foreach( $DownloadFeed_xs as $DownloadFeed_x) {
-            $DownloadFeeds[] = new models\Download\Feed\DownloadFeed( $DownloadFeed_x);
-        }
-        return $DownloadFeeds;
+        return $rest->getResultAsArray( models\Download\Feed\DownloadFeed::class);
     }
 
     /**
@@ -45,7 +40,7 @@ class Feed extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return new models\Download\Feed\DownloadFeed( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Feed\DownloadFeed::class);
     }
 
     /**
@@ -59,7 +54,7 @@ class Feed extends Service {
             'url' => $downloadFeedUrl,
         ]);
 
-        return new models\Download\Feed\DownloadFeed( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Feed\DownloadFeed::class);
     }
 
     /**
@@ -72,20 +67,20 @@ class Feed extends Service {
         $rest = $this->getAuthService( $service);
         $rest->DELETE();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
      * Update a Download Feed
-     * @param \alphayax\freebox\api\v3\models\Download\Feed\DownloadFeed $downloadFeed
-     * @return \alphayax\freebox\api\v3\models\Download\Feed\DownloadFeed
+     * @param models\Download\Feed\DownloadFeed $downloadFeed
+     * @return models\Download\Feed\DownloadFeed
      */
-    public function updateFeed(models\Download\Feed\DownloadFeed $downloadFeed){
+    public function updateFeed( models\Download\Feed\DownloadFeed $downloadFeed){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEM, $downloadFeed->getId());
         $rest = $this->getAuthService( $service);
-        $rest->PUT( $downloadFeed->toArray());
+        $rest->PUT( $downloadFeed);
 
-        return new models\Download\Feed\DownloadFeed( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Feed\DownloadFeed::class);
     }
 
     /**
@@ -99,7 +94,7 @@ class Feed extends Service {
         $rest = $this->getAuthService( $service);
         $rest->POST();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -111,57 +106,50 @@ class Feed extends Service {
         $rest = $this->getAuthService( self::API_DOWNLOAD_FEEDS_FETCH);
         $rest->POST();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
      * Returns the collection of all DownloadFeedItems for a given DownloadFeed
      * @param $downloadFeedId
-     * @return \alphayax\freebox\api\v3\models\Download\Feed\DownloadFeedItem[]
+     * @return models\Download\Feed\DownloadFeedItem[]
      */
     public function getFeedItems( $downloadFeedId){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS, $downloadFeedId);
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $DownloadFeedItem_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $DownloadFeedItems   = [];
-        foreach( $DownloadFeedItem_xs as $DownloadFeedItem_x) {
-            $DownloadFeedItems[] = new models\Download\Feed\DownloadFeedItem( $DownloadFeedItem_x);
-        }
-        return $DownloadFeedItems;
+        return $rest->getResultAsArray( models\Download\Feed\DownloadFeedItem::class);
     }
 
     /**
      * Returns the collection of all DownloadFeedItems for a given DownloadFeed
-     * @param                                                                $downloadFeedId
-     * @param \alphayax\freebox\api\v3\models\Download\Feed\DownloadFeedItem $DownloadFeedItem
+     * @param models\Download\Feed\DownloadFeedItem $DownloadFeedItem
      * @return bool
      */
-    public function updateFeedItem( $downloadFeedId, models\Download\Feed\DownloadFeedItem $DownloadFeedItem){
-        $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS_ITEM, $downloadFeedId, $DownloadFeedItem->getId());
+    public function updateFeedItem( models\Download\Feed\DownloadFeedItem $DownloadFeedItem){
+        $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS_ITEM, $DownloadFeedItem->getFeedId(), $DownloadFeedItem->getId());
         $rest = $this->getAuthService( $service);
-        $rest->PUT( $DownloadFeedItem->toArray());
+        $rest->PUT( $DownloadFeedItem);
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
-     * Returns the collection of all DownloadFeedItems for a given DownloadFeed
-     * @param                                                                $downloadFeedId
-     * @param \alphayax\freebox\api\v3\models\Download\Feed\DownloadFeedItem $DownloadFeedItem
+     * Download the specified feed item
+     * @param models\Download\Feed\DownloadFeedItem $DownloadFeedItem
      * @return bool
      */
-    public function downloadFeedItem( $downloadFeedId, models\Download\Feed\DownloadFeedItem $DownloadFeedItem){
-        $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS_ITEM_DOWNLOAD, $downloadFeedId, $DownloadFeedItem->getId());
+    public function downloadFeedItem( models\Download\Feed\DownloadFeedItem $DownloadFeedItem){
+        $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS_ITEM_DOWNLOAD, $DownloadFeedItem->getFeedId(), $DownloadFeedItem->getId());
         $rest = $this->getAuthService( $service);
-        $rest->POST( $DownloadFeedItem->toArray());
+        $rest->POST( $DownloadFeedItem);
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
-     * Returns the collection of all DownloadFeedItems for a given DownloadFeed
+     * Mark the specified feed id as "Read"
      * @param int $downloadFeedId
      * @return bool
      */
@@ -170,7 +158,7 @@ class Feed extends Service {
         $rest = $this->getAuthService( $service);
         $rest->POST();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

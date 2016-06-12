@@ -24,12 +24,7 @@ class Tracker extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $DownloadTracker_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $DownloadTrackers   = [];
-        foreach( $DownloadTracker_xs as $DownloadTracker_x) {
-            $DownloadTrackers[] = new models\Download\Tracker( $DownloadTracker_x);
-        }
-        return $DownloadTrackers;
+        return $rest->getResultAsArray( models\Download\Tracker::class);
     }
 
     /**
@@ -46,14 +41,14 @@ class Tracker extends Service {
             'announce' => $announceUrl,
         ]);
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
      * Remove a tracker
      * Attempting to call this method on a download other than bittorent will fail
      * @param int    $downloadTaskId
-     * @param string $announceUrl       (eg: udp://tracker.openbittorrent.com:80)
+     * @param string $announceUrl (eg: udp://tracker.openbittorrent.com:80)
      * @return bool
      */
     public function remove( $downloadTaskId, $announceUrl) {
@@ -61,7 +56,7 @@ class Tracker extends Service {
         $rest = $this->getAuthService( $service);
         $rest->DELETE();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -75,9 +70,9 @@ class Tracker extends Service {
     public function update( $downloadTaskId, $announceUrl, models\Download\Tracker $Tracker) {
         $service = sprintf( self::API_DOWNLOAD_TRACKER_ITEM, $downloadTaskId, $announceUrl);
         $rest = $this->getAuthService( $service);
-        $rest->PUT( $Tracker->toArray());
+        $rest->PUT( $Tracker);
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

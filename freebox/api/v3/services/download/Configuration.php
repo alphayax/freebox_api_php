@@ -20,7 +20,7 @@ class Configuration extends Service {
         $rest = $this->getAuthService( self::API_DOWNLOAD_CONFIG);
         $rest->GET();
 
-        return new models\Download\Config\DownloadConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Config\DownloadConfig::class);
     }
 
     /**
@@ -32,7 +32,7 @@ class Configuration extends Service {
         $rest = $this->getAuthService( self::API_DOWNLOAD_CONFIG);
         $rest->PUT( $downloadConfig->toArray());
 
-        return new models\Download\Config\DownloadConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Config\DownloadConfig::class);
     }
 
     /**
@@ -49,7 +49,7 @@ class Configuration extends Service {
             'throttling' => $throttlingMode,
         ]);
 
-        return $rest->getCurlResponse()['result'];
+        return $rest->getSuccess();
     }
 
 }

@@ -28,12 +28,7 @@ class BlackList extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $BlackListEntry_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $BlackListEntries  = [];
-        foreach( $BlackListEntry_xs as $BlackListEntry_x) {
-            $BlackListEntries[] = new models\Download\BlackListEntry( $BlackListEntry_x);
-        }
-        return $BlackListEntries;
+        return $rest->getResultAsArray( models\Download\BlackListEntry::class);
     }
 
     /**
@@ -47,7 +42,7 @@ class BlackList extends Service {
         $rest = $this->getAuthService( $service);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -60,7 +55,7 @@ class BlackList extends Service {
         $rest = $this->getAuthService( $service);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -76,7 +71,7 @@ class BlackList extends Service {
             'expire' => $expire,
         ]);
 
-        return new models\Download\BlackListEntry( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\BlackListEntry::class);
     }
 
 }

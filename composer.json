@@ -16,7 +16,7 @@
     "monolog/monolog": "^1.9.1"
   },
   "require-dev" : {
-    "alphayax/phpdoc_md" : "^1.0.1",
+    "alphayax/phpdoc_md" : "^1.0.3",
     "codacy/coverage": "<2.0.0",
     "phpunit/phpunit": "^5.4.0",
     "zf1/zend-reflection": "1.12.*"

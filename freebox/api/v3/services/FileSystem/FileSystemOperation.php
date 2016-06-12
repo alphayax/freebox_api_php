@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\FileSystem;
-use alphayax\freebox\api\v3\models\FileSystem\FsTask;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -28,7 +28,7 @@ class FileSystemOperation extends Service {
      * @param string[]  $sourceFiles
      * @param string    $destination
      * @param string    $conflictMode
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function move( array $sourceFiles = [], $destination, $conflictMode = 'recent'){
         /// Convert all paths in base64
@@ -45,7 +45,7 @@ class FileSystemOperation extends Service {
             'mode'  => $conflictMode,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
@@ -53,7 +53,7 @@ class FileSystemOperation extends Service {
      * @param string[]  $sourceFiles
      * @param string    $destination
      * @param string    $conflictMode
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function copy( array $sourceFiles = [], $destination, $conflictMode = 'recent'){
         /// Convert all paths in base64
@@ -70,13 +70,13 @@ class FileSystemOperation extends Service {
             'mode'  => $conflictMode,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
      * Delete files
      * @param string[]  $RemoveFiles
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function remove( array $RemoveFiles = []){
         /// Convert all paths in base64
@@ -90,7 +90,7 @@ class FileSystemOperation extends Service {
             'files' => $removedFiles_b64,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
@@ -101,7 +101,7 @@ class FileSystemOperation extends Service {
      * @param bool      $isToDelete     : Deletes source files
      * @param bool      $isToOverwrite  : Overwrites the destination
      * @param bool      $isToAppend     : Append to the destination
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function cat( array $fileParts = [], $destination, $isMultiVolumes = false, $isToDelete = false, $isToOverwrite = false, $isToAppend = false){
         /// Convert all paths in base64
@@ -121,14 +121,14 @@ class FileSystemOperation extends Service {
             'overwrite'     => $isToOverwrite,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
      * Create an archive
      * @param string[]  $fileParts      : The list of files to concatenate
      * @param string    $destination    : The destination file
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function archive( array $fileParts = [], $destination){
         /// Convert all paths in base64
@@ -144,7 +144,7 @@ class FileSystemOperation extends Service {
             'dst'           => $destination_b64,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
@@ -154,7 +154,7 @@ class FileSystemOperation extends Service {
      * @param string    $password       : The archive password
      * @param bool      $isToDelete     : Delete archive after extraction
      * @param bool      $isToOverwrite  : Overwrites the destination
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function extract( $source, $destination, $password = '', $isToDelete = false, $isToOverwrite = false){
         /// Convert all paths in base64
@@ -170,14 +170,14 @@ class FileSystemOperation extends Service {
             'overwrite'      => $isToOverwrite,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
      * Repair files from a .par2
      * @param string    $source         : The .par2 file
      * @param bool      $isToDelete     : Delete par2 files after repair
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function repair( $source, $isToDelete = false){
         /// Convert all paths in base64
@@ -189,7 +189,7 @@ class FileSystemOperation extends Service {
             'delete_archive' => $isToDelete,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
@@ -198,7 +198,7 @@ class FileSystemOperation extends Service {
      * @see
      * @param string    $source   : The file to hash
      * @param string    $hashType : The type of hash (md5, sha1, ...) - Default is md5
-     * @return FsTask
+     * @return models\FileSystem\FsTask
      */
     public function computeHash( $source, $hashType = 'md5'){
         /// Convert all paths in base64
@@ -210,7 +210,7 @@ class FileSystemOperation extends Service {
             'hash_type' => $hashType,
         ]);
 
-        return new FsTask( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FsTask::class);
     }
 
     /**
@@ -224,7 +224,7 @@ class FileSystemOperation extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return $rest->getCurlResponse()['result'];
+        return $rest->getResult();
     }
 
     /**
@@ -242,7 +242,7 @@ class FileSystemOperation extends Service {
             'dirname'   => $newDirectoryName,
         ]);
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -260,11 +260,11 @@ class FileSystemOperation extends Service {
             'dst'   => $newFileName,
         ]);
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
-     * Download a file from the freebox server
+     * Download a file from the freebox server (return the file content)
      * @param string $sourceFilePath
      * @return mixed
      */

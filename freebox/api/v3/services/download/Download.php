@@ -26,12 +26,7 @@ class Download extends Service {
         $rest = $this->getAuthService( self::API_DOWNLOAD);
         $rest->GET();
 
-        $DownloadTask_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $DownloadTasks   = [];
-        foreach( $DownloadTask_xs as $DownloadTask_x) {
-            $DownloadTasks[] = new models\Download\Task( $DownloadTask_x);
-        }
-        return $DownloadTasks;
+        return $rest->getResultAsArray( models\Download\Task::class);
     }
 
     /**
@@ -43,46 +38,46 @@ class Download extends Service {
         $rest = $this->getAuthService( self::API_DOWNLOAD . $download_id);
         $rest->GET();
 
-        return new models\Download\Task( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Task::class);
     }
 
     /**
      * Get the current system info
      * @param int $download_id
-     * @return
+     * @return string
      */
     public function getLogFromId( $download_id){
         $logService = sprintf( self::API_DOWNLOAD_LOG, $download_id);
         $rest = $this->getAuthService( $logService);
         $rest->GET();
 
-        return $rest->getCurlResponse()['result'];
+        return $rest->getResult();
     }
 
 
     /**
      * Delete a download task (conserve data)
      * @param int $download_id
-     * @return
+     * @return bool
      */
     public function deleteFromId( $download_id){
         $rest = $this->getAuthService( self::API_DOWNLOAD . $download_id);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
      * Delete a download task (erase data)
      * @param int $download_id
-     * @return
+     * @return bool
      */
     public function eraseFromId( $download_id){
         $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $download_id);
         $rest = $this->getAuthService( $eraseService);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 
@@ -96,10 +91,11 @@ class Download extends Service {
         $rest = $this->getAuthService( $eraseService);
         $rest->PUT( $downloadTask->toArray());
 
-        return new models\Download\Task( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Task::class);
     }
 
     /**
+     * Add a download task with the specified URL
      * @param string $download_url
      * @param string $download_dir
      * @param bool|false $recursive
@@ -114,6 +110,7 @@ class Download extends Service {
     }
 
     /**
+     * Add a download task with all the specified URLs
      * @param array $download_urls A list of URL
      * @param string $download_dir The download destination directory (optional: will use the configuration download_dir by default)
      * @param bool $recursive If true the download will be recursive
@@ -162,16 +159,16 @@ class Download extends Service {
         $rest = $this->getAuthService( self::API_DOWNLOAD_ADD);
         $rest->setContentType_XFormURLEncoded();
         $rest->POST( $data);
-        $response = $rest->getCurlResponse();
 
-        return $response['result']['id'];
+        return $rest->getResult()['id'];
     }
 
     /**
+     * Add a download task with the specified file (torrent, nzb...)
      * @param $download_file_rdi
      * @param string $download_dir_rdi
      * @param string $archive_password
-     * @return bool
+     * @return int
      */
     public function addFromFile( $download_file_rdi, $download_dir_rdi = '', $archive_password = ''){
         $rest = $this->getAuthService( self::API_DOWNLOAD_ADD);
@@ -182,22 +179,22 @@ class Download extends Service {
             'archive_password'  => $archive_password,
         ]);
 
-        return $rest->getCurlResponse()['result']['id'];
+        return $rest->getResult()['id'];
     }
 
     /**
      * Returns the Download task with the given id
-     * @return models\Download\Task
+     * @return models\Download\Stats\DownloadStats
      */
-    public function getStats( ){
+    public function getStats(){
         $rest = $this->getAuthService( self::API_DOWNLOAD_STATS);
         $rest->GET();
 
-        return new models\Download\Stats\DownloadStats( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Download\Stats\DownloadStats::class);
     }
 
     /**
-     * Returns the Download task with the given id
+     * Returns the downloaded files with the given task id
      * @param int $taskId
      * @return models\Download\File[]
      */
@@ -206,20 +203,16 @@ class Download extends Service {
         $rest = $this->getAuthService( $Service);
         $rest->GET();
 
-        $DownloadFile_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $DownloadFiles   = [];
-        foreach( $DownloadFile_xs as $DownloadFile_x) {
-            $DownloadFiles[] = new models\Download\File( $DownloadFile_x);
-        }
-        return $DownloadFiles;
+        return $rest->getResultAsArray( models\Download\File::class);
     }
 
     /**
+     * Update a download priority
      * @param int $downloadTaskId
      * @param string $FileId
      * @param string $Priority
      * @see alphayax\freebox\api\v3\symbols\Download\File\Priority
-     * @return
+     * @return bool
      */
     public function updateFilePriority( $downloadTaskId, $FileId, $Priority){
         $Service = sprintf( self::API_DOWNLOAD_FILES, $downloadTaskId);
@@ -228,7 +221,7 @@ class Download extends Service {
             'priority'  => $Priority,
         ]);
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

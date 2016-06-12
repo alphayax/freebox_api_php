@@ -20,9 +20,9 @@
 
 | Method | Description |
 |---|---|
-| `getAll` | Retrieve a File Sharing link | 
-| `getFromToken` |  | 
-| `deleteFromToken` | Delete a File Sharing link Deletes the ShareLink task with the given token, if the task was running, stop it. | 
+| `getAll` | Retrieve all File Sharing links | 
+| `getFromToken` | Get a file sharing link from his token identifier | 
+| `deleteFromToken` | Delete a File Sharing link for his token identifier Deletes the ShareLink task with the given token, if the task was running, stop it. | 
 | `create` | Create a File Sharing link | 
 
 <a name="FileSystemListing"></a>
@@ -34,7 +34,7 @@
 
 | Method | Description |
 |---|---|
-| `getFilesFromDirectory` |  | 
+| `getFilesFromDirectory` | Get all files in a given directory | 
 | `getFileInformation` | Get file information | 
 
 <a name="FileSystemOperation"></a>
@@ -57,7 +57,7 @@
 | `getHashValue` | Get the hash value To get the hash, the task must have succeed and be in the state “done”. | 
 | `createDirectory` | Create a directory Contrary to other file system tasks, this operation is done synchronously. | 
 | `rename` | Rename a file/folder Contrary to other file system tasks, this operation is done synchronously. | 
-| `download` | Download a file from the freebox server | 
+| `download` | Download a file from the freebox server (return the file content) | 
 
 <a name="FileSystemTask"></a>
 ## FileSystemTask

@@ -50,12 +50,16 @@
 |---|---|
 | `getAll` | Returns the collection of all Download tasks | 
 | `getFromId` | Returns the Download task with the given id | 
+| `getLogFromId` | Get the current system info | 
+| `deleteFromId` | Delete a download task (conserve data) | 
+| `eraseFromId` | Delete a download task (erase data) | 
 | `update` | Update a download task | 
-| `addFromUrl` |  | 
-| `addFromUrls` |  | 
-| `addFromFile` |  | 
+| `addFromUrl` | Add a download task with the specified URL | 
+| `addFromUrls` | Add a download task with all the specified URLs | 
+| `addFromFile` | Add a download task with the specified file (torrent, nzb...) | 
 | `getStats` | Returns the Download task with the given id | 
-| `getFilesFromId` | Returns the Download task with the given id | 
+| `getFilesFromId` | Returns the downloaded files with the given task id | 
+| `updateFilePriority` | Update a download priority | 
 
 <a name="Feed"></a>
 ## Feed
@@ -75,8 +79,8 @@
 | `refreshFeeds` | Remotely fetches the RSS feed and updates it. Note that if the remote feed specifies a TTL, trying to update before the ttl will result in feed_is_recent error | 
 | `getFeedItems` | Returns the collection of all DownloadFeedItems for a given DownloadFeed | 
 | `updateFeedItem` | Returns the collection of all DownloadFeedItems for a given DownloadFeed | 
-| `downloadFeedItem` | Returns the collection of all DownloadFeedItems for a given DownloadFeed | 
-| `markFeedAsRead` | Returns the collection of all DownloadFeedItems for a given DownloadFeed | 
+| `downloadFeedItem` | Download the specified feed item | 
+| `markFeedAsRead` | Mark the specified feed id as "Read" | 
 
 <a name="Peer"></a>
 ## Peer

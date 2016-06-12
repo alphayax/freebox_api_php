@@ -28,7 +28,7 @@ class FileUpload extends Service {
             'upload_name'   => $FileName,
         ]);
 
-        return (int) $rest->getCurlResponse()['result']['id'];
+        return (int) $rest->getResult()['id'];
     }
 
     /**
@@ -45,7 +45,7 @@ class FileUpload extends Service {
             basename( $fileToUpload_afi) => new \CurlFile( $fileToUpload_afi),
         ]);
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -56,12 +56,7 @@ class FileUpload extends Service {
         $rest = $this->getAuthService( self::API_UPLOAD);
         $rest->GET();
 
-        $FileUpload_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $FileUploads   = [];
-        foreach( $FileUpload_xs as $FileUpload_x) {
-            $FileUploads[] = new models\FileSystem\FileUpload( $FileUpload_x);
-        }
-        return $FileUploads;
+        return $rest->getResultAsArray( models\FileSystem\FileUpload::class);
     }
 
     /**
@@ -73,7 +68,7 @@ class FileUpload extends Service {
         $rest = $this->getAuthService( self::API_UPLOAD . $FileUploadId);
         $rest->GET();
 
-        return new models\FileSystem\FileUpload( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\FileSystem\FileUpload::class);
     }
 
     /**
@@ -87,7 +82,7 @@ class FileUpload extends Service {
         $rest = $this->getAuthService( $Service);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -99,7 +94,7 @@ class FileUpload extends Service {
         $rest = $this->getAuthService( self::API_UPLOAD . $FileUploadId);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
     /**
@@ -110,7 +105,7 @@ class FileUpload extends Service {
         $rest = $this->getAuthService( self::API_UPLOAD_CLEAN);
         $rest->DELETE();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

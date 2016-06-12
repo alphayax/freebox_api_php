@@ -23,12 +23,7 @@ class Peer extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $DownloadPeer_xs = @$rest->getCurlResponse()['result'] ?: [];
-        $DownloadPeers   = [];
-        foreach( $DownloadPeer_xs as $DownloadPeer_x) {
-            $DownloadPeers[] = new models\Download\Peer( $DownloadPeer_x);
-        }
-        return $DownloadPeers;
+        return $rest->getResultAsArray( models\Download\Peer::class);
     }
 
 }
