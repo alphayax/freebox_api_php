@@ -13,7 +13,7 @@ class FileSystemTask extends Service {
     const API_FS_TASK    = '/api/v3/fs/tasks/';
 
     /**
-     * @throws \Exception
+     * Retrieve all FS tasks
      * @return models\FileSystem\FsTask[]
      */
     public function getAllTasks(){
@@ -24,6 +24,7 @@ class FileSystemTask extends Service {
     }
 
     /**
+     * Retrieve a FS task with the specified id
      * @param int $TaskId
      * @return models\FileSystem\FsTask
      */
@@ -35,6 +36,7 @@ class FileSystemTask extends Service {
     }
 
     /**
+     * Delete a FS task
      * @param models\FileSystem\FsTask $FsTask
      * @return bool
      */
@@ -43,6 +45,7 @@ class FileSystemTask extends Service {
     }
 
     /**
+     * Delete a FS task with the specified id
      * @param int $TaskId
      * @return bool
      */
@@ -54,6 +57,7 @@ class FileSystemTask extends Service {
     }
 
     /**
+     * Update a FS task
      * @param models\FileSystem\FsTask $FsTask
      * @return bool
      */
