@@ -12,6 +12,7 @@ class Planning extends Service {
     const API_WIFI_PLANNING = '/api/v3/wifi/planning/';
 
     /**
+     * Get the wifi planning
      * @return \alphayax\freebox\api\v3\models\WiFi\Planning
      */
     public function getPlanning(){
@@ -22,6 +23,7 @@ class Planning extends Service {
     }
 
     /**
+     * Update the wifi planning
      * @param \alphayax\freebox\api\v3\models\WiFi\Planning $planning
      * @return \alphayax\freebox\api\v3\models\WiFi\Planning
      */
@@ -31,5 +33,5 @@ class Planning extends Service {
 
         return $rest->getResult( models\WiFi\Planning::class);
     }
-    
+
 }

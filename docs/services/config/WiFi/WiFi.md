@@ -20,11 +20,11 @@
 
 | Method | Description |
 |---|---|
-| `getAll` |  | 
-| `getFromId` |  | 
+| `getAll` | Get all Access Points | 
+| `getFromId` | Get a specific Access Point | 
 | `getAllowedCombFromId` | To be able to allow user to pick a valid channel combination for a given AP you should use the following api to retrieve the list of allowed channel combination. | 
 | `getStationsFromId` | To be able to allow user to pick a valid channel combination for a given AP you should use the following api to retrieve the list of allowed channel combination. | 
-| `update` |  | 
+| `update` | Update an Access Point | 
 | `getNeighborsFromId` | Get the list of Neighbor seen by the AP | 
 | `refreshNeighborsScan` | WARNING during the scan the AP will be unavailable. Therefore, you should ask for user confirmation prior to launching a scan. Once launched you should wait until the ap state comes back from scanning to get updated info. | 
 | `getChannelUsageFromId` | List Wi-Fi channels usage | 
@@ -38,9 +38,9 @@
 
 | Method | Description |
 |---|---|
-| `getAll` | Get the list of Freebox Access Points | 
-| `getFromId` | Get the list of Freebox Access Points | 
-| `update` | Get the list of Freebox Access Points | 
+| `getAll` | Get the list of Freebox BSS | 
+| `getFromId` | Get a specific BSS | 
+| `update` | Update a BSS | 
 
 <a name="Config"></a>
 ## Config
@@ -51,8 +51,8 @@
 
 | Method | Description |
 |---|---|
-| `getConfiguration` |  | 
-| `setConfiguration` |  | 
+| `getConfiguration` | Get the global wifi configuration | 
+| `setConfiguration` | Update the global wifi configuration | 
 | `resetConfiguration` | Reset Wifi to default configuration | 
 
 <a name="MacFilter"></a>
@@ -64,12 +64,12 @@
 
 | Method | Description |
 |---|---|
-| `getAll` |  | 
-| `getFromId` |  | 
-| `update` |  | 
-| `delete` |  | 
-| `deleteFromId` |  | 
-| `add` |  | 
+| `getAll` | Get all MacFilters | 
+| `getFromId` | Get a specific MacFilter | 
+| `update` | Update a MacFilter | 
+| `delete` | Delete a MacFilter | 
+| `deleteFromId` | Delete a MacFilter with the specified id | 
+| `add` | Add a new MacFilter | 
 
 <a name="Planning"></a>
 ## Planning
@@ -80,5 +80,5 @@
 
 | Method | Description |
 |---|---|
-| `getPlanning` |  | 
-| `update` |  | 
+| `getPlanning` | Get the wifi planning | 
+| `update` | Update the wifi planning | 

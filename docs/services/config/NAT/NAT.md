@@ -31,7 +31,7 @@
 | Method | Description |
 |---|---|
 | `getAll` | Getting the list of incoming ports | 
-| `getById` | Getting a specific incoming port | 
+| `getFromId` | Getting a specific incoming port | 
 | `update` | Updating an incoming port | 
 
 <a name="PortForwarding"></a>
@@ -48,4 +48,4 @@
 | `update` | Update a specific port forwarding | 
 | `add` | Add a port forwarding | 
 | `delete` | Delete a port forwarding | 
-| `deleteById` | Delete a port forwarding | 
+| `deleteById` | Delete a port forwarding with the specified id | 

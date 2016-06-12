@@ -16,4 +16,4 @@
 
 | Method | Description |
 |---|---|
-| `getStats` |  | 
+| `getStats` | Return Freebox information & statistics | 

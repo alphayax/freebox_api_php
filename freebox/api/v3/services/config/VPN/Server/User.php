@@ -42,7 +42,7 @@ class User extends Service {
      */
     public function add( models\VPN\Server\User $user){
         $rest = $this->getAuthService( self::API_VPN_USER);
-        $rest->POST( $user->toArray());
+        $rest->POST( $user);
 
         return $rest->getResult( models\VPN\Server\User::class);
     }
@@ -57,7 +57,7 @@ class User extends Service {
     }
 
     /**
-     * Deletes the VPNUser
+     * Deletes the VPNUser with the given id
      * @param string $login
      * @return bool
      */
@@ -71,16 +71,17 @@ class User extends Service {
     /**
      * Update a VPN Use
      * @param \alphayax\freebox\api\v3\models\VPN\Server\User $user
-     * @return bool
+     * @return models\VPN\Server\User
      */
     public function update( models\VPN\Server\User $user){
         $rest = $this->getAuthService( self::API_VPN_USER . $user->getLogin());
-        $rest->PUT( $user->toArray());
+        $rest->PUT( $user);
 
         return $rest->getResult( models\VPN\Server\User::class);
     }
 
     /**
+     * Generate a new configuration file & download it
      * @param string $serverName
      * @param string $login
      * @return string The content of the configuration file

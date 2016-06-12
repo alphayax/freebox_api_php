@@ -61,8 +61,8 @@
 
 | Method | Description |
 |---|---|
-| `getConfiguration` |  | 
-| `setConfiguration` |  | 
+| `getConfiguration` | Get the current DHCP configuration | 
+| `setConfiguration` | Update the DHCP configuration | 
 
 <a name="FTP"></a>
 ## FTP
@@ -73,7 +73,7 @@
 
 | Method | Description |
 |---|---|
-| `getConfiguration` |  | 
+| `getConfiguration` | Get the current FTP configuration | 
 | `setConfiguration` |  | 
 
 <a name="Freeplug"></a>
@@ -85,7 +85,7 @@
 
 | Method | Description |
 |---|---|
-| `getNetworks` | Get the current system info | 
+| `getNetworks` | Get the freeplug networks information | 
 | `getFromId` | Get a particular Freeplug information | 
 | `resetFromId` | Reset a Freeplug | 
 
@@ -98,8 +98,8 @@
 
 | Method | Description |
 |---|---|
-| `getConfiguration` |  | 
-| `setConfiguration` |  | 
+| `getConfiguration` | Get the current LCD configuration | 
+| `setConfiguration` | Update the LCD configuration | 
 
 <a name="System"></a>
 ## System

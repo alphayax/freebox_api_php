@@ -89,7 +89,7 @@ class Download extends Service {
     public function update( models\Download\Task $downloadTask){
         $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $downloadTask->getId());
         $rest = $this->getAuthService( $eraseService);
-        $rest->PUT( $downloadTask->toArray());
+        $rest->PUT( $downloadTask);
 
         return $rest->getResult( models\Download\Task::class);
     }

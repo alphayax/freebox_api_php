@@ -22,7 +22,7 @@ abstract class DynDns extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return new models\Connection\DynDns\Status( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\DynDns\Status::class);
     }
 
     /**
@@ -35,7 +35,7 @@ abstract class DynDns extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return new models\Connection\DynDns\Config( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\DynDns\Config::class);
     }
 
     /**
@@ -46,9 +46,9 @@ abstract class DynDns extends Service {
     protected function setConfigFromProvider( $provider, models\Connection\DynDns\Config $config){
         $service = sprintf( self::API_CONNECTION_DDNS_CONFIG, $provider);
         $rest = $this->getAuthService( $service);
-        $rest->PUT( $config->toArray());
+        $rest->PUT( $config);
 
-        return new models\Connection\DynDns\Config( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\DynDns\Config::class);
     }
 
     /**

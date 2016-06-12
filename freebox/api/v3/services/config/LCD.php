@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config;
-use alphayax\freebox\api\v3\models\LCDConfig;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 /**
@@ -12,24 +12,26 @@ class LCD extends Service {
     const API_LCD_CONFIG = '/api/v3/lcd/config/';
 
     /**
-     * @return LCDConfig
+     * Get the current LCD configuration
+     * @return models\LCDConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_LCD_CONFIG);
         $rest->GET();
 
-        return new LCDConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\LCDConfig::class);
     }
 
     /**
-     * @param LCDConfig $lcdConfig
-     * @return LCDConfig
+     * Update the LCD configuration
+     * @param models\LCDConfig $lcdConfig
+     * @return models\LCDConfig
      */
-    public function setConfiguration( LCDConfig $lcdConfig){
+    public function setConfiguration( models\LCDConfig $lcdConfig){
         $rest = $this->getAuthService( self::API_LCD_CONFIG);
-        $rest->PUT( $lcdConfig->toArray());
+        $rest->PUT( $lcdConfig);
 
-        return new LCDConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\LCDConfig::class);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NAT;
-use alphayax\freebox\api\v3\models\NAT\DmzConfig;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -15,26 +15,25 @@ class DMZ extends Service {
 
     /**
      * Get the current Dmz configuration
-     * @throws \Exception
+     * @return models\NAT\DmzConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_NAT_DMZ);
         $rest->GET();
 
-        return new DmzConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NAT\DmzConfig::class);
     }
 
     /**
      * Update the current Dmz configuration
-     * @param DmzConfig $new_DmzConfig
-     * @return DmzConfig
-     * @throws \Exception
+     * @param models\NAT\DmzConfig $dmzConfig
+     * @return models\NAT\DmzConfig
      */
-    public function setConfiguration( DmzConfig $new_DmzConfig){
+    public function setConfiguration( models\NAT\DmzConfig $dmzConfig){
         $rest = $this->getAuthService( self::API_NAT_DMZ);
-        $rest->PUT( $new_DmzConfig->toArray());
+        $rest->PUT( $dmzConfig);
 
-        return new DmzConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NAT\DmzConfig::class);
     }
 
 }

@@ -39,7 +39,7 @@ class Config extends Service {
      */
     public function add( models\VPN\Client\Config\ClientConfig $config) {
         $rest = $this->getAuthService( self::API_VPN_CLIENT_CONFIG);
-        $rest->POST( $config->toArray());
+        $rest->POST( $config);
 
         return $rest->getResult( models\VPN\Client\Config\ClientConfig::class);
     }
@@ -69,7 +69,7 @@ class Config extends Service {
      */
     public function update( models\VPN\Client\Config\ClientConfig $config) {
         $rest = $this->getAuthService( self::API_VPN_CLIENT_CONFIG. $config->getId());
-        $rest->PUT( $config->toArray());
+        $rest->PUT( $config);
 
         return $rest->getResult( models\VPN\Client\Config\ClientConfig::class);
     }

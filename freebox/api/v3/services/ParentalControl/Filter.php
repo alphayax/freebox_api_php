@@ -14,7 +14,7 @@ class Filter extends Service {
     const API_PARENTAL_FILTER = '/api/v3/parental/filter/';
 
     /**
-     * @throws \Exception
+     * Return the current Filter configuration
      * @return models\ParentalControl\FilterConfig
      */
     public function getConfiguration(){
@@ -25,6 +25,7 @@ class Filter extends Service {
     }
 
     /**
+     * Update the filter configuration
      * @param models\ParentalControl\FilterConfig $filterConfig
      * @return models\ParentalControl\FilterConfig
      */
@@ -36,7 +37,7 @@ class Filter extends Service {
     }
 
     /**
-     * Get the list of disks
+     * Get the list of all filters
      * @throws \Exception
      * @return models\ParentalControl\Filter[]
      */
@@ -48,6 +49,7 @@ class Filter extends Service {
     }
 
     /**
+     * Get a specific filter from id
      * @param int $filterId
      * @return models\ParentalControl\Filter
      */
@@ -59,6 +61,7 @@ class Filter extends Service {
     }
 
     /**
+     * Update a filter
      * @param models\ParentalControl\Filter $filter
      * @return models\ParentalControl\Filter
      */
@@ -70,6 +73,7 @@ class Filter extends Service {
     }
 
     /**
+     * Delete a filter
      * @param models\ParentalControl\Filter $filter
      * @return bool
      */
@@ -78,6 +82,7 @@ class Filter extends Service {
     }
 
     /**
+     * Delete a filter with the specified id
      * @param int $filterId
      * @return bool
      */
@@ -89,6 +94,7 @@ class Filter extends Service {
     }
 
     /**
+     * Add a new filter
      * @param models\ParentalControl\Filter $filter
      * @return models\ParentalControl\Filter
      */
@@ -98,4 +104,5 @@ class Filter extends Service {
 
         return $rest->getResult( models\ParentalControl\Filter::class);
     }
+    
 }

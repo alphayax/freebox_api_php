@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config;
-use alphayax\freebox\api\v3\models\SystemConfig;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -16,25 +16,24 @@ class System extends Service {
 
     /**
      * Get the current system info
-     * @throws \Exception
+     * @return models\SystemConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_SYSTEM);
         $rest->GET();
 
-        return new SystemConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\SystemConfig::class);
     }
 
     /**
      * Reboot the Freebox
-     * @return array
-     * @throws \Exception
+     * @return bool
      */
     public function reboot(){
         $rest = $this->getAuthService( self::API_SYSTEM_REBOOT);
         $rest->POST();
 
-        return $rest->getCurlResponse();
+        return $rest->getSuccess();
     }
 
 }

@@ -19,7 +19,7 @@ class Status extends Service {
         $rest = $this->getAuthService( self::API_SWITCH_STATUS);
         $rest->GET();
 
-        return new models\SwitchPort\Status( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\SwitchPort\Status::class);
     }
 
 }

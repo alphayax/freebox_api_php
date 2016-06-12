@@ -58,6 +58,6 @@
 | `getFromLogin` | Gets the VPNUser with the given login | 
 | `add` | Creates a new VPNUser | 
 | `delete` | Deletes the VPNUser | 
-| `deleteFromLogin` | Deletes the VPNUser | 
+| `deleteFromLogin` | Deletes the VPNUser with the given id | 
 | `update` | Update a VPN Use | 
-| `getConfigurationFile` |  | 
+| `getConfigurationFile` | Generate a new configuration file & download it | 

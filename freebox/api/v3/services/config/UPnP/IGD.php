@@ -1,7 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\UPnP;
-use alphayax\freebox\api\v3\models\UPnP\UpnpIgdConfig;
-use alphayax\freebox\api\v3\models\UPnP\UpnpIgdRedirection;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 /**
@@ -15,42 +14,37 @@ class IGD extends Service {
 
     /**
      * Get the current UPnP AV configuration
-     * @return UpnpIgdConfig
+     * @return models\UPnP\UpnpIgdConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_UPNP_IGD_CONFIG);
         $rest->GET();
 
-        return new UpnpIgdConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\UPnP\UpnpIgdConfig::class);
     }
 
     /**
      * Update the UPnP AV configuration
-     * @param UpnpIgdConfig $new_UpnpIgdConfig
-     * @return UpnpIgdConfig
+     * @param models\UPnP\UpnpIgdConfig $upnpIgdConfig
+     * @return models\UPnP\UpnpIgdConfig
      * @throws \Exception
      */
-    public function setConfiguration( UpnpIgdConfig $new_UpnpIgdConfig){
+    public function setConfiguration( models\UPnP\UpnpIgdConfig $upnpIgdConfig){
         $rest = $this->getAuthService( self::API_UPNP_IGD_CONFIG);
-        $rest->PUT( $new_UpnpIgdConfig->toArray());
+        $rest->PUT( $upnpIgdConfig);
 
-        return new UpnpIgdConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\UPnP\UpnpIgdConfig::class);
     }
 
     /**
      * Get the list of current redirection
-     * @return UpnpIgdRedirection[]
+     * @return models\UPnP\UpnpIgdRedirection[]
      */
     public function getRedirections(){
         $rest = $this->getAuthService( self::API_UPNP_IGD_REDIRECTION);
         $rest->GET();
 
-        $Redirection_xs = $rest->getCurlResponse()['result'];
-        $Redirections   = [];
-        foreach( $Redirection_xs as $Redirection_x) {
-            $Redirections[] = new UpnpIgdRedirection( $Redirection_x);
-        }
-        return $Redirections;
+        return $rest->getResultAsArray( models\UPnP\UpnpIgdRedirection::class);
     }
 
     /**
@@ -62,7 +56,7 @@ class IGD extends Service {
         $rest = $this->getAuthService( self::API_UPNP_IGD_REDIRECTION . $redirectionId);
         $rest->DELETE();
 
-        return (bool) $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

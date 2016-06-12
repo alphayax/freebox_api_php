@@ -13,6 +13,7 @@ class Config extends Service {
     const API_WIFI_CONFIG_RESET = '/api/v3/wifi/config/reset/';
 
     /**
+     * Get the global wifi configuration
      * @return models\WiFi\GlobalConfig
      */
     public function getConfiguration(){
@@ -23,6 +24,7 @@ class Config extends Service {
     }
 
     /**
+     * Update the global wifi configuration
      * @param models\WiFi\GlobalConfig $globalConfig
      * @return models\WiFi\GlobalConfig
      */

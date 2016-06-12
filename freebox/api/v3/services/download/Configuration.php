@@ -30,7 +30,7 @@ class Configuration extends Service {
      */
     public function setConfiguration( models\Download\Config\DownloadConfig $downloadConfig){
         $rest = $this->getAuthService( self::API_DOWNLOAD_CONFIG);
-        $rest->PUT( $downloadConfig->toArray());
+        $rest->PUT( $downloadConfig);
 
         return $rest->getResult( models\Download\Config\DownloadConfig::class);
     }

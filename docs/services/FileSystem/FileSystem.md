@@ -68,11 +68,11 @@
 
 | Method | Description |
 |---|---|
-| `getAllTasks` |  | 
-| `getTaskById` |  | 
-| `deleteTask` |  | 
-| `deleteTaskById` |  | 
-| `updateTask` |  | 
+| `getAllTasks` | Retrieve all FS tasks | 
+| `getTaskById` | Retrieve a FS task with the specified id | 
+| `deleteTask` | Delete a FS task | 
+| `deleteTaskById` | Delete a FS task with the specified id | 
+| `updateTask` | Update a FS task | 
 
 <a name="FileUpload"></a>
 ## FileUpload

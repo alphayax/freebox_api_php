@@ -1,7 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\LAN;
-use alphayax\freebox\api\v3\models\LAN\LanHost;
-use alphayax\freebox\api\v3\models\LAN\LanInterface;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -17,83 +16,74 @@ class Browser extends Service {
     const API_WAKE_ON_LAN            = '/api/v3/lan/wol/%s/';
 
     /**
-     * @throws \Exception
-     * @return LanInterface
+     * Get all Lan interfaces
+     * @return models\LAN\LanInterface
      */
     public function getBrowsableInterfaces(){
         $rest = $this->getAuthService( self::API_LAN_BROWSER_INTERFACES);
         $rest->GET();
 
-        $LanInterface_xs = $rest->getCurlResponse()['result'];
-        $LanInterfaces   = [];
-        foreach( $LanInterface_xs as $LanInterface_x) {
-            $LanInterfaces[] = new LanInterface( $LanInterface_x);
-        }
-        return $LanInterfaces;
+        return $rest->getResultAsArray( models\LAN\LanInterface::class);
     }
 
     /**
-     * @param LanInterface $lanInterface
-     * @return LanHost[]
-     * @throws \Exception
+     * Get the LanHosts of the specified interface
+     * @param models\LAN\LanInterface $lanInterface
+     * @return models\LAN\LanHost[]
      */
-    public function getHostsFromInterface( LanInterface $lanInterface){
+    public function getHostsFromInterface( models\LAN\LanInterface $lanInterface){
         return $this->getHostsFromInterfaceName( $lanInterface->getName());
     }
 
     /**
+     * Get the LanHosts of the specified interface name
      * @param string $lanInterfaceId
-     * @return LanHost[]
-     * @throws \Exception
+     * @return models\LAN\LanHost[]
      */
     public function getHostsFromInterfaceName( $lanInterfaceId){
         $service = sprintf( self::API_LAN_BROWSER_INTERFACE, $lanInterfaceId);
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        $LanHost_xs = $rest->getCurlResponse()['result'];
-        $LanHosts   = [];
-        foreach( $LanHost_xs as $LanHost_x) {
-            $LanHosts[] = new LanHost( $LanHost_x);
-        }
-        return $LanHosts;
+        return $rest->getResultAsArray( models\LAN\LanHost::class);
     }
 
     /**
+     * Get a specific LanHost
      * @param string $lanInterfaceId
      * @param string $hostId
-     * @return LanHost
+     * @return models\LAN\LanHost
      */
     public function getHostFromId( $lanInterfaceId, $hostId){
         $service = sprintf( self::API_LAN_BROWSER_HOST, $lanInterfaceId, $hostId);
-        echo $service;
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return new LanHost( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\LAN\LanHost::class);
     }
 
     /**
-     * @param LanHost $LanHost
+     * Update a LanHost
+     * @param models\LAN\LanHost $LanHost
      * @param string $lanInterfaceId
-     * @return LanHost
+     * @return models\LAN\LanHost
      */
-    public function updateHostFromInterfaceId( LanHost $LanHost, $lanInterfaceId){
+    public function updateHostFromInterfaceId( models\LAN\LanHost $LanHost, $lanInterfaceId){
         $service = sprintf( self::API_LAN_BROWSER_HOST, $lanInterfaceId, $LanHost->getId());
         $rest = $this->getAuthService( $service);
-        $rest->PUT( $LanHost->toArray());
+        $rest->PUT( $LanHost);
 
-        return new LanHost( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\LAN\LanHost::class);
     }
 
     /**
      * Send Wake ok Lan packet to an host
-     * @param LanInterface $lanInterface
-     * @param LanHost $lanHost
+     * @param models\LAN\LanInterface $lanInterface
+     * @param models\LAN\LanHost $lanHost
      * @param string $password
      * @return bool
      */
-    public function wakeOnLan( LanInterface $lanInterface, LanHost $lanHost, $password = ''){
+    public function wakeOnLan( models\LAN\LanInterface $lanInterface, models\LAN\LanHost $lanHost, $password = ''){
         $service = sprintf( self::API_WAKE_ON_LAN, $lanInterface->getName());
         $rest = $this->getAuthService( $service);
         $rest->PUT([
@@ -101,7 +91,7 @@ class Browser extends Service {
             'password'  => $password,
         ]);
 
-        return (bool) $rest->getCurlResponse()['result'];
+        return $rest->getSuccess();
     }
-    
+
 }

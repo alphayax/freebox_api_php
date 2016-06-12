@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NAT;
-use alphayax\freebox\api\v3\models\NAT\IncomingPortConfig;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -15,43 +15,38 @@ class IncomingPort extends Service {
     /**
      * Getting the list of incoming ports
      * @throws \Exception
-     * @return IncomingPortConfig[]
+     * @return models\NAT\IncomingPortConfig[]
      */
     public function getAll(){
         $rest = $this->getAuthService( self::API_NAT_INCOMING);
         $rest->GET();
 
-        $result = $rest->getCurlResponse()['result'];
-        $PortForwardingList = [];
-        foreach( $result as $PortForwardingElement){
-            $PortForwardingList[] = new IncomingPortConfig( $PortForwardingElement);
-        }
-        return $PortForwardingList;
+        return $rest->getResultAsArray( models\NAT\IncomingPortConfig::class);
     }
 
     /**
      * Getting a specific incoming port
      * @param string $IncomingPortId
-     * @return IncomingPortConfig
+     * @return models\NAT\IncomingPortConfig
      */
-    public function getById( $IncomingPortId){
+    public function getFromId( $IncomingPortId){
         $rest = $this->getAuthService( self::API_NAT_INCOMING . $IncomingPortId);
         $rest->GET();
 
-        return new IncomingPortConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NAT\IncomingPortConfig::class);
     }
 
     /**
      * Updating an incoming port
-     * @param IncomingPortConfig $new_IncomingPortConfig
-     * @return IncomingPortConfig
+     * @param models\NAT\IncomingPortConfig $incomingPortConfig
+     * @return models\NAT\IncomingPortConfig
      * @throws \Exception
      */
-    public function update( IncomingPortConfig $new_IncomingPortConfig){
-        $rest = $this->getAuthService( self::API_NAT_INCOMING . $new_IncomingPortConfig->getId());
-        $rest->PUT( $new_IncomingPortConfig->toArray());
+    public function update( models\NAT\IncomingPortConfig $incomingPortConfig){
+        $rest = $this->getAuthService( self::API_NAT_INCOMING . $incomingPortConfig->getId());
+        $rest->PUT( $incomingPortConfig);
 
-        return new IncomingPortConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NAT\IncomingPortConfig::class);
     }
 
 }

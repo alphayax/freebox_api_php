@@ -12,6 +12,7 @@ class FilterPlanning extends Service {
     const API_PARENTAL_FILTER_PLANNING = '/api/v3/parental/filter/%u/planning';
 
     /**
+     * Get the filer planning associated with the given filter id
      * @param int $filterId
      * @return models\ParentalControl\FilterPlanning
      */
@@ -24,6 +25,7 @@ class FilterPlanning extends Service {
     }
 
     /**
+     * Update the filer planning associated with the given filter id
      * @param \alphayax\freebox\api\v3\models\ParentalControl\FilterPlanning $filterPlanning
      * @param int $filterId
      * @return \alphayax\freebox\api\v3\models\ParentalControl\FilterPlanning

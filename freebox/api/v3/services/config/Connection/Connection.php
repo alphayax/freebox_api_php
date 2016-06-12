@@ -21,7 +21,7 @@ class Connection extends Service{
         $rest = $this->getAuthService( self::API_CONNECTION);
         $rest->GET();
 
-        return new models\Connection\Status( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\Status::class);
     }
 
     /**
@@ -32,7 +32,7 @@ class Connection extends Service{
         $rest = $this->getAuthService( self::API_CONNECTION_CONFIG);
         $rest->GET();
 
-        return new models\Connection\Config( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\Config::class);
     }
 
 
@@ -43,9 +43,9 @@ class Connection extends Service{
      */
     public function setConfiguration( models\Connection\Config $connectionConfig){
         $rest = $this->getAuthService( self::API_CONNECTION_CONFIG);
-        $rest->PUT( $connectionConfig->toArray());
+        $rest->PUT( $connectionConfig);
 
-        return new models\Connection\Config( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\Config::class);
     }
 
     /**
@@ -55,7 +55,7 @@ class Connection extends Service{
         $rest = $this->getAuthService( self::API_CONNECTION_IPV6_CONFIG);
         $rest->GET();
 
-        return new models\Connection\Ipv6\Configuration( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\Ipv6\Configuration::class);
     }
 
     /**
@@ -65,9 +65,9 @@ class Connection extends Service{
      */
     public function setIPv6Configuration(models\Connection\Ipv6\Configuration $connectionIpv6Configuration){
         $rest = $this->getAuthService( self::API_CONNECTION_IPV6_CONFIG);
-        $rest->PUT( $connectionIpv6Configuration->toArray());
+        $rest->PUT( $connectionIpv6Configuration);
 
-        return new models\Connection\Ipv6\Configuration( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\Ipv6\Configuration::class);
     }
 
 }

@@ -11,6 +11,7 @@ class Fetch extends Service {
     const API_RDD = '/api/v3/rrd/';
 
     /**
+     * Return Freebox information & statistics
      * @param string $db
      *      Name of the rrd database to read
      *      @see alphayax\freebox\api\v3\symbols\RRD\Db
@@ -36,7 +37,7 @@ class Fetch extends Service {
         $rest = $this->getAuthService( self::API_RDD);
         $rest->GET( $QueryParameters);
 
-        return $rest->getCurlResponse()['result'];
+        return $rest->getResult();
     }
 
     /**

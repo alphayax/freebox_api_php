@@ -14,7 +14,7 @@ class Freeplug extends Service {
     const API_FREEPLUG_RESET = '/api/v3/freeplug/%s/reset/';
 
     /**
-     * Get the current system info
+     * Get the freeplug networks information
      * @throws \Exception
      * @return models\Freeplug\FreeplugNetwork[]
      */
@@ -22,12 +22,7 @@ class Freeplug extends Service {
         $rest = $this->getAuthService( self::API_FREEPLUG);
         $rest->GET();
 
-        $Network_xs = $rest->getCurlResponse()['result'];
-        $Networks   = [];
-        foreach( $Network_xs as $Network_x) {
-            $Networks[] = new models\Freeplug\FreeplugNetwork( $Network_x);
-        }
-        return $Networks;
+        return $rest->getResultAsArray( models\Freeplug\FreeplugNetwork::class);
     }
 
     /**
@@ -39,7 +34,7 @@ class Freeplug extends Service {
         $rest = $this->getAuthService( self::API_FREEPLUG . $FreeplugId . DIRECTORY_SEPARATOR);
         $rest->GET();
 
-        return new models\Freeplug\Freeplug( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Freeplug\Freeplug::class);
     }
 
     /**
@@ -52,7 +47,7 @@ class Freeplug extends Service {
         $rest = $this->getAuthService( $Service);
         $rest->POST();
 
-        return $rest->getCurlResponse()['success'];
+        return $rest->getSuccess();
     }
 
 }

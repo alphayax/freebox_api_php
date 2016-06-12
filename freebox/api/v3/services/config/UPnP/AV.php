@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\UPnP;
-use alphayax\freebox\api\v3\models\UPnP\UpnpAvConfig;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 /**
@@ -13,26 +13,26 @@ class AV extends Service {
 
     /**
      * Get the current UPnP AV configuration
-     * @return UpnpAvConfig
+     * @return models\UPnP\UpnpAvConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_UPNP_AV_CONFIG);
         $rest->GET();
 
-        return new UpnpAvConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\UPnP\UpnpAvConfig::class);
     }
 
     /**
      * Update the UPnP AV configuration
-     * @param UpnpAvConfig $new_UpnpAvConfig
-     * @return UpnpAvConfig
+     * @param models\UPnP\UpnpAvConfig $upnpAvConfig
+     * @return models\UPnP\UpnpAvConfig
      * @throws \Exception
      */
-    public function setConfiguration( UpnpAvConfig $new_UpnpAvConfig){
+    public function setConfiguration( models\UPnP\UpnpAvConfig $upnpAvConfig){
         $rest = $this->getAuthService( self::API_UPNP_AV_CONFIG);
-        $rest->PUT( $new_UpnpAvConfig->toArray());
+        $rest->PUT( $upnpAvConfig);
 
-        return new UpnpAvConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\UPnP\UpnpAvConfig::class);
     }
 
 }

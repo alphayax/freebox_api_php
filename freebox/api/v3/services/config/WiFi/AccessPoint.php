@@ -17,6 +17,7 @@ class AccessPoint extends Service {
     const API_WIFI_AP_CHANNEL_USAGE     = '/api/v3/wifi/ap/%u/channel_usage/';
 
     /**
+     * Get all Access Points
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP[]
      */
     public function getAll(){
@@ -27,6 +28,7 @@ class AccessPoint extends Service {
     }
 
     /**
+     * Get a specific Access Point
      * @param int $accessPointId
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP
      */
@@ -64,6 +66,7 @@ class AccessPoint extends Service {
     }
 
     /**
+     * Update an Access Point
      * @param $accessPoint
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP
      */

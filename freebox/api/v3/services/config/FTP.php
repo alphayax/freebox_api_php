@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config;
-use alphayax\freebox\api\v3\models\FtpConfig;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -14,26 +14,25 @@ class FTP extends Service {
     const API_FTP_CONFIG = '/api/v3/ftp/config/';
 
     /**
-     * @throws \Exception
-     * @return FtpConfig
+     * Get the current FTP configuration
+     * @return models\FtpConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_FTP_CONFIG);
         $rest->GET();
 
-        return new FtpConfig( $rest->getCurlResponse());
+        return $rest->getResult( models\FtpConfig::class);
     }
 
     /**
-     * @param FtpConfig $new_configConfig
-     * @return FtpConfig
-     * @throws \Exception
+     * @param models\FtpConfig $ftpConfig
+     * @return models\FtpConfig
      */
-    public function setConfiguration( FtpConfig $new_configConfig){
+    public function setConfiguration( models\FtpConfig $ftpConfig){
         $rest = $this->getAuthService( self::API_FTP_CONFIG);
-        $rest->PUT( $new_configConfig);
+        $rest->PUT( $ftpConfig);
 
-        return new FtpConfig( $rest->getCurlResponse());
+        return $rest->getResult( models\FtpConfig::class);
     }
 
 }

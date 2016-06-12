@@ -21,7 +21,7 @@ class Config extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return new models\SwitchPort\Config( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\SwitchPort\Config::class);
     }
 
     /**
@@ -32,9 +32,9 @@ class Config extends Service {
     public function update( models\SwitchPort\Config $config){
         $service = sprintf( static::API_SWITCH_PORT_CONFIG, $config->getId());
         $rest = $this->getAuthService( $service);
-        $rest->PUT( $config->toArray());
+        $rest->PUT( $config);
 
-        return new models\SwitchPort\Config( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\SwitchPort\Config::class);
     }
 
 }

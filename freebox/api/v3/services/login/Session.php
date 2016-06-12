@@ -48,10 +48,10 @@ class Session extends Service {
             'password'  => hash_hmac( 'sha1', $this->challenge, $this->application->getAppToken()),
         ]);
 
-        if( ! $rest->getCurlResponse()['success']){
+        if( ! $rest->getSuccess()){
             throw new \Exception( $rest->getCurlResponse()['error_code'] .' : '. $rest->getCurlResponse()['msg']);
         }
-        $this->session_token = $rest->getCurlResponse()['result']['session_token'];
+        $this->session_token = $rest->getResult()['session_token'];
     }
 
     /**

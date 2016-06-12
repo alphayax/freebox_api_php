@@ -19,7 +19,7 @@ class Afp extends Service {
         $rest = $this->getAuthService( self::API_NETWORK_SHARE_AFP);
         $rest->GET();
 
-        return new models\NetworkShare\AfpConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NetworkShare\AfpConfig::class);
     }
 
     /**
@@ -29,9 +29,9 @@ class Afp extends Service {
      */
     public function setConfiguration( models\NetworkShare\AfpConfig $afpConfig){
         $rest = $this->getAuthService( self::API_NETWORK_SHARE_AFP);
-        $rest->PUT( $afpConfig->toArray());
+        $rest->PUT( $afpConfig);
 
-        return new models\NetworkShare\AfpConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NetworkShare\AfpConfig::class);
     }
-    
+
 }

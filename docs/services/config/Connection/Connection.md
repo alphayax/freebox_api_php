@@ -62,4 +62,4 @@
 
 | Method | Description |
 |---|---|
-| `getStatus` | Get the current Connection status | 
+| `getStatus` | Get the current XDSL Connection status | 

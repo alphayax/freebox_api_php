@@ -21,7 +21,7 @@ class Config extends Service {
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return new models\VPN\Server\Config\ServerConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\VPN\Server\Config\ServerConfig::class);
     }
 
     /**
@@ -32,9 +32,9 @@ class Config extends Service {
     public function setConfiguration( models\VPN\Server\Config\ServerConfig $serverConfig){
         $service = sprintf( self::API_VPN_SERVER_CONFIG, $serverConfig->getId());
         $rest = $this->getAuthService( $service);
-        $rest->PUT( $serverConfig->toArray());
+        $rest->PUT( $serverConfig);
 
-        return new models\VPN\Server\Config\ServerConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\VPN\Server\Config\ServerConfig::class);
     }
 
 }

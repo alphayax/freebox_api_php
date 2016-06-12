@@ -14,14 +14,14 @@ class Stats extends Service {
     /**
      * Get a port configuration
      * @param int $portId
-     * @return \alphayax\freebox\api\v3\models\SwitchPort\Stats
+     * @return models\SwitchPort\Stats
      */
     public function getFromPortId( $portId){
         $service = sprintf( static::API_SWITCH_PORT_STATS, $portId);
         $rest = $this->getAuthService( $service);
         $rest->GET();
 
-        return new models\SwitchPort\Stats( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\SwitchPort\Stats::class);
     }
 
 }

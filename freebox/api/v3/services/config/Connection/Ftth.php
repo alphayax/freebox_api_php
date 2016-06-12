@@ -19,7 +19,7 @@ class Ftth extends Service{
         $rest = $this->getAuthService( self::API_CONNECTION_FTTH);
         $rest->GET();
 
-        return new models\Connection\Ftth\Status( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\Connection\Ftth\Status::class);
     }
 
 }

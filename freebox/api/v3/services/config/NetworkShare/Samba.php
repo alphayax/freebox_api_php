@@ -19,7 +19,7 @@ class Samba extends Service {
         $rest = $this->getAuthService( self::API_NETWORK_SHARE_SAMBA);
         $rest->GET();
 
-        return new models\NetworkShare\SambaConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NetworkShare\SambaConfig::class);
     }
 
     /**
@@ -29,9 +29,9 @@ class Samba extends Service {
      */
     public function setConfiguration( models\NetworkShare\SambaConfig $sambaConfig){
         $rest = $this->getAuthService( self::API_NETWORK_SHARE_SAMBA);
-        $rest->PUT( $sambaConfig->toArray());
+        $rest->PUT( $sambaConfig);
 
-        return new models\NetworkShare\SambaConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\NetworkShare\SambaConfig::class);
     }
-    
+
 }

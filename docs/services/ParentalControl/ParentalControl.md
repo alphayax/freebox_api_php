@@ -17,14 +17,14 @@
 
 | Method | Description |
 |---|---|
-| `getConfiguration` |  | 
-| `setConfiguration` |  | 
-| `getAll` | Get the list of disks | 
-| `getFromId` |  | 
-| `update` |  | 
-| `delete` |  | 
-| `deleteFromId` |  | 
-| `add` |  | 
+| `getConfiguration` | Return the current Filter configuration | 
+| `setConfiguration` | Update the filter configuration | 
+| `getAll` | Get the list of all filters | 
+| `getFromId` | Get a specific filter from id | 
+| `update` | Update a filter | 
+| `delete` | Delete a filter | 
+| `deleteFromId` | Delete a filter with the specified id | 
+| `add` | Add a new filter | 
 
 <a name="FilterPlanning"></a>
 ## FilterPlanning
@@ -35,5 +35,5 @@
 
 | Method | Description |
 |---|---|
-| `getFromFilterId` |  | 
-| `setFromFilterId` |  | 
+| `getFromFilterId` | Get the filer planning associated with the given filter id | 
+| `setFromFilterId` | Update the filer planning associated with the given filter id | 

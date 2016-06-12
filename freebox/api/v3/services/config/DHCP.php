@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config;
-use alphayax\freebox\api\v3\models\DhcpConfig;
+use alphayax\freebox\api\v3\models;
 use alphayax\freebox\api\v3\Service;
 
 
@@ -14,26 +14,26 @@ class DHCP extends Service {
     const API_DHCP_CONFIG = '/api/v3/dhcp/config/';
 
     /**
-     * @throws \Exception
-     * @return DhcpConfig
+     * Get the current DHCP configuration
+     * @return models\DhcpConfig
      */
     public function getConfiguration(){
         $rest = $this->getAuthService( self::API_DHCP_CONFIG);
         $rest->GET();
 
-        return new DhcpConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\DhcpConfig::class);
     }
 
     /**
-     * @param DhcpConfig $new_DhcpConfig
-     * @return DhcpConfig
-     * @throws \Exception
+     * Update the DHCP configuration
+     * @param models\DhcpConfig $dhcpConfig
+     * @return models\DhcpConfig
      */
-    public function setConfiguration( DhcpConfig $new_DhcpConfig){
+    public function setConfiguration( models\DhcpConfig $dhcpConfig){
         $rest = $this->getAuthService( self::API_DHCP_CONFIG);
-        $rest->PUT( $new_DhcpConfig->toArray());
+        $rest->PUT( $dhcpConfig);
 
-        return new DhcpConfig( $rest->getCurlResponse()['result']);
+        return $rest->getResult( models\DhcpConfig::class);
     }
 
 }

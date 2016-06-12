@@ -10,5 +10,5 @@ $App->openSession();
 
 // PortForwarding
 $toto = new \alphayax\freebox\api\v3\services\config\NAT\IncomingPort( $App);
-$a = $toto->getById('http');
+$a = $toto->getFromId('http');
 var_dump( $a);

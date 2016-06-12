@@ -12,6 +12,7 @@ class MacFilter extends Service {
     const API_WIFI_MAC_FILTER     = '/api/v3/wifi/mac_filter/';
 
     /**
+     * Get all MacFilters
      * @return models\WiFi\MacFilter[]
      */
     public function getAll(){
@@ -22,6 +23,7 @@ class MacFilter extends Service {
     }
 
     /**
+     * Get a specific MacFilter
      * @param $MacFilterId
      * @return models\WiFi\MacFilter
      */
@@ -33,6 +35,7 @@ class MacFilter extends Service {
     }
 
     /**
+     * Update a MacFilter
      * @param \alphayax\freebox\api\v3\models\WiFi\MacFilter $MacFilter
      * @return \alphayax\freebox\api\v3\models\WiFi\MacFilter
      */
@@ -44,19 +47,18 @@ class MacFilter extends Service {
     }
 
     /**
+     * Delete a MacFilter
      * @param \alphayax\freebox\api\v3\models\WiFi\MacFilter $MacFilter
-     * @return \alphayax\freebox\api\v3\models\WiFi\MacFilter
+     * @return bool
      */
     public function delete( models\WiFi\MacFilter $MacFilter){
-        $rest = $this->getAuthService( self::API_WIFI_MAC_FILTER . $MacFilter->getId());
-        $rest->PUT( $MacFilter);
-
-        return $rest->getResult( models\WiFi\MacFilter::class);
+        return $this->deleteFromId( $MacFilter->getId());
     }
 
     /**
+     * Delete a MacFilter with the specified id
      * @param $MacFilterId
-     * @return \alphayax\freebox\api\v3\models\WiFi\MacFilter
+     * @return bool
      */
     public function deleteFromId( $MacFilterId){
         $rest = $this->getAuthService( self::API_WIFI_MAC_FILTER . $MacFilterId);
@@ -66,6 +68,7 @@ class MacFilter extends Service {
     }
 
     /**
+     * Add a new MacFilter
      * @param \alphayax\freebox\api\v3\models\WiFi\MacFilter $MacFilter
      * @return \alphayax\freebox\api\v3\models\WiFi\MacFilter
      */
