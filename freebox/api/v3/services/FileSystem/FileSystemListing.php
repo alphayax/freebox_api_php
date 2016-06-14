@@ -24,11 +24,12 @@ class FileSystemListing extends Service {
     public function getFilesFromDirectory( $DirectoryName = '/Disque dur/', $onlyFolder = true, $countSubFolder = false, $removeHidden = true){
         $Directory_b64 = base64_encode( $DirectoryName);
         $rest = $this->getAuthService( self::API_FS_LS . $Directory_b64);
-        $rest->GET([
-            'onlyFolder'        => $onlyFolder,
-            'countSubFolder'    => $countSubFolder,
-            'removeHidden'      => $removeHidden,
-        ]);
+        $rest->GET();
+    //    $rest->GET([
+    //      'onlyFolder'        => $onlyFolder,
+    //      'countSubFolder'    => $countSubFolder,
+    //      'removeHidden'      => $removeHidden,
+    //  ]);
 
         return $rest->getResultAsArray( models\FileSystem\FileInfo::class);
     }
