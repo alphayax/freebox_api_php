@@ -66,11 +66,11 @@ class RestAuth extends Rest {
      */
     protected function checkResponse(){
         $response = $this->getCurlResponse();
-
-        echo ">> ". explode( "\r\n", $this->_curl_getinfo['request_header'])[0] . PHP_EOL;
+        $request  = explode( "\r\n", $this->curlGetInfo['request_header'])[0] . PHP_EOL;
+    //  echo ">> $request";
 
         if( false === $this->getSuccess()){
-            $request = explode( PHP_EOL, @$this->_curl_getinfo['request_header'])[0];
+            /*
             switch( $response['error_code']){
                 case 'invalid_request' :
                     $a = new alphayax\freebox\Exception\InvalidRequestException();
@@ -81,6 +81,7 @@ class RestAuth extends Rest {
                     echo PHP_EOL . '---' . PHP_EOL;
                     throw $a;
             }
+            */
             throw new \Exception( $request .' - '. $response['msg'] . ' ('. $response['error_code'] . ')');
         }
     }
