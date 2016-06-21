@@ -39,9 +39,21 @@ Un document complet repertorie l'ensemble des services implémentées : [service
 
 ### Application
 
-La premiere étape est de créer une application. 
-La seconde est de demander l'autorisation de connexion a la freebox (cf: cadrant led du Freebox Server)
-La derniere est de récuperer une session pour utiliser les divers services de l'API
+Pour acceder aux services proposés par l'API de la freebox, vous deverez 
+autoriser votre application. Cette procedure impose que vous soyez connecté 
+au réseau local de votre Freebox lors de "l'association" et que vous ayez la
+Freebox a portée de main. L'application sauvegarde automatiquement le token 
+retourné par la frebox et cette procedure ne sera plus a reproduire.
+ 
+Notez que pour modifier les droits d'accès aux differents services, vous deverez 
+passer par l'interface web locale : [http://mafreebox.freebox.fr/login.php].
+
+> Parametres de la freebox > Divers > Gestion des accès > Applications
+
+
+1. Créer un objet application. 
+2. Demander l'autorisation de connexion a la freebox (cf: cadrant led du Freebox Server)
+3. Récuperer une session pour utiliser les divers services de l'API
 
 ```php
 $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.example', 'Freebox PHP API Exemple', '0.0.1');

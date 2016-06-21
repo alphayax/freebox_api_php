@@ -10,6 +10,9 @@ use Monolog\Logger;
  */
 class Application {
 
+    /// Freebox API host URI
+    const API_HOST_LOCAL = 'http://mafreebox.freebox.fr';
+
     /** @var string  */
     private $id         = '';
 
@@ -24,6 +27,9 @@ class Application {
 
     /** @var string */
     private $session_token = '';
+
+    /** @var string : The freebox API Host (default is "mafreebox.freebox.fr" */
+    private $freeboxApiHost = self::API_HOST_LOCAL;
 
     /** @var Logger */
     protected $logger;
@@ -41,6 +47,22 @@ class Application {
         /// Logger
         $this->logger  = new Logger('fbx_api_logger');
         $this->logger->pushHandler( new ErrorLogHandler());
+    }
+
+    /**
+     * Return the Freebox API Host
+     * @return string
+     */
+    public function getFreeboxApiHost() {
+        return $this->freeboxApiHost;
+    }
+
+    /**
+     * Set the freebox api host
+     * @param string $freeboxApiHost
+     */
+    public function setFreeboxApiHost( $freeboxApiHost) {
+        $this->freeboxApiHost = $freeboxApiHost;
     }
 
     /**

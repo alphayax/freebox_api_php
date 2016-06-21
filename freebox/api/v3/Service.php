@@ -10,9 +10,6 @@ abstract class Service {
     /** @var \alphayax\freebox\utils\Application */
     protected $application;
 
-    /// Freebox API host URI
-    const API_HOST = 'http://mafreebox.freebox.fr';
-
     /**
      * Service constructor.
      * @param \alphayax\freebox\utils\Application $application
@@ -26,7 +23,7 @@ abstract class Service {
      * @return \alphayax\freebox\utils\rest\Rest
      */
     protected function getService( $service){
-        return new utils\rest\Rest( static::API_HOST . $service);
+        return new utils\rest\Rest( $this->application->getFreeboxApiHost() . $service);
     }
 
     /**
@@ -36,7 +33,7 @@ abstract class Service {
      * @return utils\rest\RestAuth
      */
     protected function getAuthService( $service, $isJson = true, $returnAsArray = true){
-        $rest = new utils\rest\RestAuth( static::API_HOST . $service, $isJson, $returnAsArray);
+        $rest = new utils\rest\RestAuth( $this->application->getFreeboxApiHost() . $service, $isJson, $returnAsArray);
         $rest->setSessionToken( $this->application->getSessionToken());
         return $rest;
     }
