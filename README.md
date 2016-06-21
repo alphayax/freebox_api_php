@@ -115,5 +115,8 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `DlConfig` : Affichage des configurations de téléchargement (bt, nntp...)
     - `dl_rss` : Un script qui parse les flux RSS et qui rajoute en téléchagement les items correspondant a une expression réguliere
     - `Bittorrent` : Affiche des infos sur des telechargements bittorent
- 
- 
+- `ParentalControl`
+    - `Filter` : Retourne la config et les filtres actuels
+- `Storage`
+    - `Disk` : Retourne des informations sur les disques connectés aux freebox
+    - `Partition` : Retourne des infos sur ces disques. Possibilité de verification ou de formatage
