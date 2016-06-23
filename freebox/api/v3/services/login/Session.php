@@ -21,7 +21,10 @@ class Session extends Service {
 
     private $logged_in  = false;
 
+    /** @var array */
+    protected $permissions = [];
 
+    /** @var string */
     private $session_token;
 
     /**
@@ -52,6 +55,7 @@ class Session extends Service {
             throw new \Exception( $rest->getCurlResponse()['error_code'] .' : '. $rest->getCurlResponse()['msg']);
         }
         $this->session_token = $rest->getResult()['session_token'];
+        $this->permissions   = $rest->getResult()['permissions'];
     }
 
     /**
@@ -59,6 +63,13 @@ class Session extends Service {
      */
     public function getSessionToken(){
         return $this->session_token;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPermissions() {
+        return $this->permissions;
     }
 
 }

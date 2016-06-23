@@ -39,6 +39,11 @@ Un document complet repertorie l'ensemble des services implémentées : [service
 
 ### Application
 
+L'objet `\alphayax\freebox\utils\Application` représente votre application. Vous devrez 
+créer une instance de cette classe et la transmettre aux services que vous souhaitez utiliser.
+
+#### Association
+
 Pour acceder aux services proposés par l'API de la freebox, vous deverez 
 autoriser votre application. Cette procedure impose que vous soyez connecté 
 au réseau local de votre Freebox lors de "l'association" et que vous ayez la
@@ -61,6 +66,26 @@ $App->authorize();
 $App->openSession();
 ```
 
+#### Accès local
+
+L'accès local est activé par défaut. Une fois l'application créer et la session ouverte, vous 
+pouvez utiliser directement les services auquels l'application à acces.
+
+#### Accès distant
+
+Pour pouvoir utiliser l'accès distant, il vous faudra le token associé a votre application. 
+Ce token s'obtient automatiquement après l'association faite via l'appel à la méthode `authorize()`. 
+Le token est ecrit dans le fichier `app_token`. Il est également disponible via la methode `\alphayax\freebox\utils\Application::getAppToken()`. 
+
+Une fois le token obtenu, vous pouvez proceder comme suit : 
+
+```php
+$App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.version', 'Freebox PHP API Example (Version)', '1.0.0');
+$App->setFreeboxApiHost( 'https://xxx.freeboxos.fr:17105'); // A remplacer par votre host
+$App->setAppToken( 'xxxxxxxxxxxxxxxxxxxx');                 // A remplacer par votre token
+$App->openSession();
+```
+
 ### Services
 Les appels aux services de l'API se font par l'intermédiaire de services.
 Ces derniers possedent les méthodes pour récuperer, ajouter ou mettre a jour des données.
@@ -73,8 +98,6 @@ Voici un exemple d'utilisation de l'API System :
  
 ```php
 $System = new \alphayax\freebox\api\v3\services\config\System( $App);
-
-/** @var \alphayax\freebox\api\v3\models\SystemConfig $SystemConfig */
 $SystemConfig = $System->getConfiguration();
 
 print_r( $SystemConfig);
@@ -96,21 +119,6 @@ alphayax\freebox\api\v3\models\SystemConfig Object
     [fan_rpm:protected] => 2253
     [box_authenticated:protected] => 1
 )
-```
-
-### Accès distant
-
-Pour pouvoir utiliser l'accès distant, il vous faudra le token associé a votre application. 
-Ce token s'obtient automatiquement après l'association faite via l'appel à la méthode `authorize()`. 
-Le token est ecrit dans le fichier `app_token`. Il est également disponible via la methode `\alphayax\freebox\utils\Application::getAppToken()`. 
-
-Une fois le token obtenu, vous pouvez proceder comme suit : 
-
-```php
-$App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.version', 'Freebox PHP API Example (Version)', '1.0.0');
-$App->setFreeboxApiHost( 'https://xxx.freeboxos.fr:17105'); // A remplacer par votre host
-$App->setAppToken( 'xxxxxxxxxxxxxxxxxxxx');                 // A remplacer par votre token
-$App->openSession();
 ```
 
 ## Exemples
@@ -147,3 +155,5 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
 - `Storage`
     - `Disk` : Retourne des informations sur les disques connectés aux freebox
     - `Partition` : Retourne des infos sur ces disques. Possibilité de verification ou de formatage
+- `remote` : Un exemple de connexion distant
+- `version` : Affichage de la version de l'API de la freebox

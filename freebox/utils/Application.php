@@ -13,6 +13,12 @@ class Application {
     /// Freebox API host URI
     const API_HOST_LOCAL = 'http://mafreebox.freebox.fr';
 
+    /**
+     * @var array
+     * @see alphayax\freebox\api\v3\symbols\Permissions
+     */
+    protected $permissions = [];
+
     /** @var string  */
     private $id         = '';
 
@@ -81,6 +87,7 @@ class Application {
         $Login->ask_login_status();
         $Login->create_session();
 
+        $this->permissions   = $Login->getPermissions();
         $this->session_token = $Login->getSessionToken();
     }
 
@@ -156,6 +163,16 @@ class Application {
      */
     public function getLogger() {
         return $this->logger;
+    }
+
+    /**
+     * Return true if the application have access to the given permission name
+     * @param $permissionName
+     * @see alphayax\freebox\api\v3\symbols\Permissions
+     * @return bool
+     */
+    public function hasPermission( $permissionName) {
+        return boolval( @$this->permissions[$permissionName]);
     }
 
 }
