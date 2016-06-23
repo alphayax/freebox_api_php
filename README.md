@@ -110,6 +110,7 @@ Une fois le token obtenu, vous pouvez proceder comme suit :
 $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.version', 'Freebox PHP API Example (Version)', '1.0.0');
 $App->setFreeboxApiHost( 'https://xxx.freeboxos.fr:17105'); // A remplacer par votre host
 $App->setAppToken( 'xxxxxxxxxxxxxxxxxxxx');                 // A remplacer par votre token
+$App->openSession();
 ```
 
 ## Exemples
