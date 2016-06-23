@@ -98,6 +98,20 @@ alphayax\freebox\api\v3\models\SystemConfig Object
 )
 ```
 
+### Accès distant
+
+Pour pouvoir utiliser l'accès distant, il vous faudra le token associé a votre application. 
+Ce token s'obtient automatiquement après l'association faite via l'appel à la méthode `authorize()`. 
+Le token est ecrit dans le fichier `app_token`. Il est également disponible via la methode `\alphayax\freebox\utils\Application::getAppToken()`. 
+
+Une fois le token obtenu, vous pouvez proceder comme suit : 
+
+```php
+$App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.version', 'Freebox PHP API Example (Version)', '1.0.0');
+$App->setFreeboxApiHost( 'https://xxx.freeboxos.fr:17105'); // A remplacer par votre host
+$App->setAppToken( 'xxxxxxxxxxxxxxxxxxxx');                 // A remplacer par votre token
+```
+
 ## Exemples
 
 Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés par services :
