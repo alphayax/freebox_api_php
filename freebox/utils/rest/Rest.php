@@ -10,16 +10,16 @@ use alphayax;
  */
 class Rest extends alphayax\utils\Rest {
 
+    /** @var bool */
+    protected $isResponseToCheck = true;
+
     /**
      * @param null $curlPostData
-     * @param bool $checkResponse
-     * @throws \Exception
+     * @throws \alphayax\freebox\Exception\FreeboxApiException
      */
-    public function GET( $curlPostData = null, $checkResponse = true){
+    public function GET( $curlPostData = null){
         parent::GET( $curlPostData);
-        if( $checkResponse){
-            $this->checkResponse();
-        }
+        $this->checkResponse();
     }
 
     /**
@@ -53,6 +53,11 @@ class Rest extends alphayax\utils\Rest {
         $request  = explode( "\r\n", $this->curlGetInfo['request_header'])[0];
         $url      = $this->curlGetInfo['url'];
     //  echo ">> $request ($url)" . PHP_EOL;
+
+        /// Don't need to go further if the response have not to be checked (binary content, non standard response, ...)
+        if( ! $this->isResponseToCheck){
+            return;
+        }
 
         if( false === $this->getSuccess()){
 
@@ -104,6 +109,13 @@ class Rest extends alphayax\utils\Rest {
      */
     public function getSuccess(){
         return boolval( $this->getCurlResponse()['success']);
+    }
+
+    /**
+     * @param boolean $isResponseToCheck
+     */
+    public function setIsResponseToCheck( $isResponseToCheck = true){
+        $this->isResponseToCheck = $isResponseToCheck;
     }
 
 }

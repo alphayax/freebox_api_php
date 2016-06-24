@@ -16,7 +16,8 @@ class ApiVersion extends Service {
      */
     public function getApiVersion() {
         $rest = $this->getService( static::API_VERSION);
-        $rest->GET( null, false);
+        $rest->setIsResponseToCheck( false);
+        $rest->GET();
 
         return $rest->getCurlResponse();
     }

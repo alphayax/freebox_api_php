@@ -18,9 +18,9 @@ class RestAuth extends Rest {
      * @param bool $checkResponse
      * @throws \Exception
      */
-    public function GET( $curlPostData = null, $checkResponse = true){
+    public function GET( $curlPostData = null){
         $this->add_XFbxAppAuth_Header();
-        parent::GET( $curlPostData, $checkResponse);
+        parent::GET( $curlPostData);
     }
 
     /**
