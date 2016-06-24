@@ -269,7 +269,8 @@ class FileSystemOperation extends Service {
      * @return mixed
      */
     public function download( $sourceFilePath){
-        $rest = $this->getAuthService( self::API_DOWNLOAD . base64_encode( $sourceFilePath), false, false);
+        $rest = $this->getAuthService( self::API_DOWNLOAD . base64_encode( $sourceFilePath));
+        $rest->setIsJson( false);
         $rest->setIsResponseToCheck( false);
         $rest->GET();
 

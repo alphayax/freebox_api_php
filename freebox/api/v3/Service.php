@@ -28,13 +28,12 @@ abstract class Service {
 
     /**
      * @param string $service
-     * @param bool   $isJson
-     * @param bool   $returnAsArray
      * @return utils\rest\RestAuth
      */
-    protected function getAuthService( $service, $isJson = true, $returnAsArray = true){
-        $rest = new utils\rest\RestAuth( $this->application->getFreeboxApiHost() . $service, $isJson, $returnAsArray);
+    protected function getAuthService( $service){
+        $rest = new utils\rest\RestAuth( $this->application->getFreeboxApiHost() . $service);
         $rest->setSessionToken( $this->application->getSessionToken());
         return $rest;
     }
+    
 }

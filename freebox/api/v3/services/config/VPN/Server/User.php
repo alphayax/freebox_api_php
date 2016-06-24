@@ -88,7 +88,8 @@ class User extends Service {
      */
     public function getConfigurationFile( $serverName, $login){
         $service = sprintf( self::API_VPN_USER_CONFIG, $serverName, $login);
-        $rest = $this->getAuthService( $service, false, false);
+        $rest = $this->getAuthService( $service);
+        $rest->setIsJson( false);
         $rest->setIsResponseToCheck( false);
         $rest->GET();
 

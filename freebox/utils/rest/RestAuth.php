@@ -14,9 +14,7 @@ class RestAuth extends Rest {
     protected $sessionToken = '';
 
     /**
-     * @param null $curlPostData
-     * @param bool $checkResponse
-     * @throws \Exception
+     * @param mixed $curlPostData
      */
     public function GET( $curlPostData = null){
         $this->add_XFbxAppAuth_Header();
