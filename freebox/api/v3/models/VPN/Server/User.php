@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\models\VPN\Server;
-use alphayax\freebox\api\v3\Model;
+use alphayax\freebox\utils\Model;
 
 /**
  * Class User

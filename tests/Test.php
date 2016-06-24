@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\tests;
-use alphayax\freebox\api\v3\Model;
+use alphayax\freebox\utils\Model;
 use alphayax\utils\file_system\Directory;
 
 

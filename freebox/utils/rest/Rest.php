@@ -80,7 +80,7 @@ class Rest extends alphayax\utils\Rest {
         $Model_xs = @$this->getCurlResponse()['result'] ?: [];
 
         /// Cast elements
-        if( ! empty( $className) && ! empty( $Model_xs) && is_subclass_of( $className, alphayax\freebox\api\v3\Model::class)) {
+        if( ! empty( $className) && ! empty( $Model_xs) && is_subclass_of( $className, alphayax\freebox\utils\Model::class)) {
             array_walk( $Model_xs, function( &$item, $key, $className){
                 $item = new $className( $item);
             }, $className);
@@ -91,13 +91,13 @@ class Rest extends alphayax\utils\Rest {
 
     /**
      * @param string $className
-     * @return array|alphayax\freebox\api\v3\Model
+     * @return array|\alphayax\freebox\utils\Model
      */
     public function getResult( $className = ''){
         $Model = @$this->getCurlResponse()['result'];
 
         /// Cast element
-        if( ! empty( $className) && ! empty( $Model) && is_subclass_of( $className, alphayax\freebox\api\v3\Model::class) && is_array( $Model)){
+        if( ! empty( $className) && ! empty( $Model) && is_subclass_of( $className, alphayax\freebox\utils\Model::class) && is_array( $Model)){
             return new $className( $Model);
         }
 

@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\models\WiFi\AccessPoint;
-use alphayax\freebox\api\v3\Model;
+use alphayax\freebox\utils\Model;
 
 /**
  * Class AP
@@ -59,7 +59,7 @@ class AP extends Model {
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\ApCapabilities
      */
     public function getCapabilites() {
-        return $this->capabilites;
+        return $this->capabilities;
     }
 
     /**
