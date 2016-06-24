@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services;
-use alphayax\freebox\api\v3\Service;
+use alphayax\freebox\utils\Service;
 
 /**
  * Class Version

@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Call;
-use alphayax\freebox\api\v3\Service;
+use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
 
 

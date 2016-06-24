@@ -1,7 +1,7 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NAT;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\api\v3\Service;
+use alphayax\freebox\utils\Service;
 
 
 /**
