@@ -11,38 +11,38 @@ use alphayax;
 class Rest extends alphayax\utils\Rest {
 
     /**
-     * @param null $curl_post_data
+     * @param null $curlPostData
      * @param bool $checkResponse
      * @throws \Exception
      */
-    public function GET( $curl_post_data = null, $checkResponse = true){
-        parent::GET( $curl_post_data);
+    public function GET( $curlPostData = null, $checkResponse = true){
+        parent::GET( $curlPostData);
         if( $checkResponse){
             $this->checkResponse();
         }
     }
 
     /**
-     * @param $curl_post_data
+     * @param $curlPostData
      */
-    public function POST( $curl_post_data = null){
-        parent::POST( $curl_post_data);
+    public function POST( $curlPostData = null){
+        parent::POST( $curlPostData);
         $this->checkResponse();
     }
 
     /**
-     * @param $curl_post_data
+     * @param $curlPostData
      */
-    public function PUT( $curl_post_data = null){
-        parent::PUT( $curl_post_data);
+    public function PUT( $curlPostData = null){
+        parent::PUT( $curlPostData);
         $this->checkResponse();
     }
 
     /**
-     * @param $curl_post_data
+     * @param $curlPostData
      */
-    public function DELETE( $curl_post_data = null){
-        parent::DELETE( $curl_post_data);
+    public function DELETE( $curlPostData = null){
+        parent::DELETE( $curlPostData);
         $this->checkResponse();
     }
 
@@ -50,9 +50,20 @@ class Rest extends alphayax\utils\Rest {
      * @throws \Exception
      */
     protected function checkResponse(){
+        $request  = explode( "\r\n", $this->curlGetInfo['request_header'])[0];
+        $url      = $this->curlGetInfo['url'];
+    //  echo ">> $request ($url)" . PHP_EOL;
+
         if( false === $this->getSuccess()){
-            $response = $this->getCurlResponse();
-            throw new \Exception( $response['msg'] . ' ('. $response['error_code'] . ')');
+
+            $response  = $this->getCurlResponse();
+            $Exception = new alphayax\freebox\Exception\FreeboxApiException( $response['msg'] . ' ('. $response['error_code'] . ')');
+            $Exception->setApiMessage( $response['msg']);
+            $Exception->setApiErrorCode( $response['error_code']);
+            $Exception->setApiRequest( $request);
+            $Exception->setApiHost( $url);
+
+            throw $Exception;
         }
     }
 

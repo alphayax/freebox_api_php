@@ -11,79 +11,54 @@ use alphayax;
 class RestAuth extends Rest {
 
     /** @var string */
-    protected $session_token = '';
+    protected $sessionToken = '';
 
     /**
-     * @param null $curl_post_data
+     * @param null $curlPostData
      * @param bool $checkResponse
      * @throws \Exception
      */
-    public function GET( $curl_post_data = null, $checkResponse = true){
+    public function GET( $curlPostData = null, $checkResponse = true){
         $this->add_XFbxAppAuth_Header();
-        parent::GET( $curl_post_data, $checkResponse);
+        parent::GET( $curlPostData, $checkResponse);
     }
 
     /**
-     * @param $curl_post_data
+     * @param $curlPostData
      */
-    public function POST( $curl_post_data = null){
+    public function POST( $curlPostData = null){
         $this->add_XFbxAppAuth_Header();
-        parent::POST( $curl_post_data);
+        parent::POST( $curlPostData);
     }
 
     /**
-     * @param $curl_post_data
+     * @param $curlPostData
      */
-    public function PUT( $curl_post_data = null){
+    public function PUT( $curlPostData = null){
         $this->add_XFbxAppAuth_Header();
-        parent::PUT( $curl_post_data);
+        parent::PUT( $curlPostData);
     }
 
     /**
-     * @param $curl_post_data
+     * @param $curlPostData
      */
-    public function DELETE( $curl_post_data = null){
+    public function DELETE( $curlPostData = null){
         $this->add_XFbxAppAuth_Header();
-        parent::DELETE( $curl_post_data);
+        parent::DELETE( $curlPostData);
     }
 
     /**
      * Add the session token in the X-Fbx-App-Auth Header
      */
     protected function add_XFbxAppAuth_Header(){
-        $this->addHeader( 'X-Fbx-App-Auth', $this->session_token);
+        $this->addHeader( 'X-Fbx-App-Auth', $this->sessionToken);
     }
 
     /**
-     * @param $session_token
+     * @param $sessionToken
      */
-    public function setSessionToken( $session_token){
-        $this->session_token = $session_token;
-    }
-
-    /**
-     * @throws \Exception
-     */
-    protected function checkResponse(){
-        $response = $this->getCurlResponse();
-        $request  = explode( "\r\n", $this->curlGetInfo['request_header'])[0] . PHP_EOL;
-    //  echo ">> $request";
-
-        if( false === $this->getSuccess()){
-            /*
-            switch( $response['error_code']){
-                case 'invalid_request' :
-                    $a = new alphayax\freebox\Exception\InvalidRequestException();
-                    $a->setHttpRequestHeader( $this->_curl_getinfo['request_header']);
-                    $a->setHttpUrl( $this->_curl_getinfo['url']);
-                    echo PHP_EOL . '---' . PHP_EOL;
-                    echo $this->_curl_getinfo['request_header'];
-                    echo PHP_EOL . '---' . PHP_EOL;
-                    throw $a;
-            }
-            */
-            throw new \Exception( $request .' - '. $response['msg'] . ' ('. $response['error_code'] . ')');
-        }
+    public function setSessionToken( $sessionToken){
+        $this->sessionToken = $sessionToken;
     }
 
 }
