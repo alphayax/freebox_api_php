@@ -4,9 +4,21 @@
 
 # Overview
 
-- [Config](Client.md#Config)
 - [Status](Client.md#Status)
+- [Config](Client.md#Config)
 
+
+<a name="Status"></a>
+## Status
+
+**Class**  : alphayax\freebox\api\v3\services\config\VPN\Client\Status
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getStatus` | Get the VPN client status | 
+| `getLogs` | Get the VPN client Logs | 
 
 <a name="Config"></a>
 ## Config
@@ -23,15 +35,3 @@
 | `delete` |  | 
 | `deleteFromId` |  | 
 | `update` |  | 
-
-<a name="Status"></a>
-## Status
-
-**Class**  : alphayax\freebox\api\v3\services\config\VPN\Client\Status
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `getStatus` | Get the VPN client status | 
-| `getLogs` | Get the VPN client Logs | 

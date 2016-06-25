@@ -5,11 +5,11 @@
 # Overview
 
 - [BlackList](download.md#BlackList)
-- [Configuration](download.md#Configuration)
-- [Download](download.md#Download)
-- [Feed](download.md#Feed)
-- [Peer](download.md#Peer)
 - [Tracker](download.md#Tracker)
+- [Feed](download.md#Feed)
+- [Configuration](download.md#Configuration)
+- [Peer](download.md#Peer)
+- [Download](download.md#Download)
 
 
 <a name="BlackList"></a>
@@ -26,40 +26,19 @@
 | `removeBlackListEntry` | Delete a particular blacklist entry | 
 | `addBlackListEntry` | Add a blacklist entry | 
 
-<a name="Configuration"></a>
-## Configuration
+<a name="Tracker"></a>
+## Tracker
 
-**Class**  : alphayax\freebox\api\v3\services\download\Configuration
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `getConfiguration` | Get the current Download configuration | 
-| `setConfiguration` | Update the Download configuration | 
-| `updateThrottlingMode` | You can force the throttling mode using this method. You can use any of the throttling modes defined in DlThrottlingConfig. | 
-
-<a name="Download"></a>
-## Download
-
-**Class**  : alphayax\freebox\api\v3\services\download\Download
+**Class**  : alphayax\freebox\api\v3\services\download\Tracker
 
 ### Public methods
 
 | Method | Description |
 |---|---|
-| `getAll` | Returns the collection of all Download tasks | 
-| `getFromId` | Returns the Download task with the given id | 
-| `getLogFromId` | Get the current system info | 
-| `deleteFromId` | Delete a download task (conserve data) | 
-| `eraseFromId` | Delete a download task (erase data) | 
-| `update` | Update a download task | 
-| `addFromUrl` | Add a download task with the specified URL | 
-| `addFromUrls` | Add a download task with all the specified URLs | 
-| `addFromFile` | Add a download task with the specified file (torrent, nzb...) | 
-| `getStats` | Returns the Download task with the given id | 
-| `getFilesFromId` | Returns the downloaded files with the given task id | 
-| `updateFilePriority` | Update a download priority | 
+| `getAll` | Each torrent Download task has one or more DownloadTracker. Each tracker is identified by its announce URL. | 
+| `add` | Add a new tracker Attempting to call this method on a download other than bittorent will fail | 
+| `remove` | Remove a tracker Attempting to call this method on a download other than bittorent will fail | 
+| `update` | Update a tracker Attempting to call this method on a download other than bittorent will fail | 
 
 <a name="Feed"></a>
 ## Feed
@@ -82,6 +61,19 @@
 | `downloadFeedItem` | Download the specified feed item | 
 | `markFeedAsRead` | Mark the specified feed id as "Read" | 
 
+<a name="Configuration"></a>
+## Configuration
+
+**Class**  : alphayax\freebox\api\v3\services\download\Configuration
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getConfiguration` | Get the current Download configuration | 
+| `setConfiguration` | Update the Download configuration | 
+| `updateThrottlingMode` | You can force the throttling mode using this method. You can use any of the throttling modes defined in DlThrottlingConfig. | 
+
 <a name="Peer"></a>
 ## Peer
 
@@ -93,16 +85,24 @@
 |---|---|
 | `getAll` | Get the list of peers for a given Download Attempting to call this method on a download other than bittorent will fail | 
 
-<a name="Tracker"></a>
-## Tracker
+<a name="Download"></a>
+## Download
 
-**Class**  : alphayax\freebox\api\v3\services\download\Tracker
+**Class**  : alphayax\freebox\api\v3\services\download\Download
 
 ### Public methods
 
 | Method | Description |
 |---|---|
-| `getAll` | Each torrent Download task has one or more DownloadTracker. Each tracker is identified by its announce URL. | 
-| `add` | Add a new tracker Attempting to call this method on a download other than bittorent will fail | 
-| `remove` | Remove a tracker Attempting to call this method on a download other than bittorent will fail | 
-| `update` | Update a tracker Attempting to call this method on a download other than bittorent will fail | 
+| `getAll` | Returns the collection of all Download tasks | 
+| `getFromId` | Returns the Download task with the given id | 
+| `getLogFromId` | Get the current system info | 
+| `deleteFromId` | Delete a download task (conserve data) | 
+| `eraseFromId` | Delete a download task (erase data) | 
+| `update` | Update a download task | 
+| `addFromUrl` | Add a download task with the specified URL | 
+| `addFromUrls` | Add a download task with all the specified URLs | 
+| `addFromFile` | Add a download task with the specified file (torrent, nzb...) | 
+| `getStats` | Returns the Download task with the given id | 
+| `getFilesFromId` | Returns the downloaded files with the given task id | 
+| `updateFilePriority` | Update a download priority | 

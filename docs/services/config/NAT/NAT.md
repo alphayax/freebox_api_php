@@ -4,10 +4,26 @@
 
 # Overview
 
+- [PortForwarding](NAT.md#PortForwarding)
 - [DMZ](NAT.md#DMZ)
 - [IncomingPort](NAT.md#IncomingPort)
-- [PortForwarding](NAT.md#PortForwarding)
 
+
+<a name="PortForwarding"></a>
+## PortForwarding
+
+**Class**  : alphayax\freebox\api\v3\services\config\NAT\PortForwarding
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `getAll` | Getting the list of port forwarding | 
+| `getById` | Getting a specific port forwarding | 
+| `update` | Update a specific port forwarding | 
+| `add` | Add a port forwarding | 
+| `delete` | Delete a port forwarding | 
+| `deleteById` | Delete a port forwarding with the specified id | 
 
 <a name="DMZ"></a>
 ## DMZ
@@ -33,19 +49,3 @@
 | `getAll` | Getting the list of incoming ports | 
 | `getFromId` | Getting a specific incoming port | 
 | `update` | Updating an incoming port | 
-
-<a name="PortForwarding"></a>
-## PortForwarding
-
-**Class**  : alphayax\freebox\api\v3\services\config\NAT\PortForwarding
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `getAll` | Getting the list of port forwarding | 
-| `getById` | Getting a specific port forwarding | 
-| `update` | Update a specific port forwarding | 
-| `add` | Add a port forwarding | 
-| `delete` | Delete a port forwarding | 
-| `deleteById` | Delete a port forwarding with the specified id | 

@@ -4,12 +4,12 @@
 
 # Overview
 
-- [Client](./Client/Client.md)
-  - [Config](Client/Client.md#Config)
-  - [Status](Client/Client.md#Status)
 - [Server](./Server/Server.md)
-  - [Config](Server/Server.md#Config)
-  - [Connection](Server/Server.md#Connection)
-  - [IpPool](Server/Server.md#IpPool)
-  - [User](Server/Server.md#User)
+    - [User](Server/Server.md#User)
+    - [IpPool](Server/Server.md#IpPool)
+    - [Connection](Server/Server.md#Connection)
+    - [Config](Server/Server.md#Config)
+- [Client](./Client/Client.md)
+    - [Status](Client/Client.md#Status)
+    - [Config](Client/Client.md#Config)
 

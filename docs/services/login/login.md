@@ -4,23 +4,9 @@
 
 # Overview
 
-- [Authorize](login.md#Authorize)
 - [Session](login.md#Session)
+- [Authorize](login.md#Authorize)
 
-
-<a name="Authorize"></a>
-## Authorize
-
-**Class**  : alphayax\freebox\api\v3\services\login\Authorize
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `ask_authorization` | Contact the freebox and ask for App auth | 
-| `get_authorization_status` |  | 
-| `getStatus` |  | 
-| `getAppToken` |  | 
 
 <a name="Session"></a>
 ## Session
@@ -31,6 +17,21 @@
 
 | Method | Description |
 |---|---|
-| `ask_login_status` |  | 
-| `create_session` |  | 
+| `askLoginStatus` |  | 
+| `createSession` |  | 
 | `getSessionToken` |  | 
+| `getPermissions` |  | 
+
+<a name="Authorize"></a>
+## Authorize
+
+**Class**  : alphayax\freebox\api\v3\services\login\Authorize
+
+### Public methods
+
+| Method | Description |
+|---|---|
+| `askAuthorization` | Contact the freebox and ask for App auth | 
+| `getAuthorizationStatus` |  | 
+| `getStatus` |  | 
+| `getAppToken` |  | 
