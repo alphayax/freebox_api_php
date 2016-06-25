@@ -43,9 +43,9 @@ class DiskPartition extends Model {
     /** @var int (Read-only) : partition free space (in bytes) */
     protected $free_bytes;
 
-    /** 
-     * @var string (Read-only) : fsck result 
-     * @see symbols\Storage\DiskPartition\FsckResult 
+    /**
+     * @var string (Read-only) : fsck result
+     * @see symbols\Storage\DiskPartition\FsckResult
      */
     protected $fsck_result;
 

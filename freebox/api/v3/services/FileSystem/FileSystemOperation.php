@@ -30,7 +30,7 @@ class FileSystemOperation extends ServiceAuth {
      * @param string    $conflictMode
      * @return models\FileSystem\FsTask
      */
-    public function move( array $sourceFiles = [], $destination, $conflictMode = 'recent'){
+    public function move( array $sourceFiles, $destination, $conflictMode = 'recent'){
         /// Convert all paths in base64
         $destination_b64 = base64_encode( $destination);
         $source_b64      = [];
@@ -55,7 +55,7 @@ class FileSystemOperation extends ServiceAuth {
      * @param string    $conflictMode
      * @return models\FileSystem\FsTask
      */
-    public function copy( array $sourceFiles = [], $destination, $conflictMode = 'recent'){
+    public function copy( array $sourceFiles, $destination, $conflictMode = 'recent'){
         /// Convert all paths in base64
         $destination_b64 = base64_encode( $destination);
         $source_b64      = [];
@@ -103,11 +103,11 @@ class FileSystemOperation extends ServiceAuth {
      * @param bool      $isToAppend     : Append to the destination
      * @return models\FileSystem\FsTask
      */
-    public function cat( array $fileParts = [], $destination, $isMultiVolumes = false, $isToDelete = false, $isToOverwrite = false, $isToAppend = false){
+    public function cat( array $fileParts, $destination, $isMultiVolumes = false, $isToDelete = false, $isToOverwrite = false, $isToAppend = false){
         /// Convert all paths in base64
         $destination_b64 = base64_encode( $destination);
         $fileParts_b64   = [];
-        foreach($fileParts as $FilePart){
+        foreach( $fileParts as $FilePart){
             $fileParts_b64[] = base64_encode( $FilePart);
         }
 
@@ -130,11 +130,11 @@ class FileSystemOperation extends ServiceAuth {
      * @param string    $destination    : The destination file
      * @return models\FileSystem\FsTask
      */
-    public function archive( array $fileParts = [], $destination){
+    public function archive( array $fileParts, $destination){
         /// Convert all paths in base64
         $destination_b64 = base64_encode( $destination);
         $fileParts_b64   = [];
-        foreach($fileParts as $FilePart){
+        foreach( $fileParts as $FilePart){
             $fileParts_b64[] = base64_encode( $FilePart);
         }
 

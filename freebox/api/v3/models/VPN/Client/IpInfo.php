@@ -7,7 +7,7 @@ use alphayax\freebox\utils\Model;
  * @package alphayax\freebox\api\v3\models\VPN\Client
  */
 class IpInfo extends Model {
-    
+
     /** @var bool (Read-only) : is the configuration valid */
     protected $config_valid;
 
