@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\FileSystem;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class FileSystemListing
  * @package alphayax\freebox\api\v3\services\FileSystem
  */
-class FileSystemListing extends Service {
+class FileSystemListing extends ServiceAuth {
 
     const API_FS_LS    = '/api/v3/fs/ls/';
     const API_FS_INFO  = '/api/v3/fs/info/';
@@ -23,7 +23,7 @@ class FileSystemListing extends Service {
      */
     public function getFilesFromDirectory( $DirectoryName = '/Disque dur/', $onlyFolder = true, $countSubFolder = false, $removeHidden = true){
         $Directory_b64 = base64_encode( $DirectoryName);
-        $rest = $this->getAuthService( self::API_FS_LS . $Directory_b64);
+        $rest = $this->getService( self::API_FS_LS . $Directory_b64);
         $rest->GET();
     //    $rest->GET([
     //      'onlyFolder'        => $onlyFolder,
@@ -41,7 +41,7 @@ class FileSystemListing extends Service {
      */
     public function getFileInformation( $DirectoryName){
         $Directory_b64 = base64_encode( $DirectoryName);
-        $rest = $this->getAuthService( self::API_FS_INFO . $Directory_b64);
+        $rest = $this->getService( self::API_FS_INFO . $Directory_b64);
         $rest->GET();
 
         return $rest->getResult( models\FileSystem\FileInfo::class);

@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NAT;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class IncomingPort
  * @package alphayax\freebox\api\v3\services\config\NAT
  */
-class IncomingPort extends Service {
+class IncomingPort extends ServiceAuth {
 
     const API_NAT_INCOMING = '/api/v3/fw/incoming/';
 
@@ -18,7 +18,7 @@ class IncomingPort extends Service {
      * @return models\NAT\IncomingPortConfig[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_NAT_INCOMING);
+        $rest = $this->getService( self::API_NAT_INCOMING);
         $rest->GET();
 
         return $rest->getResultAsArray( models\NAT\IncomingPortConfig::class);
@@ -30,7 +30,7 @@ class IncomingPort extends Service {
      * @return models\NAT\IncomingPortConfig
      */
     public function getFromId( $IncomingPortId){
-        $rest = $this->getAuthService( self::API_NAT_INCOMING . $IncomingPortId);
+        $rest = $this->getService( self::API_NAT_INCOMING . $IncomingPortId);
         $rest->GET();
 
         return $rest->getResult( models\NAT\IncomingPortConfig::class);
@@ -43,7 +43,7 @@ class IncomingPort extends Service {
      * @throws \Exception
      */
     public function update( models\NAT\IncomingPortConfig $incomingPortConfig){
-        $rest = $this->getAuthService( self::API_NAT_INCOMING . $incomingPortConfig->getId());
+        $rest = $this->getService( self::API_NAT_INCOMING . $incomingPortConfig->getId());
         $rest->PUT( $incomingPortConfig);
 
         return $rest->getResult( models\NAT\IncomingPortConfig::class);

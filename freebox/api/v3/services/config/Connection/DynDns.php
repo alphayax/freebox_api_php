@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\Connection;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class DynDns
  * @package alphayax\freebox\api\v3\services\config\Connection
  */
-abstract class DynDns extends Service {
+abstract class DynDns extends ServiceAuth {
 
     const API_CONNECTION_DDNS_STATUS = '/api/v3/connection/ddns/%s/status/';
     const API_CONNECTION_DDNS_CONFIG = '/api/v3/connection/ddns/%s/';
@@ -19,7 +19,7 @@ abstract class DynDns extends Service {
      */
     protected function getStatusFromProvider( $provider){
         $service = sprintf( self::API_CONNECTION_DDNS_STATUS, $provider);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResult( models\Connection\DynDns\Status::class);
@@ -32,7 +32,7 @@ abstract class DynDns extends Service {
      */
     protected function getConfigFromProvider( $provider){
         $service = sprintf( self::API_CONNECTION_DDNS_CONFIG, $provider);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResult( models\Connection\DynDns\Config::class);
@@ -45,7 +45,7 @@ abstract class DynDns extends Service {
      */
     protected function setConfigFromProvider( $provider, models\Connection\DynDns\Config $config){
         $service = sprintf( self::API_CONNECTION_DDNS_CONFIG, $provider);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->PUT( $config);
 
         return $rest->getResult( models\Connection\DynDns\Config::class);

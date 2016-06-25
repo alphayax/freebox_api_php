@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\FileSystem;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class FileSystemOperation
  * @package alphayax\freebox\api\v3\services\FileSystem
  */
-class FileSystemOperation extends Service {
+class FileSystemOperation extends ServiceAuth {
 
     const API_FS_MV         = '/api/v3/fs/mv/';
     const API_FS_CP         = '/api/v3/fs/cp/';
@@ -38,7 +38,7 @@ class FileSystemOperation extends Service {
             $source_b64[] = base64_encode( $sourceFile);
         }
 
-        $rest = $this->getAuthService( self::API_FS_MV);
+        $rest = $this->getService( self::API_FS_MV);
         $rest->POST([
             'files' => $source_b64,
             'dst'   => $destination_b64,
@@ -63,7 +63,7 @@ class FileSystemOperation extends Service {
             $source_b64[] = base64_encode( $sourceFile);
         }
 
-        $rest = $this->getAuthService( self::API_FS_CP);
+        $rest = $this->getService( self::API_FS_CP);
         $rest->POST([
             'files' => $source_b64,
             'dst'   => $destination_b64,
@@ -85,7 +85,7 @@ class FileSystemOperation extends Service {
             $removedFiles_b64[] = base64_encode( $sourceFile);
         }
 
-        $rest = $this->getAuthService( self::API_FS_RM);
+        $rest = $this->getService( self::API_FS_RM);
         $rest->POST([
             'files' => $removedFiles_b64,
         ]);
@@ -111,7 +111,7 @@ class FileSystemOperation extends Service {
             $fileParts_b64[] = base64_encode( $FilePart);
         }
 
-        $rest = $this->getAuthService( self::API_FS_CAT);
+        $rest = $this->getService( self::API_FS_CAT);
         $rest->POST([
             'files'         => $fileParts_b64,
             'dst'           => $destination_b64,
@@ -138,7 +138,7 @@ class FileSystemOperation extends Service {
             $fileParts_b64[] = base64_encode( $FilePart);
         }
 
-        $rest = $this->getAuthService( self::API_FS_ARCHIVE);
+        $rest = $this->getService( self::API_FS_ARCHIVE);
         $rest->POST([
             'files'         => $fileParts_b64,
             'dst'           => $destination_b64,
@@ -161,7 +161,7 @@ class FileSystemOperation extends Service {
         $source_b64      = base64_encode( $source);
         $destination_b64 = base64_encode( $destination);
 
-        $rest = $this->getAuthService( self::API_FS_EXTRACT);
+        $rest = $this->getService( self::API_FS_EXTRACT);
         $rest->POST([
             'src'            => $source_b64,
             'dst'            => $destination_b64,
@@ -183,7 +183,7 @@ class FileSystemOperation extends Service {
         /// Convert all paths in base64
         $source_b64      = base64_encode( $source);
 
-        $rest = $this->getAuthService( self::API_FS_REPAIR);
+        $rest = $this->getService( self::API_FS_REPAIR);
         $rest->POST([
             'src'            => $source_b64,
             'delete_archive' => $isToDelete,
@@ -204,7 +204,7 @@ class FileSystemOperation extends Service {
         /// Convert all paths in base64
         $source_b64      = base64_encode( $source);
 
-        $rest = $this->getAuthService( self::API_FS_HASH);
+        $rest = $this->getService( self::API_FS_HASH);
         $rest->POST([
             'src'       => $source_b64,
             'hash_type' => $hashType,
@@ -221,7 +221,7 @@ class FileSystemOperation extends Service {
      */
     public function getHashValue( $fsTaskId){
         $service = sprintf( self::API_FS_TASK_HASH, $fsTaskId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResult();
@@ -236,7 +236,7 @@ class FileSystemOperation extends Service {
      * @return bool
      */
     public function createDirectory( $parentDirectory, $newDirectoryName){
-        $rest = $this->getAuthService( self::API_FS_MKDIR);
+        $rest = $this->getService( self::API_FS_MKDIR);
         $rest->POST([
             'parent'    => base64_encode( $parentDirectory),
             'dirname'   => $newDirectoryName,
@@ -254,7 +254,7 @@ class FileSystemOperation extends Service {
      * @return bool
      */
     public function rename( $sourceFilePath, $newFileName){
-        $rest = $this->getAuthService( self::API_FS_RENAME);
+        $rest = $this->getService( self::API_FS_RENAME);
         $rest->POST([
             'src'   => base64_encode( $sourceFilePath),
             'dst'   => $newFileName,
@@ -269,7 +269,7 @@ class FileSystemOperation extends Service {
      * @return mixed
      */
     public function download( $sourceFilePath){
-        $rest = $this->getAuthService( self::API_DOWNLOAD . base64_encode( $sourceFilePath));
+        $rest = $this->getService( self::API_DOWNLOAD . base64_encode( $sourceFilePath));
         $rest->setIsJson( false);
         $rest->setIsResponseToCheck( false);
         $rest->GET();

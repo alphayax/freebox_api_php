@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\ParentalControl;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\symbols;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Filter
  * @package alphayax\freebox\api\v3\services\Storage
  */
-class Filter extends Service {
+class Filter extends ServiceAuth {
 
     const API_PARENTAL_CONFIG = '/api/v3/parental/config/';
     const API_PARENTAL_FILTER = '/api/v3/parental/filter/';
@@ -18,7 +18,7 @@ class Filter extends Service {
      * @return models\ParentalControl\FilterConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_PARENTAL_CONFIG);
+        $rest = $this->getService( self::API_PARENTAL_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\ParentalControl\FilterConfig::class);
@@ -30,7 +30,7 @@ class Filter extends Service {
      * @return models\ParentalControl\FilterConfig
      */
     public function setConfiguration( models\ParentalControl\FilterConfig $filterConfig){
-        $rest = $this->getAuthService( self::API_PARENTAL_CONFIG);
+        $rest = $this->getService( self::API_PARENTAL_CONFIG);
         $rest->PUT( $filterConfig);
 
         return $rest->getResult( models\ParentalControl\FilterConfig::class);
@@ -42,7 +42,7 @@ class Filter extends Service {
      * @return models\ParentalControl\Filter[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_PARENTAL_FILTER);
+        $rest = $this->getService( self::API_PARENTAL_FILTER);
         $rest->GET();
 
         return $rest->getResultAsArray( models\ParentalControl\Filter::class);
@@ -54,7 +54,7 @@ class Filter extends Service {
      * @return models\ParentalControl\Filter
      */
     public function getFromId( $filterId){
-        $rest = $this->getAuthService( self::API_PARENTAL_FILTER . $filterId);
+        $rest = $this->getService( self::API_PARENTAL_FILTER . $filterId);
         $rest->GET();
 
         return $rest->getResult( models\ParentalControl\Filter::class);
@@ -66,7 +66,7 @@ class Filter extends Service {
      * @return models\ParentalControl\Filter
      */
     public function update( models\ParentalControl\Filter $filter){
-        $rest = $this->getAuthService( self::API_PARENTAL_FILTER . $filter->getId());
+        $rest = $this->getService( self::API_PARENTAL_FILTER . $filter->getId());
         $rest->PUT( $filter);
 
         return $rest->getResult( models\ParentalControl\Filter::class);
@@ -87,7 +87,7 @@ class Filter extends Service {
      * @return bool
      */
     public function deleteFromId( $filterId){
-        $rest = $this->getAuthService( self::API_PARENTAL_FILTER . $filterId);
+        $rest = $this->getService( self::API_PARENTAL_FILTER . $filterId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -99,10 +99,10 @@ class Filter extends Service {
      * @return models\ParentalControl\Filter
      */
     public function add( models\ParentalControl\Filter $filter){
-        $rest = $this->getAuthService( self::API_PARENTAL_FILTER);
+        $rest = $this->getService( self::API_PARENTAL_FILTER);
         $rest->POST( $filter);
 
         return $rest->getResult( models\ParentalControl\Filter::class);
     }
-    
+
 }

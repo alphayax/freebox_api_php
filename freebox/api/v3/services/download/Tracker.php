@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\download;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Tracker
  * @package alphayax\freebox\api\v3\services\download
  * @experimental
  */
-class Tracker extends Service {
+class Tracker extends ServiceAuth {
 
     const API_DOWNLOAD_TRACKER      = '/api/v3/downloads/%u/trackers';
     const API_DOWNLOAD_TRACKER_ITEM = '/api/v3/downloads/%u/trackers/%s';
@@ -21,7 +21,7 @@ class Tracker extends Service {
      */
     public function getAll( $downloadTaskId){
         $service = sprintf( self::API_DOWNLOAD_TRACKER, $downloadTaskId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Download\Tracker::class);
@@ -36,7 +36,7 @@ class Tracker extends Service {
      */
     public function add( $downloadTaskId, $announceUrl) {
         $service = sprintf( self::API_DOWNLOAD_TRACKER, $downloadTaskId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->POST([
             'announce' => $announceUrl,
         ]);
@@ -53,7 +53,7 @@ class Tracker extends Service {
      */
     public function remove( $downloadTaskId, $announceUrl) {
         $service = sprintf( self::API_DOWNLOAD_TRACKER_ITEM, $downloadTaskId, $announceUrl);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -69,7 +69,7 @@ class Tracker extends Service {
      */
     public function update( $downloadTaskId, $announceUrl, models\Download\Tracker $Tracker) {
         $service = sprintf( self::API_DOWNLOAD_TRACKER_ITEM, $downloadTaskId, $announceUrl);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->PUT( $Tracker);
 
         return $rest->getSuccess();

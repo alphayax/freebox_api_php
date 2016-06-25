@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\WiFi;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Bss
  * @package alphayax\freebox\api\v3\services\config\WiFi
  */
-class Bss extends Service {
+class Bss extends ServiceAuth {
 
     const API_WIFI_BSS = '/api/v3/wifi/bss/';
 
@@ -16,7 +16,7 @@ class Bss extends Service {
      * @return models\WiFi\Bss\Bss[]
      */
     public function getAll() {
-        $rest = $this->getAuthService( self::API_WIFI_BSS);
+        $rest = $this->getService( self::API_WIFI_BSS);
         $rest->GET();
 
         return $rest->getResultAsArray( models\WiFi\Bss\Bss::class);
@@ -28,7 +28,7 @@ class Bss extends Service {
      * @return models\WiFi\Bss\Bss
      */
     public function getFromId( $BssId) {
-        $rest = $this->getAuthService( self::API_WIFI_BSS . $BssId);
+        $rest = $this->getService( self::API_WIFI_BSS . $BssId);
         $rest->GET();
 
         return $rest->getResult( models\WiFi\Bss\Bss::class);
@@ -40,7 +40,7 @@ class Bss extends Service {
      * @return models\WiFi\Bss\Bss
      */
     public function update( models\WiFi\Bss\Bss $Bss) {
-        $rest = $this->getAuthService( self::API_WIFI_BSS . $Bss->getId());
+        $rest = $this->getService( self::API_WIFI_BSS . $Bss->getId());
         $rest->PUT( $Bss);
 
         return $rest->getResult( models\WiFi\Bss\Bss::class);

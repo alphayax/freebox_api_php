@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\WiFi;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class AccessPoint
  * @package alphayax\freebox\api\v3\services\config\WiFi
  */
-class AccessPoint extends Service {
+class AccessPoint extends ServiceAuth {
 
     const API_WIFI_AP                   = '/api/v3/wifi/ap/';
     const API_WIFI_AP_ALLOWED_COMB      = '/api/v3/wifi/ap/%u/allowed_channel_comb';
@@ -21,7 +21,7 @@ class AccessPoint extends Service {
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_WIFI_AP);
+        $rest = $this->getService( self::API_WIFI_AP);
         $rest->GET();
 
         return $rest->getResultAsArray( models\WiFi\AccessPoint\AP::class);
@@ -33,7 +33,7 @@ class AccessPoint extends Service {
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP
      */
     public function getFromId( $accessPointId){
-        $rest = $this->getAuthService( self::API_WIFI_AP . $accessPointId);
+        $rest = $this->getService( self::API_WIFI_AP . $accessPointId);
         $rest->GET();
 
         return $rest->getResult( models\WiFi\AccessPoint\AP::class);
@@ -46,7 +46,7 @@ class AccessPoint extends Service {
      */
     public function getAllowedCombFromId( $accessPointId) {
         $service = sprintf( self::API_WIFI_AP_ALLOWED_COMB, $accessPointId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\WiFi\AccessPoint\AllowedComb::class);
@@ -59,7 +59,7 @@ class AccessPoint extends Service {
      */
     public function getStationsFromId( $accessPointId) {
         $service = sprintf( self::API_WIFI_AP_STATIONS, $accessPointId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\WiFi\APStation\Station::class);
@@ -71,7 +71,7 @@ class AccessPoint extends Service {
      * @return \alphayax\freebox\api\v3\models\WiFi\AccessPoint\AP
      */
     public function update( models\WiFi\AccessPoint\AP $accessPoint){
-        $rest = $this->getAuthService( self::API_WIFI_AP . $accessPoint->getId());
+        $rest = $this->getService( self::API_WIFI_AP . $accessPoint->getId());
         $rest->PUT( $accessPoint);
 
         return $rest->getResult( models\WiFi\AccessPoint\AP::class);
@@ -84,7 +84,7 @@ class AccessPoint extends Service {
      */
     public function getNeighborsFromId( $accessPointId) {
         $service = sprintf( self::API_WIFI_AP_NEIGHBORS, $accessPointId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\WiFi\Radar\Neighbor::class);
@@ -98,7 +98,7 @@ class AccessPoint extends Service {
      */
     public function refreshNeighborsScan( $accessPointId) {
         $service = sprintf( self::API_WIFI_AP_NEIGHBORS, $accessPointId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->POST();
 
         return $rest->getSuccess();
@@ -111,7 +111,7 @@ class AccessPoint extends Service {
      */
     public function getChannelUsageFromId( $accessPointId) {
         $service = sprintf( self::API_WIFI_AP_CHANNEL_USAGE, $accessPointId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\WiFi\Radar\ChannelUsage::class);

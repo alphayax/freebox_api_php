@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\download;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Configuration
  * @package alphayax\freebox\api\v3\services\download
  */
-class Configuration extends Service {
+class Configuration extends ServiceAuth {
 
     const API_DOWNLOAD_CONFIG       = '/api/v3/downloads/config/';
     const API_DOWNLOAD_THROTTLING   = '/api/v3/downloads/throttling';
@@ -17,7 +17,7 @@ class Configuration extends Service {
      * @return models\Download\Config\DownloadConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_CONFIG);
+        $rest = $this->getService( self::API_DOWNLOAD_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\Download\Config\DownloadConfig::class);
@@ -29,7 +29,7 @@ class Configuration extends Service {
      * @return models\Download\Config\DownloadConfig
      */
     public function setConfiguration( models\Download\Config\DownloadConfig $downloadConfig){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_CONFIG);
+        $rest = $this->getService( self::API_DOWNLOAD_CONFIG);
         $rest->PUT( $downloadConfig);
 
         return $rest->getResult( models\Download\Config\DownloadConfig::class);
@@ -44,7 +44,7 @@ class Configuration extends Service {
      * @return array [is_scheduled, throttling]
      */
     public function updateThrottlingMode( $throttlingMode = 'normal'){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_THROTTLING);
+        $rest = $this->getService( self::API_DOWNLOAD_THROTTLING);
         $rest->PUT([
             'throttling' => $throttlingMode,
         ]);

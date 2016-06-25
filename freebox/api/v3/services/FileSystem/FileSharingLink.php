@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\FileSystem;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class FileSharingLink
  * @package alphayax\freebox\api\v3\services\FileSystem
  */
-class FileSharingLink extends Service {
+class FileSharingLink extends ServiceAuth {
 
     const API_SHARE_LINK = '/api/v3/share_link/';
 
@@ -17,7 +17,7 @@ class FileSharingLink extends Service {
      * @return models\FileSystem\ShareLink[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_SHARE_LINK);
+        $rest = $this->getService( self::API_SHARE_LINK);
         $rest->GET();
 
         return $rest->getResultAsArray( models\FileSystem\ShareLink::class);
@@ -29,7 +29,7 @@ class FileSharingLink extends Service {
      * @return models\FileSystem\ShareLink
      */
     public function getFromToken( $Token){
-        $rest = $this->getAuthService( self::API_SHARE_LINK . $Token);
+        $rest = $this->getService( self::API_SHARE_LINK . $Token);
         $rest->GET();
 
         return $rest->getResult( models\FileSystem\ShareLink::class);
@@ -43,7 +43,7 @@ class FileSharingLink extends Service {
      * @return bool
      */
     public function deleteFromToken( $Token){
-        $rest = $this->getAuthService( self::API_SHARE_LINK . $Token);
+        $rest = $this->getService( self::API_SHARE_LINK . $Token);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -59,7 +59,7 @@ class FileSharingLink extends Service {
     public function create( $Path, $expire = 0, $fullUrl = ''){
         $Path_b64   = base64_encode( $Path);
         $expire     = $expire ?: (time() + (60*60*24)); // If expire is not defined, default is 24h
-        $rest = $this->getAuthService( self::API_SHARE_LINK);
+        $rest = $this->getService( self::API_SHARE_LINK);
         $rest->POST([
             'path'      => $Path_b64,
             'expire'    => $expire,

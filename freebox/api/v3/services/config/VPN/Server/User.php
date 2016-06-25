@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\VPN\Server;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class User
  * @package alphayax\freebox\api\v3\services\config\VPN\Server
  */
-class User extends Service {
+class User extends ServiceAuth {
 
     const API_VPN_USER          = '/api/v3/vpn/user/';
     const API_VPN_USER_CONFIG   = '/api/v3/vpn/download_config/%s/%s';
@@ -17,7 +17,7 @@ class User extends Service {
      * @return models\VPN\Server\User[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_VPN_USER);
+        $rest = $this->getService( self::API_VPN_USER);
         $rest->GET();
 
         return $rest->getResultAsArray( models\VPN\Server\User::class);
@@ -29,7 +29,7 @@ class User extends Service {
      * @return models\VPN\Server\User
      */
     public function getFromLogin( $login){
-        $rest = $this->getAuthService( self::API_VPN_USER . $login);
+        $rest = $this->getService( self::API_VPN_USER . $login);
         $rest->GET();
 
         return $rest->getResult( models\VPN\Server\User::class);
@@ -41,7 +41,7 @@ class User extends Service {
      * @return models\VPN\Server\User
      */
     public function add( models\VPN\Server\User $user){
-        $rest = $this->getAuthService( self::API_VPN_USER);
+        $rest = $this->getService( self::API_VPN_USER);
         $rest->POST( $user);
 
         return $rest->getResult( models\VPN\Server\User::class);
@@ -62,7 +62,7 @@ class User extends Service {
      * @return bool
      */
     public function deleteFromLogin( $login){
-        $rest = $this->getAuthService( self::API_VPN_USER . $login);
+        $rest = $this->getService( self::API_VPN_USER . $login);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -74,7 +74,7 @@ class User extends Service {
      * @return models\VPN\Server\User
      */
     public function update( models\VPN\Server\User $user){
-        $rest = $this->getAuthService( self::API_VPN_USER . $user->getLogin());
+        $rest = $this->getService( self::API_VPN_USER . $user->getLogin());
         $rest->PUT( $user);
 
         return $rest->getResult( models\VPN\Server\User::class);
@@ -88,7 +88,7 @@ class User extends Service {
      */
     public function getConfigurationFile( $serverName, $login){
         $service = sprintf( self::API_VPN_USER_CONFIG, $serverName, $login);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->setIsJson( false);
         $rest->setIsResponseToCheck( false);
         $rest->GET();

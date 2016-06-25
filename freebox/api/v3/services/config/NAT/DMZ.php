@@ -1,7 +1,7 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NAT;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
@@ -9,7 +9,7 @@ use alphayax\freebox\utils\Service;
  * @package alphayax\freebox\api\v3\services\config\NAT
  * @author <alphayax@gmail.com>
  */
-class DMZ extends Service {
+class DMZ extends ServiceAuth {
 
     const API_NAT_DMZ = '/api/v3/fw/dmz/';
 
@@ -18,7 +18,7 @@ class DMZ extends Service {
      * @return models\NAT\DmzConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_NAT_DMZ);
+        $rest = $this->getService( self::API_NAT_DMZ);
         $rest->GET();
 
         return $rest->getResult( models\NAT\DmzConfig::class);
@@ -30,7 +30,7 @@ class DMZ extends Service {
      * @return models\NAT\DmzConfig
      */
     public function setConfiguration( models\NAT\DmzConfig $dmzConfig){
-        $rest = $this->getAuthService( self::API_NAT_DMZ);
+        $rest = $this->getService( self::API_NAT_DMZ);
         $rest->PUT( $dmzConfig);
 
         return $rest->getResult( models\NAT\DmzConfig::class);

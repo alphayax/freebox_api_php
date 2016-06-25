@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Call\Contact;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class Contact
  * @package alphayax\freebox\api\v3\services\Call
  */
-class ContactEntry extends Service {
+class ContactEntry extends ServiceAuth {
 
     const API_CONTACT           = '/api/v3/contact/';
     const API_CONTACT_NUMBERS   = '/api/v3/contact/%u/numbers/';
@@ -21,7 +21,7 @@ class ContactEntry extends Service {
      * @return models\Call\ContactEntry[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_CONTACT);
+        $rest = $this->getService( self::API_CONTACT);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Call\ContactEntry::class);
@@ -33,7 +33,7 @@ class ContactEntry extends Service {
      * @return models\Call\ContactEntry
      */
     public function getFromId( $ContactEntryId){
-        $rest = $this->getAuthService( self::API_CONTACT . $ContactEntryId);
+        $rest = $this->getService( self::API_CONTACT . $ContactEntryId);
         $rest->GET();
 
         return $rest->getResult( models\Call\ContactEntry::class);
@@ -45,7 +45,7 @@ class ContactEntry extends Service {
      * @return models\Call\ContactEntry
      */
     public function create( models\Call\ContactEntry $ContactEntry){
-        $rest = $this->getAuthService( self::API_CONTACT);
+        $rest = $this->getService( self::API_CONTACT);
         $rest->POST( $ContactEntry);
 
         return $rest->getResult( models\Call\ContactEntry::class);
@@ -57,7 +57,7 @@ class ContactEntry extends Service {
      * @return models\Call\ContactEntry
      */
     public function update( models\Call\ContactEntry $ContactEntry){
-        $rest = $this->getAuthService( self::API_CONTACT . $ContactEntry->getId());
+        $rest = $this->getService( self::API_CONTACT . $ContactEntry->getId());
         $rest->PUT( $ContactEntry);
 
         return $rest->getResult( models\Call\ContactEntry::class);
@@ -78,7 +78,7 @@ class ContactEntry extends Service {
      * @return models\Call\ContactEntry
      */
     public function deleteFromId( $ContactEntryId){
-        $rest = $this->getAuthService( self::API_CONTACT);
+        $rest = $this->getService( self::API_CONTACT);
         $rest->DELETE( $ContactEntryId);
 
         return $rest->getSuccess();
@@ -91,7 +91,7 @@ class ContactEntry extends Service {
      */
     public function getContactNumbersFromContactId( $ContactEntryId){
         $service = sprintf( self::API_CONTACT_NUMBERS, $ContactEntryId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Call\ContactNumber::class);
@@ -104,7 +104,7 @@ class ContactEntry extends Service {
      */
     public function getContactAddressesFromContactId( $ContactEntryId){
         $service = sprintf( self::API_CONTACT_ADDRESSES, $ContactEntryId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Call\ContactAddress::class);
@@ -117,7 +117,7 @@ class ContactEntry extends Service {
      */
     public function getContactEmailsFromContactId( $ContactEntryId){
         $service = sprintf( self::API_CONTACT_EMAILS, $ContactEntryId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Call\ContactEmail::class);
@@ -130,7 +130,7 @@ class ContactEntry extends Service {
      */
     public function getContactUrlsFromContactId( $ContactEntryId){
         $service = sprintf( self::API_CONTACT_URLS, $ContactEntryId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Call\ContactUrl::class);

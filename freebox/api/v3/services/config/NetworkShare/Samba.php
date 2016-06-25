@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NetworkShare;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Samba
  * @package alphayax\freebox\api\v3\services\config\NetworkShare
  */
-class Samba extends Service {
+class Samba extends ServiceAuth {
 
     const API_NETWORK_SHARE_SAMBA = '/api/v3/netshare/samba/';
 
@@ -16,7 +16,7 @@ class Samba extends Service {
      * @return \alphayax\freebox\api\v3\models\NetworkShare\SambaConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_NETWORK_SHARE_SAMBA);
+        $rest = $this->getService( self::API_NETWORK_SHARE_SAMBA);
         $rest->GET();
 
         return $rest->getResult( models\NetworkShare\SambaConfig::class);
@@ -28,7 +28,7 @@ class Samba extends Service {
      * @return \alphayax\freebox\api\v3\models\NetworkShare\SambaConfig
      */
     public function setConfiguration( models\NetworkShare\SambaConfig $sambaConfig){
-        $rest = $this->getAuthService( self::API_NETWORK_SHARE_SAMBA);
+        $rest = $this->getService( self::API_NETWORK_SHARE_SAMBA);
         $rest->PUT( $sambaConfig);
 
         return $rest->getResult( models\NetworkShare\SambaConfig::class);

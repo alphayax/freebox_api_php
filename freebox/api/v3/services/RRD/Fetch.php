@@ -1,12 +1,12 @@
 <?php
 namespace alphayax\freebox\api\v3\services\RRD;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Fetch
  * @package alphayax\freebox\api\v3\services\RRD
  */
-class Fetch extends Service {
+class Fetch extends ServiceAuth {
 
     const API_RDD = '/api/v3/rrd/';
 
@@ -34,7 +34,7 @@ class Fetch extends Service {
      */
     public function getStats( $db, $date_start = null, $date_end = null, $precision = null, array $fields = []){
         $QueryParameters = $this->buildQuery( $db, $date_start, $date_end, $precision, $fields);
-        $rest = $this->getAuthService( self::API_RDD);
+        $rest = $this->getService( self::API_RDD);
         $rest->GET( $QueryParameters);
 
         return $rest->getResult();

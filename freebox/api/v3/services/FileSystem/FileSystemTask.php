@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\FileSystem;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class FileSystemTask
  * @package alphayax\freebox\api\v3\services\FileSystem
  */
-class FileSystemTask extends Service {
+class FileSystemTask extends ServiceAuth {
 
     const API_FS_TASK    = '/api/v3/fs/tasks/';
 
@@ -17,7 +17,7 @@ class FileSystemTask extends Service {
      * @return models\FileSystem\FsTask[]
      */
     public function getAllTasks(){
-        $rest = $this->getAuthService( self::API_FS_TASK);
+        $rest = $this->getService( self::API_FS_TASK);
         $rest->GET();
 
         return $rest->getResultAsArray( models\FileSystem\FsTask::class);
@@ -29,7 +29,7 @@ class FileSystemTask extends Service {
      * @return models\FileSystem\FsTask
      */
     public function getTaskById( $TaskId){
-        $rest = $this->getAuthService( self::API_FS_TASK . $TaskId);
+        $rest = $this->getService( self::API_FS_TASK . $TaskId);
         $rest->GET();
 
         return $rest->getResult( models\FileSystem\FsTask::class);
@@ -50,7 +50,7 @@ class FileSystemTask extends Service {
      * @return bool
      */
     public function deleteTaskById( $TaskId){
-        $rest = $this->getAuthService( self::API_FS_TASK . $TaskId);
+        $rest = $this->getService( self::API_FS_TASK . $TaskId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -62,7 +62,7 @@ class FileSystemTask extends Service {
      * @return bool
      */
     public function updateTask( models\FileSystem\FsTask $FsTask){
-        $rest = $this->getAuthService( self::API_FS_TASK . $FsTask->getId());
+        $rest = $this->getService( self::API_FS_TASK . $FsTask->getId());
         $rest->PUT( $FsTask);
 
         return $rest->getSuccess();

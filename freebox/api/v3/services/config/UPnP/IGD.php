@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\UPnP;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class IGD
  * @package alphayax\freebox\api\v3\services\config\UPnP
  */
-class IGD extends Service {
+class IGD extends ServiceAuth {
 
     const API_UPNP_IGD_CONFIG       = '/api/v3/upnpigd/config/';
     const API_UPNP_IGD_REDIRECTION  = '/api/v3/upnpigd/redir/';
@@ -17,7 +17,7 @@ class IGD extends Service {
      * @return models\UPnP\UpnpIgdConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_UPNP_IGD_CONFIG);
+        $rest = $this->getService( self::API_UPNP_IGD_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\UPnP\UpnpIgdConfig::class);
@@ -30,7 +30,7 @@ class IGD extends Service {
      * @throws \Exception
      */
     public function setConfiguration( models\UPnP\UpnpIgdConfig $upnpIgdConfig){
-        $rest = $this->getAuthService( self::API_UPNP_IGD_CONFIG);
+        $rest = $this->getService( self::API_UPNP_IGD_CONFIG);
         $rest->PUT( $upnpIgdConfig);
 
         return $rest->getResult( models\UPnP\UpnpIgdConfig::class);
@@ -41,7 +41,7 @@ class IGD extends Service {
      * @return models\UPnP\UpnpIgdRedirection[]
      */
     public function getRedirections(){
-        $rest = $this->getAuthService( self::API_UPNP_IGD_REDIRECTION);
+        $rest = $this->getService( self::API_UPNP_IGD_REDIRECTION);
         $rest->GET();
 
         return $rest->getResultAsArray( models\UPnP\UpnpIgdRedirection::class);
@@ -53,7 +53,7 @@ class IGD extends Service {
      * @return bool
      */
     public function deleteRedirectionFromId( $redirectionId){
-        $rest = $this->getAuthService( self::API_UPNP_IGD_REDIRECTION . $redirectionId);
+        $rest = $this->getService( self::API_UPNP_IGD_REDIRECTION . $redirectionId);
         $rest->DELETE();
 
         return $rest->getSuccess();

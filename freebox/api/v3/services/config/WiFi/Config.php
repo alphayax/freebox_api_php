@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\WiFi;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Config
  * @package alphayax\freebox\api\v3\services\config\WiFi
  */
-class Config extends Service {
+class Config extends ServiceAuth {
 
     const API_WIFI_CONFIG       = '/api/v3/wifi/config/';
     const API_WIFI_CONFIG_RESET = '/api/v3/wifi/config/reset/';
@@ -17,7 +17,7 @@ class Config extends Service {
      * @return models\WiFi\GlobalConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_WIFI_CONFIG);
+        $rest = $this->getService( self::API_WIFI_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\WiFi\GlobalConfig::class);
@@ -29,7 +29,7 @@ class Config extends Service {
      * @return models\WiFi\GlobalConfig
      */
     public function setConfiguration( models\WiFi\GlobalConfig $globalConfig){
-        $rest = $this->getAuthService( self::API_WIFI_CONFIG);
+        $rest = $this->getService( self::API_WIFI_CONFIG);
         $rest->PUT( $globalConfig);
 
         return $rest->getResult( models\WiFi\GlobalConfig::class);
@@ -40,7 +40,7 @@ class Config extends Service {
      * @return bool
      */
     public function resetConfiguration(){
-        $rest = $this->getAuthService( self::API_WIFI_CONFIG_RESET);
+        $rest = $this->getService( self::API_WIFI_CONFIG_RESET);
         $rest->POST();
 
         return $rest->getSuccess();

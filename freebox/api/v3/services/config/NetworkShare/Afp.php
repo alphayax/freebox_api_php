@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NetworkShare;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Afp
  * @package alphayax\freebox\api\v3\services\config\NetworkShare
  */
-class Afp extends Service {
+class Afp extends ServiceAuth {
 
     const API_NETWORK_SHARE_AFP = '/api/v3/netshare/afp/';
 
@@ -16,7 +16,7 @@ class Afp extends Service {
      * @return \alphayax\freebox\api\v3\models\NetworkShare\AfpConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_NETWORK_SHARE_AFP);
+        $rest = $this->getService( self::API_NETWORK_SHARE_AFP);
         $rest->GET();
 
         return $rest->getResult( models\NetworkShare\AfpConfig::class);
@@ -28,7 +28,7 @@ class Afp extends Service {
      * @return \alphayax\freebox\api\v3\models\NetworkShare\AfpConfig
      */
     public function setConfiguration( models\NetworkShare\AfpConfig $afpConfig){
-        $rest = $this->getAuthService( self::API_NETWORK_SHARE_AFP);
+        $rest = $this->getService( self::API_NETWORK_SHARE_AFP);
         $rest->PUT( $afpConfig);
 
         return $rest->getResult( models\NetworkShare\AfpConfig::class);

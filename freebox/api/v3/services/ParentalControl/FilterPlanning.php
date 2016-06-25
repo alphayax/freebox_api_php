@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\ParentalControl;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class FilterPlanning
  * @package alphayax\freebox\api\v3\services\ParentalControl
  */
-class FilterPlanning extends Service {
+class FilterPlanning extends ServiceAuth {
 
     const API_PARENTAL_FILTER_PLANNING = '/api/v3/parental/filter/%u/planning';
 
@@ -18,7 +18,7 @@ class FilterPlanning extends Service {
      */
     public function getFromFilterId( $filterId) {
         $service = sprintf( self::API_PARENTAL_FILTER_PLANNING, $filterId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResult( models\ParentalControl\FilterPlanning::class);
@@ -32,7 +32,7 @@ class FilterPlanning extends Service {
      */
     public function setFromFilterId( models\ParentalControl\FilterPlanning $filterPlanning, $filterId) {
         $service = sprintf( self::API_PARENTAL_FILTER_PLANNING, $filterId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->PUT( $filterPlanning);
 
         return $rest->getResult( models\ParentalControl\FilterPlanning::class);

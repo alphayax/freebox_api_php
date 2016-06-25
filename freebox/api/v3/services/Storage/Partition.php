@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Storage;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\symbols;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Partition
  * @package alphayax\freebox\api\v3\services\Storage
  */
-class Partition extends Service {
+class Partition extends ServiceAuth {
 
     const API_STORAGE_PARTITION         = '/api/v3/storage/partition/';
     const API_STORAGE_PARTITION_CHECK   = '/api/v3/storage/partition/%u/check/';
@@ -19,7 +19,7 @@ class Partition extends Service {
      * @return models\Storage\DiskPartition[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_STORAGE_PARTITION);
+        $rest = $this->getService( self::API_STORAGE_PARTITION);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Storage\DiskPartition::class);
@@ -31,7 +31,7 @@ class Partition extends Service {
      * @return \alphayax\freebox\api\v3\models\Storage\DiskPartition
      */
     public function getFromId( $diskId){
-        $rest = $this->getAuthService( self::API_STORAGE_PARTITION . $diskId);
+        $rest = $this->getService( self::API_STORAGE_PARTITION . $diskId);
         $rest->GET();
 
         return $rest->getResult( models\Storage\DiskPartition::class);
@@ -48,7 +48,7 @@ class Partition extends Service {
      * @see symbols\Storage\StorageDisk\TableType
      */
     public function check( models\Storage\DiskPartition $diskPartition, $checkMode = 'ro'){
-        $rest = $this->getAuthService( self::API_STORAGE_PARTITION_CHECK . $diskPartition->getId());
+        $rest = $this->getService( self::API_STORAGE_PARTITION_CHECK . $diskPartition->getId());
         $rest->PUT([
            'checkmode' => $checkMode,
         ]);

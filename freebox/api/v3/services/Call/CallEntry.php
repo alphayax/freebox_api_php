@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Call;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class System
  * @package alphayax\freebox\api\v3\services\config
  */
-class CallEntry extends Service {
+class CallEntry extends ServiceAuth {
 
     const API_CALL_LOG = '/api/v3/call/log/';
 
@@ -18,7 +18,7 @@ class CallEntry extends Service {
      * @return models\Call\CallEntry[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_CALL_LOG);
+        $rest = $this->getService( self::API_CALL_LOG);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Call\CallEntry::class);
@@ -30,7 +30,7 @@ class CallEntry extends Service {
      * @return models\Call\CallEntry[]
      */
     public function getFromId( $CallId){
-        $rest = $this->getAuthService( self::API_CALL_LOG . $CallId);
+        $rest = $this->getService( self::API_CALL_LOG . $CallId);
         $rest->GET();
 
         return $rest->getResult( models\Call\CallEntry::class);
@@ -51,7 +51,7 @@ class CallEntry extends Service {
      * @return bool
      */
     public function deleteFromId( $CallId){
-        $rest = $this->getAuthService( self::API_CALL_LOG . $CallId);
+        $rest = $this->getService( self::API_CALL_LOG . $CallId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -63,7 +63,7 @@ class CallEntry extends Service {
      * @return models\Call\CallEntry
      */
     public function update( models\Call\CallEntry $CallEntry){
-        $rest = $this->getAuthService( self::API_CALL_LOG . $CallEntry->getId());
+        $rest = $this->getService( self::API_CALL_LOG . $CallEntry->getId());
         $rest->PUT( $CallEntry);
 
         return $rest->getResult( models\Call\CallEntry::class);

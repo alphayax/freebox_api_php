@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\download;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class Download
  * @package alphayax\freebox\api\v3\services\config
  */
-class Download extends Service {
+class Download extends ServiceAuth {
 
     const API_DOWNLOAD        = '/api/v3/downloads/';
     const API_DOWNLOAD_LOG    = '/api/v3/downloads/%s/log/';
@@ -23,7 +23,7 @@ class Download extends Service {
      * @return models\Download\Task[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_DOWNLOAD);
+        $rest = $this->getService( self::API_DOWNLOAD);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Download\Task::class);
@@ -35,7 +35,7 @@ class Download extends Service {
      * @return models\Download\Task
      */
     public function getFromId( $download_id){
-        $rest = $this->getAuthService( self::API_DOWNLOAD . $download_id);
+        $rest = $this->getService( self::API_DOWNLOAD . $download_id);
         $rest->GET();
 
         return $rest->getResult( models\Download\Task::class);
@@ -48,7 +48,7 @@ class Download extends Service {
      */
     public function getLogFromId( $download_id){
         $logService = sprintf( self::API_DOWNLOAD_LOG, $download_id);
-        $rest = $this->getAuthService( $logService);
+        $rest = $this->getService( $logService);
         $rest->GET();
 
         return $rest->getResult();
@@ -61,7 +61,7 @@ class Download extends Service {
      * @return bool
      */
     public function deleteFromId( $download_id){
-        $rest = $this->getAuthService( self::API_DOWNLOAD . $download_id);
+        $rest = $this->getService( self::API_DOWNLOAD . $download_id);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -74,7 +74,7 @@ class Download extends Service {
      */
     public function eraseFromId( $download_id){
         $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $download_id);
-        $rest = $this->getAuthService( $eraseService);
+        $rest = $this->getService( $eraseService);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -88,7 +88,7 @@ class Download extends Service {
      */
     public function update( models\Download\Task $downloadTask){
         $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $downloadTask->getId());
-        $rest = $this->getAuthService( $eraseService);
+        $rest = $this->getService( $eraseService);
         $rest->PUT( $downloadTask);
 
         return $rest->getResult( models\Download\Task::class);
@@ -156,7 +156,7 @@ class Download extends Service {
 
         $data = http_build_query( $params);
 
-        $rest = $this->getAuthService( self::API_DOWNLOAD_ADD);
+        $rest = $this->getService( self::API_DOWNLOAD_ADD);
         $rest->setContentType_XFormURLEncoded();
         $rest->POST( $data);
 
@@ -171,7 +171,7 @@ class Download extends Service {
      * @return int
      */
     public function addFromFile( $download_file_rdi, $download_dir_rdi = '', $archive_password = ''){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_ADD);
+        $rest = $this->getService( self::API_DOWNLOAD_ADD);
         $rest->setContentType_MultipartFormData();
         $rest->POST([
             'download_file'     => new \CURLFile( $download_file_rdi),
@@ -187,7 +187,7 @@ class Download extends Service {
      * @return models\Download\Stats\DownloadStats
      */
     public function getStats(){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_STATS);
+        $rest = $this->getService( self::API_DOWNLOAD_STATS);
         $rest->GET();
 
         return $rest->getResult( models\Download\Stats\DownloadStats::class);
@@ -200,7 +200,7 @@ class Download extends Service {
      */
     public function getFilesFromId( $taskId){
         $Service = sprintf( self::API_DOWNLOAD_FILES, $taskId);
-        $rest = $this->getAuthService( $Service);
+        $rest = $this->getService( $Service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Download\File::class);
@@ -216,7 +216,7 @@ class Download extends Service {
      */
     public function updateFilePriority( $downloadTaskId, $FileId, $Priority){
         $Service = sprintf( self::API_DOWNLOAD_FILES, $downloadTaskId);
-        $rest = $this->getAuthService( $Service . DIRECTORY_SEPARATOR . $FileId);
+        $rest = $this->getService( $Service . DIRECTORY_SEPARATOR . $FileId);
         $rest->PUT([
             'priority'  => $Priority,
         ]);

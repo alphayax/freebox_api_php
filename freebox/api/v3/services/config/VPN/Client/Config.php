@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\VPN\Client;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Config
  * @package alphayax\freebox\api\v3\services\config\VPN\Client
  */
-class Config extends Service {
+class Config extends ServiceAuth {
 
     const API_VPN_CLIENT_CONFIG = '/api/v3/vpn_client/config/';
 
@@ -16,7 +16,7 @@ class Config extends Service {
      * @return models\VPN\Client\Config\ClientConfig[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_VPN_CLIENT_CONFIG);
+        $rest = $this->getService( self::API_VPN_CLIENT_CONFIG);
         $rest->GET();
 
         return $rest->getResultAsArray( models\VPN\Client\Config\ClientConfig::class);
@@ -27,7 +27,7 @@ class Config extends Service {
      * @return models\VPN\Client\Config\ClientConfig
      */
     public function getFromId( $configId) {
-        $rest = $this->getAuthService( self::API_VPN_CLIENT_CONFIG . $configId);
+        $rest = $this->getService( self::API_VPN_CLIENT_CONFIG . $configId);
         $rest->GET();
 
         return $rest->getResult( models\VPN\Client\Config\ClientConfig::class);
@@ -38,7 +38,7 @@ class Config extends Service {
      * @return models\VPN\Client\Config\ClientConfig
      */
     public function add( models\VPN\Client\Config\ClientConfig $config) {
-        $rest = $this->getAuthService( self::API_VPN_CLIENT_CONFIG);
+        $rest = $this->getService( self::API_VPN_CLIENT_CONFIG);
         $rest->POST( $config);
 
         return $rest->getResult( models\VPN\Client\Config\ClientConfig::class);
@@ -57,7 +57,7 @@ class Config extends Service {
      * @return models\VPN\Client\Config\ClientConfig
      */
     public function deleteFromId( $configId) {
-        $rest = $this->getAuthService( self::API_VPN_CLIENT_CONFIG . $configId);
+        $rest = $this->getService( self::API_VPN_CLIENT_CONFIG . $configId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -68,7 +68,7 @@ class Config extends Service {
      * @return models\VPN\Client\Config\ClientConfig
      */
     public function update( models\VPN\Client\Config\ClientConfig $config) {
-        $rest = $this->getAuthService( self::API_VPN_CLIENT_CONFIG. $config->getId());
+        $rest = $this->getService( self::API_VPN_CLIENT_CONFIG. $config->getId());
         $rest->PUT( $config);
 
         return $rest->getResult( models\VPN\Client\Config\ClientConfig::class);

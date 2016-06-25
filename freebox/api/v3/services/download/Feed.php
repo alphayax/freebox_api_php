@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\download;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Feed
  * @package alphayax\freebox\api\v3\services\download
  */
-class Feed extends Service {
+class Feed extends ServiceAuth {
 
     const API_DOWNLOAD_FEEDS                    = '/api/v3/downloads/feeds/';
     const API_DOWNLOAD_FEEDS_FETCH              = '/api/v3/downloads/feeds/fetch';
@@ -24,7 +24,7 @@ class Feed extends Service {
      * @return models\Download\Feed\DownloadFeed[]
      */
     public function getAllFeeds(){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_FEEDS);
+        $rest = $this->getService( self::API_DOWNLOAD_FEEDS);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Download\Feed\DownloadFeed::class);
@@ -37,7 +37,7 @@ class Feed extends Service {
      */
     public function getFeedFromId( $downloadFeedId){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEM, $downloadFeedId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResult( models\Download\Feed\DownloadFeed::class);
@@ -49,7 +49,7 @@ class Feed extends Service {
      * @return models\Download\Feed\DownloadFeed
      */
     public function addFeed( $downloadFeedUrl){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_FEEDS);
+        $rest = $this->getService( self::API_DOWNLOAD_FEEDS);
         $rest->POST([
             'url' => $downloadFeedUrl,
         ]);
@@ -64,7 +64,7 @@ class Feed extends Service {
      */
     public function removeFeed( $downloadFeedId){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEM, $downloadFeedId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -77,7 +77,7 @@ class Feed extends Service {
      */
     public function updateFeed( models\Download\Feed\DownloadFeed $downloadFeed){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEM, $downloadFeed->getId());
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->PUT( $downloadFeed);
 
         return $rest->getResult( models\Download\Feed\DownloadFeed::class);
@@ -91,7 +91,7 @@ class Feed extends Service {
      */
     public function refreshFeed($downloadFeedId){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEM_FETCH, $downloadFeedId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->POST();
 
         return $rest->getSuccess();
@@ -103,7 +103,7 @@ class Feed extends Service {
      * @return bool
      */
     public function refreshFeeds(){
-        $rest = $this->getAuthService( self::API_DOWNLOAD_FEEDS_FETCH);
+        $rest = $this->getService( self::API_DOWNLOAD_FEEDS_FETCH);
         $rest->POST();
 
         return $rest->getSuccess();
@@ -116,7 +116,7 @@ class Feed extends Service {
      */
     public function getFeedItems( $downloadFeedId){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS, $downloadFeedId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Download\Feed\DownloadFeedItem::class);
@@ -129,7 +129,7 @@ class Feed extends Service {
      */
     public function updateFeedItem( models\Download\Feed\DownloadFeedItem $DownloadFeedItem){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS_ITEM, $DownloadFeedItem->getFeedId(), $DownloadFeedItem->getId());
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->PUT( $DownloadFeedItem);
 
         return $rest->getSuccess();
@@ -142,7 +142,7 @@ class Feed extends Service {
      */
     public function downloadFeedItem( models\Download\Feed\DownloadFeedItem $DownloadFeedItem){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS_ITEM_DOWNLOAD, $DownloadFeedItem->getFeedId(), $DownloadFeedItem->getId());
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->POST( $DownloadFeedItem);
 
         return $rest->getSuccess();
@@ -155,7 +155,7 @@ class Feed extends Service {
      */
     public function markFeedAsRead( $downloadFeedId){
         $service = sprintf( self::API_DOWNLOAD_FEEDS_ITEMS_MARK_AS_READ, $downloadFeedId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->POST();
 
         return $rest->getSuccess();

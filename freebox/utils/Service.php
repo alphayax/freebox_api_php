@@ -26,14 +26,4 @@ abstract class Service {
         return new utils\rest\Rest( $this->application->getFreeboxApiHost() . $service);
     }
 
-    /**
-     * @param string $service
-     * @return utils\rest\RestAuth
-     */
-    protected function getAuthService( $service){
-        $rest = new utils\rest\RestAuth( $this->application->getFreeboxApiHost() . $service);
-        $rest->setSessionToken( $this->application->getSessionToken());
-        return $rest;
-    }
-    
 }

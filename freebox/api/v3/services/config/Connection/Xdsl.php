@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\Connection;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Xdsl
  * @package alphayax\freebox\api\v3\services\config\Connection
  */
-class Xdsl extends Service {
+class Xdsl extends ServiceAuth {
 
     const API_CONNECTION_XDSL = '/api/v3/connection/xdsl/';
 
@@ -16,7 +16,7 @@ class Xdsl extends Service {
      * @return models\Connection\Status
      */
     public function getStatus(){
-        $rest = $this->getAuthService( self::API_CONNECTION_XDSL);
+        $rest = $this->getService( self::API_CONNECTION_XDSL);
         $rest->GET();
 
         return $rest->getResult( models\Connection\Xdsl\XdslInfos::class);

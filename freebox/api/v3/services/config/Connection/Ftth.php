@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\Connection;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Ftth
  * @package alphayax\freebox\api\v3\services\config\Connection
  */
-class Ftth extends Service{
+class Ftth extends ServiceAuth {
 
     const API_CONNECTION_FTTH = '/api/v3/connection/ftth/';
 
@@ -16,7 +16,7 @@ class Ftth extends Service{
      * @return models\Connection\Status
      */
     public function getStatus(){
-        $rest = $this->getAuthService( self::API_CONNECTION_FTTH);
+        $rest = $this->getService( self::API_CONNECTION_FTTH);
         $rest->GET();
 
         return $rest->getResult( models\Connection\Ftth\Status::class);

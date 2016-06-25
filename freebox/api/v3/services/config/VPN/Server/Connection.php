@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\VPN\Server;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Connection
  * @package alphayax\freebox\api\v3\services\config\VPN\Server
  */
-class Connection extends Service {
+class Connection extends ServiceAuth {
 
     const API_VPN_CONNECTION = '/api/v3/vpn/connection/';
 
@@ -16,7 +16,7 @@ class Connection extends Service {
      * @return models\VPN\Server\Connection::class[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_VPN_CONNECTION);
+        $rest = $this->getService( self::API_VPN_CONNECTION);
         $rest->GET();
 
         return $rest->getResultAsArray( models\VPN\Server\Connection::class);
@@ -28,7 +28,7 @@ class Connection extends Service {
      * @return bool
      */
     public function closeFromId( $connectionId){
-        $rest = $this->getAuthService( self::API_VPN_CONNECTION . $connectionId);
+        $rest = $this->getService( self::API_VPN_CONNECTION . $connectionId);
         $rest->DELETE();
 
         return $rest->getSuccess();

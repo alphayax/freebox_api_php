@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Storage;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\symbols;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Disk
  * @package alphayax\freebox\api\v3\services\Storage
  */
-class Disk extends Service {
+class Disk extends ServiceAuth {
 
     const API_STORAGE_DISK          = '/api/v3/storage/disk/';
     const API_STORAGE_DISK_FORMAT   = '/api/v3/storage/disk/%u/format/';
@@ -19,7 +19,7 @@ class Disk extends Service {
      * @return models\Storage\StorageDisk[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_STORAGE_DISK);
+        $rest = $this->getService( self::API_STORAGE_DISK);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Storage\StorageDisk::class);
@@ -31,7 +31,7 @@ class Disk extends Service {
      * @return \alphayax\freebox\api\v3\models\Storage\StorageDisk
      */
     public function getFromId( $diskId){
-        $rest = $this->getAuthService( self::API_STORAGE_DISK . $diskId);
+        $rest = $this->getService( self::API_STORAGE_DISK . $diskId);
         $rest->GET();
 
         return $rest->getResult( models\Storage\StorageDisk::class);
@@ -43,7 +43,7 @@ class Disk extends Service {
      * @return \alphayax\freebox\api\v3\models\Storage\StorageDisk
      */
     public function update( models\Storage\StorageDisk $storageDisk){
-        $rest = $this->getAuthService( self::API_STORAGE_DISK . $storageDisk->getId());
+        $rest = $this->getService( self::API_STORAGE_DISK . $storageDisk->getId());
         $rest->PUT( $storageDisk);
 
         return $rest->getResult( models\Storage\StorageDisk::class);
@@ -62,7 +62,7 @@ class Disk extends Service {
      * @return bool
      */
     public function format( models\Storage\StorageDisk $storageDisk, $label, $fsType, $tableType){
-        $rest = $this->getAuthService( self::API_STORAGE_DISK . $storageDisk->getId());
+        $rest = $this->getService( self::API_STORAGE_DISK . $storageDisk->getId());
         $rest->PUT([
            'label'      => $label,
            'fs_type'    => $fsType,

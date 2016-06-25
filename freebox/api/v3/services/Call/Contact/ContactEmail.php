@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Call\Contact;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class ContactEmail
  * @package alphayax\freebox\api\v3\services\Call
  */
-class ContactEmail extends Service {
+class ContactEmail extends ServiceAuth {
 
     const API_EMAIL = '/api/v3/email/';
 
@@ -18,7 +18,7 @@ class ContactEmail extends Service {
      * @return models\Call\ContactEmail
      */
     public function getFromId( $ContactEmailId){
-        $rest = $this->getAuthService( self::API_EMAIL . $ContactEmailId);
+        $rest = $this->getService( self::API_EMAIL . $ContactEmailId);
         $rest->GET();
 
         return $rest->getResult( models\Call\ContactEmail::class);
@@ -30,7 +30,7 @@ class ContactEmail extends Service {
      * @return models\Call\ContactEmail
      */
     public function create( models\Call\ContactEmail $ContactEmail){
-        $rest = $this->getAuthService( self::API_EMAIL);
+        $rest = $this->getService( self::API_EMAIL);
         $rest->POST( $ContactEmail);
 
         return $rest->getResult( models\Call\ContactEmail::class);
@@ -51,7 +51,7 @@ class ContactEmail extends Service {
      * @return bool
      */
     public function deleteFromId( $ContactEmailId){
-        $rest = $this->getAuthService( self::API_EMAIL . $ContactEmailId);
+        $rest = $this->getService( self::API_EMAIL . $ContactEmailId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -63,7 +63,7 @@ class ContactEmail extends Service {
      * @return models\Call\ContactEmail
      */
     public function update( models\Call\ContactEmail $ContactEmail){
-        $rest = $this->getAuthService( self::API_EMAIL . $ContactEmail->getId());
+        $rest = $this->getService( self::API_EMAIL . $ContactEmail->getId());
         $rest->PUT( $ContactEmail);
 
         return $rest->getResult( models\Call\ContactEmail::class);

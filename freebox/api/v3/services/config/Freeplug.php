@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class System
  * @package alphayax\freebox\api\v3\services\config
  */
-class Freeplug extends Service {
+class Freeplug extends ServiceAuth {
 
     const API_FREEPLUG       = '/api/v3/freeplug/';
     const API_FREEPLUG_RESET = '/api/v3/freeplug/%s/reset/';
@@ -19,7 +19,7 @@ class Freeplug extends Service {
      * @return models\Freeplug\FreeplugNetwork[]
      */
     public function getNetworks(){
-        $rest = $this->getAuthService( self::API_FREEPLUG);
+        $rest = $this->getService( self::API_FREEPLUG);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Freeplug\FreeplugNetwork::class);
@@ -31,7 +31,7 @@ class Freeplug extends Service {
      * @return models\Freeplug\Freeplug
      */
     public function getFromId( $FreeplugId){
-        $rest = $this->getAuthService( self::API_FREEPLUG . $FreeplugId . DIRECTORY_SEPARATOR);
+        $rest = $this->getService( self::API_FREEPLUG . $FreeplugId . DIRECTORY_SEPARATOR);
         $rest->GET();
 
         return $rest->getResult( models\Freeplug\Freeplug::class);
@@ -44,7 +44,7 @@ class Freeplug extends Service {
      */
     public function resetFromId( $FreeplugId){
         $Service = sprintf( self::API_FREEPLUG_RESET, $FreeplugId);
-        $rest = $this->getAuthService( $Service);
+        $rest = $this->getService( $Service);
         $rest->POST();
 
         return $rest->getSuccess();

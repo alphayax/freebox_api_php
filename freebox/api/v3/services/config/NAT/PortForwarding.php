@@ -1,7 +1,7 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\NAT;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
@@ -9,7 +9,7 @@ use alphayax\freebox\utils\Service;
  * @package alphayax\freebox\api\v3\services\config\NAT
  * @author <alphayax@gmail.com>
  */
-class PortForwarding extends Service {
+class PortForwarding extends ServiceAuth {
 
     const API_NAT_REDIR = '/api/v3/fw/redir/';
 
@@ -19,7 +19,7 @@ class PortForwarding extends Service {
      * @return models\NAT\PortForwardingConfig[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_NAT_REDIR);
+        $rest = $this->getService( self::API_NAT_REDIR);
         $rest->GET();
 
         return $rest->getResultAsArray( models\NAT\PortForwardingConfig::class);
@@ -31,7 +31,7 @@ class PortForwarding extends Service {
      * @return models\NAT\PortForwardingConfig
      */
     public function getById( $PortForwarding_id){
-        $rest = $this->getAuthService( self::API_NAT_REDIR . $PortForwarding_id);
+        $rest = $this->getService( self::API_NAT_REDIR . $PortForwarding_id);
         $rest->GET();
 
         return $rest->getResult( models\NAT\PortForwardingConfig::class);
@@ -43,7 +43,7 @@ class PortForwarding extends Service {
      * @return models\NAT\PortForwardingConfig
      */
     public function update( models\NAT\PortForwardingConfig $portForwardingConfig){
-        $rest = $this->getAuthService( self::API_NAT_REDIR . $portForwardingConfig->getId());
+        $rest = $this->getService( self::API_NAT_REDIR . $portForwardingConfig->getId());
         $rest->PUT( $portForwardingConfig);
 
         return $rest->getResult( models\NAT\PortForwardingConfig::class);
@@ -55,7 +55,7 @@ class PortForwarding extends Service {
      * @return models\NAT\PortForwardingConfig
      */
     public function add( models\NAT\PortForwardingConfig $portForwardingConfig){
-        $rest = $this->getAuthService( self::API_NAT_REDIR);
+        $rest = $this->getService( self::API_NAT_REDIR);
         $rest->POST( $portForwardingConfig);
 
         return $rest->getResult( models\NAT\PortForwardingConfig::class);
@@ -76,7 +76,7 @@ class PortForwarding extends Service {
      * @return boolean success
      */
     public function deleteById( $PortForwardingId){
-        $rest = $this->getAuthService( self::API_NAT_REDIR . $PortForwardingId);
+        $rest = $this->getService( self::API_NAT_REDIR . $PortForwardingId);
         $rest->DELETE();
 
         return $rest->getSuccess();

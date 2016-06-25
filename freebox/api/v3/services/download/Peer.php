@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\download;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Peer
  * @package alphayax\freebox\api\v3\services\download
  * @experimental
  */
-class Peer extends Service {
+class Peer extends ServiceAuth {
 
     const API_DOWNLOAD_PEERS = '/api/v3/downloads/%u/peers';
 
@@ -20,7 +20,7 @@ class Peer extends Service {
      */
     public function getAll( $downloadTaskId){
         $service = sprintf( self::API_DOWNLOAD_PEERS, $downloadTaskId);
-        $rest = $this->getAuthService( $service);
+        $rest = $this->getService( $service);
         $rest->GET();
 
         return $rest->getResultAsArray( models\Download\Peer::class);

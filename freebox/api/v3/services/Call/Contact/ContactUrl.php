@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Call\Contact;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class ContactUrl
  * @package alphayax\freebox\api\v3\services\Call
  */
-class ContactUrl extends Service {
+class ContactUrl extends ServiceAuth {
 
     const API_URL = '/api/v3/url/';
 
@@ -18,7 +18,7 @@ class ContactUrl extends Service {
      * @return models\Call\ContactUrl
      */
     public function getFromId( $ContactUrlId){
-        $rest = $this->getAuthService( self::API_URL . $ContactUrlId);
+        $rest = $this->getService( self::API_URL . $ContactUrlId);
         $rest->GET();
 
         return $rest->getResult( models\Call\ContactUrl::class);
@@ -30,7 +30,7 @@ class ContactUrl extends Service {
      * @return models\Call\ContactUrl
      */
     public function create( models\Call\ContactUrl $ContactUrl){
-        $rest = $this->getAuthService( self::API_URL);
+        $rest = $this->getService( self::API_URL);
         $rest->POST( $ContactUrl);
 
         return $rest->getResult( models\Call\ContactUrl::class);
@@ -51,7 +51,7 @@ class ContactUrl extends Service {
      * @return bool
      */
     public function deleteFromId( $ContactUrlId){
-        $rest = $this->getAuthService( self::API_URL . $ContactUrlId);
+        $rest = $this->getService( self::API_URL . $ContactUrlId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -63,7 +63,7 @@ class ContactUrl extends Service {
      * @return models\Call\ContactUrl
      */
     public function update( models\Call\ContactUrl $ContactUrl){
-        $rest = $this->getAuthService( self::API_URL . $ContactUrl->getId());
+        $rest = $this->getService( self::API_URL . $ContactUrl->getId());
         $rest->PUT( $ContactUrl);
 
         return $rest->getResult( models\Call\ContactUrl::class);

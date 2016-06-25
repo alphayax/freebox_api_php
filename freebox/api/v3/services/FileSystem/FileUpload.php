@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\FileSystem;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class FileUpload
  * @package alphayax\freebox\api\v3\services\FileSystem
  */
-class FileUpload extends Service {
+class FileUpload extends ServiceAuth {
 
     const API_UPLOAD        = '/api/v3/upload/';
     const API_UPLOAD_SEND   = '/api/v3/upload/%u/send';
@@ -22,7 +22,7 @@ class FileUpload extends Service {
      * @return int The new upload authorization id
      */
     public function createAuthorization( $dirName, $FileName){
-        $rest = $this->getAuthService( self::API_UPLOAD);
+        $rest = $this->getService( self::API_UPLOAD);
         $rest->POST([
             'dirname'       => base64_encode( $dirName),
             'upload_name'   => $FileName,
@@ -39,7 +39,7 @@ class FileUpload extends Service {
      */
     public function uploadFile( $FileUploadTaskId, $fileToUpload_afi){
         $Service = sprintf( self::API_UPLOAD_SEND, $FileUploadTaskId);
-        $rest = $this->getAuthService( $Service);
+        $rest = $this->getService( $Service);
         $rest->setContentType_MultipartFormData();
         $rest->POST([
             basename( $fileToUpload_afi) => new \CurlFile( $fileToUpload_afi),
@@ -53,7 +53,7 @@ class FileUpload extends Service {
      * @return models\FileSystem\FileUpload[]
      */
     public function getAll(){
-        $rest = $this->getAuthService( self::API_UPLOAD);
+        $rest = $this->getService( self::API_UPLOAD);
         $rest->GET();
 
         return $rest->getResultAsArray( models\FileSystem\FileUpload::class);
@@ -65,7 +65,7 @@ class FileUpload extends Service {
      * @return models\FileSystem\FileUpload
      */
     public function getFromId( $FileUploadId){
-        $rest = $this->getAuthService( self::API_UPLOAD . $FileUploadId);
+        $rest = $this->getService( self::API_UPLOAD . $FileUploadId);
         $rest->GET();
 
         return $rest->getResult( models\FileSystem\FileUpload::class);
@@ -79,7 +79,7 @@ class FileUpload extends Service {
      */
     public function cancelFromId( $FileUploadId){
         $Service = sprintf( self::API_UPLOAD_CANCEL, $FileUploadId);
-        $rest = $this->getAuthService( $Service);
+        $rest = $this->getService( $Service);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -91,7 +91,7 @@ class FileUpload extends Service {
      * @return bool
      */
     public function deleteFromId( $FileUploadId){
-        $rest = $this->getAuthService( self::API_UPLOAD . $FileUploadId);
+        $rest = $this->getService( self::API_UPLOAD . $FileUploadId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -102,7 +102,7 @@ class FileUpload extends Service {
      * @return bool
      */
     public function cleanTerminated(){
-        $rest = $this->getAuthService( self::API_UPLOAD_CLEAN);
+        $rest = $this->getService( self::API_UPLOAD_CLEAN);
         $rest->DELETE();
 
         return $rest->getSuccess();

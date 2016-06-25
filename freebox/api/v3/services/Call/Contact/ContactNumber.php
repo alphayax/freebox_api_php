@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Call\Contact;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class ContactNumber
  * @package alphayax\freebox\api\v3\services\Call
  */
-class ContactNumber extends Service {
+class ContactNumber extends ServiceAuth {
 
     const API_NUMBER = '/api/v3/number/';
 
@@ -18,7 +18,7 @@ class ContactNumber extends Service {
      * @return models\Call\ContactNumber
      */
     public function getFromId( $ContactNumberId){
-        $rest = $this->getAuthService( self::API_NUMBER . $ContactNumberId);
+        $rest = $this->getService( self::API_NUMBER . $ContactNumberId);
         $rest->GET();
 
         return $rest->getResult( models\Call\ContactNumber::class);
@@ -30,7 +30,7 @@ class ContactNumber extends Service {
      * @return models\Call\ContactNumber
      */
     public function create( models\Call\ContactNumber $ContactNumber){
-        $rest = $this->getAuthService( self::API_NUMBER);
+        $rest = $this->getService( self::API_NUMBER);
         $rest->POST( $ContactNumber);
 
         return $rest->getResult( models\Call\ContactNumber::class);
@@ -51,7 +51,7 @@ class ContactNumber extends Service {
      * @return bool
      */
     public function deleteFromId( $ContactNumberId){
-        $rest = $this->getAuthService( self::API_NUMBER . $ContactNumberId);
+        $rest = $this->getService( self::API_NUMBER . $ContactNumberId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -63,7 +63,7 @@ class ContactNumber extends Service {
      * @return models\Call\ContactNumber
      */
     public function update( models\Call\ContactNumber $ContactNumber){
-        $rest = $this->getAuthService( self::API_NUMBER . $ContactNumber->getId());
+        $rest = $this->getService( self::API_NUMBER . $ContactNumber->getId());
         $rest->PUT( $ContactNumber);
 
         return $rest->getResult( models\Call\ContactNumber::class);

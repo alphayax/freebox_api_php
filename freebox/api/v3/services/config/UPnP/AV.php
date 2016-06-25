@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\UPnP;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class AV
  * @package alphayax\freebox\api\v3\services\config\UPnP
  */
-class AV extends Service {
+class AV extends ServiceAuth {
 
     const API_UPNP_AV_CONFIG = '/api/v3/upnpav/config/';
 
@@ -16,7 +16,7 @@ class AV extends Service {
      * @return models\UPnP\UpnpAvConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_UPNP_AV_CONFIG);
+        $rest = $this->getService( self::API_UPNP_AV_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\UPnP\UpnpAvConfig::class);
@@ -29,7 +29,7 @@ class AV extends Service {
      * @throws \Exception
      */
     public function setConfiguration( models\UPnP\UpnpAvConfig $upnpAvConfig){
-        $rest = $this->getAuthService( self::API_UPNP_AV_CONFIG);
+        $rest = $this->getService( self::API_UPNP_AV_CONFIG);
         $rest->PUT( $upnpAvConfig);
 
         return $rest->getResult( models\UPnP\UpnpAvConfig::class);

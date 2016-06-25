@@ -1,7 +1,7 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config;
 use alphayax\freebox\api\v3\models;
-use alphayax\freebox\utils\Service;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
@@ -9,7 +9,7 @@ use alphayax\freebox\utils\Service;
  * @package alphayax\freebox\api\v3\config
  * @author <alphayax@gmail.com>
  */
-class DHCP extends Service {
+class DHCP extends ServiceAuth {
 
     const API_DHCP_CONFIG = '/api/v3/dhcp/config/';
 
@@ -18,7 +18,7 @@ class DHCP extends Service {
      * @return models\DhcpConfig
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_DHCP_CONFIG);
+        $rest = $this->getService( self::API_DHCP_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\DhcpConfig::class);
@@ -30,7 +30,7 @@ class DHCP extends Service {
      * @return models\DhcpConfig
      */
     public function setConfiguration( models\DhcpConfig $dhcpConfig){
-        $rest = $this->getAuthService( self::API_DHCP_CONFIG);
+        $rest = $this->getService( self::API_DHCP_CONFIG);
         $rest->PUT( $dhcpConfig);
 
         return $rest->getResult( models\DhcpConfig::class);

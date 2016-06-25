@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\Connection;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Connection
  * @package alphayax\freebox\api\v3\services\config\Connection
  */
-class Connection extends Service{
+class Connection extends ServiceAuth {
 
     const API_CONNECTION                = '/api/v3/connection/';
     const API_CONNECTION_CONFIG         = '/api/v3/connection/config/';
@@ -18,7 +18,7 @@ class Connection extends Service{
      * @return models\Connection\Status
      */
     public function getStatus(){
-        $rest = $this->getAuthService( self::API_CONNECTION);
+        $rest = $this->getService( self::API_CONNECTION);
         $rest->GET();
 
         return $rest->getResult( models\Connection\Status::class);
@@ -29,7 +29,7 @@ class Connection extends Service{
      * @return models\Connection\Config
      */
     public function getConfiguration(){
-        $rest = $this->getAuthService( self::API_CONNECTION_CONFIG);
+        $rest = $this->getService( self::API_CONNECTION_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\Connection\Config::class);
@@ -42,7 +42,7 @@ class Connection extends Service{
      * @return models\Connection\Config
      */
     public function setConfiguration( models\Connection\Config $connectionConfig){
-        $rest = $this->getAuthService( self::API_CONNECTION_CONFIG);
+        $rest = $this->getService( self::API_CONNECTION_CONFIG);
         $rest->PUT( $connectionConfig);
 
         return $rest->getResult( models\Connection\Config::class);
@@ -52,7 +52,7 @@ class Connection extends Service{
      * Get the current IPv6 Connection configuration
      */
     public function getIPv6Configuration(){
-        $rest = $this->getAuthService( self::API_CONNECTION_IPV6_CONFIG);
+        $rest = $this->getService( self::API_CONNECTION_IPV6_CONFIG);
         $rest->GET();
 
         return $rest->getResult( models\Connection\Ipv6\Configuration::class);
@@ -64,7 +64,7 @@ class Connection extends Service{
      * @return \alphayax\freebox\api\v3\models\Connection\Ipv6\Configuration
      */
     public function setIPv6Configuration(models\Connection\Ipv6\Configuration $connectionIpv6Configuration){
-        $rest = $this->getAuthService( self::API_CONNECTION_IPV6_CONFIG);
+        $rest = $this->getService( self::API_CONNECTION_IPV6_CONFIG);
         $rest->PUT( $connectionIpv6Configuration);
 
         return $rest->getResult( models\Connection\Ipv6\Configuration::class);

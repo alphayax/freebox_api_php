@@ -1,13 +1,13 @@
 <?php
 namespace alphayax\freebox\api\v3\services\config\WiFi;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 /**
  * Class Planning
  * @package alphayax\freebox\api\v3\services\config\WiFi
  */
-class Planning extends Service {
+class Planning extends ServiceAuth {
 
     const API_WIFI_PLANNING = '/api/v3/wifi/planning/';
 
@@ -16,7 +16,7 @@ class Planning extends Service {
      * @return \alphayax\freebox\api\v3\models\WiFi\Planning
      */
     public function getPlanning(){
-        $rest = $this->getAuthService( self::API_WIFI_PLANNING);
+        $rest = $this->getService( self::API_WIFI_PLANNING);
         $rest->GET();
 
         return $rest->getResult( models\WiFi\Planning::class);
@@ -28,7 +28,7 @@ class Planning extends Service {
      * @return \alphayax\freebox\api\v3\models\WiFi\Planning
      */
     public function update( models\WiFi\Planning $planning){
-        $rest = $this->getAuthService( self::API_WIFI_PLANNING);
+        $rest = $this->getService( self::API_WIFI_PLANNING);
         $rest->PUT( $planning);
 
         return $rest->getResult( models\WiFi\Planning::class);

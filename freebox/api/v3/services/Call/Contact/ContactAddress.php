@@ -1,14 +1,14 @@
 <?php
 namespace alphayax\freebox\api\v3\services\Call\Contact;
-use alphayax\freebox\utils\Service;
 use alphayax\freebox\api\v3\models;
+use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class ContactAddress
  * @package alphayax\freebox\api\v3\services\Call
  */
-class ContactAddress extends Service {
+class ContactAddress extends ServiceAuth {
 
     const API_ADDRESS = '/api/v3/address/';
 
@@ -18,7 +18,7 @@ class ContactAddress extends Service {
      * @return models\Call\ContactAddress
      */
     public function getFromId( $contactAddressId){
-        $rest = $this->getAuthService( self::API_ADDRESS . $contactAddressId);
+        $rest = $this->getService( self::API_ADDRESS . $contactAddressId);
         $rest->GET();
 
         return $rest->getResult( models\Call\ContactAddress::class);
@@ -30,7 +30,7 @@ class ContactAddress extends Service {
      * @return models\Call\ContactAddress
      */
     public function create( models\Call\ContactAddress $contactAddress){
-        $rest = $this->getAuthService( self::API_ADDRESS);
+        $rest = $this->getService( self::API_ADDRESS);
         $rest->POST( $contactAddress);
 
         return $rest->getResult( models\Call\ContactAddress::class);
@@ -51,7 +51,7 @@ class ContactAddress extends Service {
      * @return bool
      */
     public function deleteFromId( $contactAddressId){
-        $rest = $this->getAuthService( self::API_ADDRESS . $contactAddressId);
+        $rest = $this->getService( self::API_ADDRESS . $contactAddressId);
         $rest->DELETE();
 
         return $rest->getSuccess();
@@ -63,7 +63,7 @@ class ContactAddress extends Service {
      * @return models\Call\ContactAddress
      */
     public function update( models\Call\ContactAddress $contactAddress){
-        $rest = $this->getAuthService( self::API_ADDRESS . $contactAddress->getId());
+        $rest = $this->getService( self::API_ADDRESS . $contactAddress->getId());
         $rest->PUT( $contactAddress);
 
         return $rest->getResult( models\Call\ContactAddress::class);
