@@ -43,9 +43,9 @@ class Authorize extends Service {
         $this->application->loadAppToken();
 
         if( ! $this->application->haveAppToken()){
-            $this->ask_authorization();
+            $this->askAuthorization();
             while( in_array( $this->status, [self::STATUS_UNKNOWN, self::STATUS_PENDING])){
-                $this->get_authorization_status();
+                $this->getAuthorizationStatus();
                 if( $this->status == self::STATUS_GRANTED){
                     $this->application->setAppToken( $this->app_token);
                     $this->application->saveAppToken();
@@ -68,7 +68,7 @@ class Authorize extends Service {
      * Contact the freebox and ask for App auth
      * @throws \Exception
      */
-    public function ask_authorization(){
+    public function askAuthorization(){
         $rest = $this->getService( self::API_LOGIN_AUTHORIZE);
         $rest->POST([
             'app_id'        => $this->application->getId(),
@@ -77,29 +77,21 @@ class Authorize extends Service {
             'device_name'   => gethostname(),
         ]);
 
-        $response = $rest->getCurlResponse();
-        if( ! $rest->getSuccess()){
-            $this->application->getLogger()->addCritical( 'Freebox Error : '. $response['error_code'] .' - '. $response['msg']);
-            throw new \Exception( $response['msg'], $response['error_code']);
-        }
+        $this->app_token = $rest->getResult()['app_token'];
+        $this->track_id  = $rest->getResult()['track_id'];
 
         $this->application->getLogger()->addInfo( 'Authorization send to Freebox. Waiting for response...');
-
-        $this->app_token = $response['result']['app_token'];
-        $this->track_id  = $response['result']['track_id'];
     }
 
     /**
      * @throws \Exception
      */
-    public function get_authorization_status(){
+    public function getAuthorizationStatus(){
         $rest = $this->getService( self::API_LOGIN_AUTHORIZE . $this->track_id);
         $rest->GET();
 
-        $result = $rest->getResult();
-
-        $this->status    = $result['status'];
-        $this->challenge = $result['challenge'];
+        $this->status    = $rest->getResult()['status'];
+        $this->challenge = $rest->getResult()['challenge'];
 
         $this->application->getLogger()->addInfo( 'Freebox authorization status : '. $this->status);
     }

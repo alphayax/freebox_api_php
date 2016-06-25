@@ -84,8 +84,8 @@ class Application {
      */
     public function openSession(){
         $Login = new services\login\Session( $this);
-        $Login->ask_login_status();
-        $Login->create_session();
+        $Login->askLoginStatus();
+        $Login->createSession();
 
         $this->permissions   = $Login->getPermissions();
         $this->session_token = $Login->getSessionToken();

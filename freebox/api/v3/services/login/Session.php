@@ -10,15 +10,16 @@ use alphayax\freebox\utils\Service;
  */
 class Session extends Service {
 
-    /// APIs services
     const API_LOGIN             = '/api/v3/login/';
     const API_LOGIN_SESSION     = '/api/v3/login/session/';
 
     /** @var string */
     private $challenge  = '';
 
+    /** @var string Password Salt */
     private $password_salt  = '';
 
+    /** @var bool Is the user logged */
     private $logged_in  = false;
 
     /** @var array */
@@ -30,30 +31,25 @@ class Session extends Service {
     /**
      * @throws \Exception
      */
-    public function ask_login_status(){
+    public function askLoginStatus(){
         $rest = $this->getService( static::API_LOGIN);
         $rest->GET();
 
-        $result = $rest->getCurlResponse()['result'];
-
-        $this->logged_in     = $result['logged_in'];
-        $this->challenge     = $result['challenge'];
-        $this->password_salt = $result['password_salt'];
+        $this->logged_in     = $rest->getResult()['logged_in'];
+        $this->challenge     = $rest->getResult()['challenge'];
+        $this->password_salt = $rest->getResult()['password_salt'];
     }
 
     /**
      * @throws \Exception
      */
-    public function create_session(){
+    public function createSession(){
         $rest = $this->getService( static::API_LOGIN_SESSION);
         $rest->POST([
             'app_id'    => $this->application->getId(),
             'password'  => hash_hmac( 'sha1', $this->challenge, $this->application->getAppToken()),
         ]);
 
-        if( ! $rest->getSuccess()){
-            throw new \Exception( $rest->getCurlResponse()['error_code'] .' : '. $rest->getCurlResponse()['msg']);
-        }
         $this->session_token = $rest->getResult()['session_token'];
         $this->permissions   = $rest->getResult()['permissions'];
     }
