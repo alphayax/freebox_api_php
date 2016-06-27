@@ -23,7 +23,7 @@ foreach( $config_rfi_s as $config_rfi){
  * @return array
  */
 function checkRSS( $config, $App){
-    IO::stdout( "Scan RSS {$config['rss']} for pattern {$config['pattern']}", 0, true, IO::COLOR_YELLOW);
+    echo "Scan RSS {$config['rss']} for pattern {$config['pattern']}" . PHP_EOL;
     $rss = simplexml_load_file( $config['rss']);
     foreach( $rss->xpath('//item') as $item){
         $title = (string) $item->xpath('title')[0];
@@ -37,7 +37,7 @@ function checkRSS( $config, $App){
                 $Downloads = new \alphayax\freebox\api\v3\services\download\Download( $App);
                 $Downloads->addFromUrl( $link);
 
-                IO::stdout( "Add download $title ($desc)", 0, true, IO::COLOR_GREEN);
+                echo "Add download $title ($desc)" . PHP_EOL;
             }
         }
     }
