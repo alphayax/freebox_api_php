@@ -8,7 +8,7 @@ use alphayax;
  * @package alphayax\utils
  * @author <alphayax@gmail.com>
  */
-class Rest extends alphayax\utils\Rest {
+class Rest extends alphayax\rest\Rest {
 
     /** @var bool */
     protected $isResponseToCheck = true;

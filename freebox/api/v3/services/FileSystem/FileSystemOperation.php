@@ -270,7 +270,7 @@ class FileSystemOperation extends ServiceAuth {
      */
     public function download( $sourceFilePath){
         $rest = $this->getService( self::API_DOWNLOAD . base64_encode( $sourceFilePath));
-        $rest->setIsJson( false);
+        $rest->getConfig()->setIsReturnToJsonDecode( false);
         $rest->setIsResponseToCheck( false);
         $rest->GET();
 

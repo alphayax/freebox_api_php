@@ -13,7 +13,7 @@
   "require" : {
     "php": ">=5.5.0",
     "ext-curl": "*",
-    "alphayax/rest" : "^1.0.1",
+    "alphayax/rest" : "^1.1.0",
     "monolog/monolog": "^1.9.1"
   },
   "require-dev" : {

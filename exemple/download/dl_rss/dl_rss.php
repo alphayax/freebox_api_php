@@ -1,5 +1,4 @@
 <?php
-use alphayax\utils\cli\IO;
 
 /// Require Composer AutoLoader
 require_once '../../../vendor/autoload.php';
