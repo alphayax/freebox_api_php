@@ -10,14 +10,21 @@
       "email": "alphayax@gmail.com"
     }
   ],
-  "require" : {
+  "keywords": [
+    "freebox",
+    "api",
+    "rest",
+    "Freebox revolution",
+    "download"
+  ],
+  "require": {
     "php": ">=5.5.0",
     "ext-curl": "*",
-    "alphayax/rest" : "^1.1.0",
+    "alphayax/rest": "^1.1.0",
     "monolog/monolog": "^1.9.1"
   },
-  "require-dev" : {
-    "alphayax/phpdoc_md" : "^1.0.4",
+  "require-dev": {
+    "alphayax/phpdoc_md": "^1.0.4",
     "codacy/coverage": "<2.0.0",
     "phpunit/phpunit": "^5.4.0",
     "zf1/zend-reflection": "1.12.*"
