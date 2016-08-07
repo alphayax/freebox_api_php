@@ -105,4 +105,11 @@ class Association extends Service {
         return $this->app_token;
     }
 
+    /**
+     * @param int $track_id
+     */
+    public function setTrackId( $track_id) {
+        $this->track_id = $track_id;
+    }
+
 }
