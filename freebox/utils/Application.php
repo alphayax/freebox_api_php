@@ -75,7 +75,8 @@ class Application {
      * Ask authorization to the freebox and save the app token
      */
     public function authorize(){
-        new services\login\Authorize( $this);
+        $association = new services\login\Association( $this);
+        $association->authorize();
     }
 
     /**

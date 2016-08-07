@@ -1,14 +1,12 @@
 <?php
 namespace alphayax\freebox\api\v3\services\login;
 use alphayax\freebox\utils\Service;
-use alphayax\freebox\utils\Application;
 
 /**
- * Class Authorize
- * @package alphayax\freebox\api\v3
- * @author <alphayax@gmail.com>
+ * Class Association
+ * @package alphayax\freebox\api\v3\services\login
  */
-class Authorize extends Service {
+class Association extends Service {
 
     /// APIs services
     const API_LOGIN_AUTHORIZE     = '/api/v3/login/authorize/';
@@ -33,13 +31,10 @@ class Authorize extends Service {
     private $challenge = '';
 
     /**
-     * Authorize constructor.
-     * @param Application $application
+     * Check if an app token is defined, and launch the association process otherwise
      * @throws \Exception
      */
-    public function __construct( Application $application){
-        parent::__construct( $application);
-
+    public function authorize(){
         $this->application->loadAppToken();
 
         if( ! $this->application->haveAppToken()){
