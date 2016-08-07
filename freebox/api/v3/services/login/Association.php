@@ -62,6 +62,7 @@ class Association extends Service {
     /**
      * Contact the freebox and ask for App auth
      * @throws \Exception
+     * @return array [app_token, track_id]
      */
     public function askAuthorization(){
         $rest = $this->getService( self::API_LOGIN_AUTHORIZE);
@@ -76,10 +77,13 @@ class Association extends Service {
         $this->track_id  = $rest->getResult()['track_id'];
 
         $this->application->getLogger()->addInfo( 'Authorization send to Freebox. Waiting for response...');
+
+        return $rest->getResult();
     }
 
     /**
      * @throws \Exception
+     * @return array [status, challenge]
      */
     public function getAuthorizationStatus(){
         $rest = $this->getService( self::API_LOGIN_AUTHORIZE . $this->track_id);
@@ -89,6 +93,8 @@ class Association extends Service {
         $this->challenge = $rest->getResult()['challenge'];
 
         $this->application->getLogger()->addInfo( 'Freebox authorization status : '. $this->status);
+
+        return $rest->getResult();
     }
 
     /**
