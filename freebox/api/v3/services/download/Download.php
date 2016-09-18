@@ -87,8 +87,7 @@ class Download extends ServiceAuth {
      * @return models\Download\Task
      */
     public function update( models\Download\Task $downloadTask){
-        $eraseService = sprintf( self::API_DOWNLOAD_ERASE, $downloadTask->getId());
-        $rest = $this->getService( $eraseService);
+        $rest = $this->getService( self::API_DOWNLOAD . $downloadTask->getId());
         $rest->PUT( $downloadTask);
 
         return $rest->getResult( models\Download\Task::class);
