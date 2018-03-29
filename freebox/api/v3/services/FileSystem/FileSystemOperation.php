@@ -1,5 +1,7 @@
 <?php
+
 namespace alphayax\freebox\api\v3\services\FileSystem;
+
 use alphayax\freebox\api\v3\models;
 use alphayax\freebox\utils\ServiceAuth;
 
@@ -252,15 +254,18 @@ class FileSystemOperation extends ServiceAuth {
      * @param string $sourceFilePath    : The source file path
      * @param string $newFileName       : The new name of the file (clear text, without path)
      * @return bool
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function rename( $sourceFilePath, $newFileName){
-        $rest = $this->getService( self::API_FS_RENAME);
-        $rest->POST([
-            'src'   => base64_encode( $sourceFilePath),
-            'dst'   => $newFileName,
+    public function rename($sourceFilePath, $newFileName)
+    {
+        $result = $this->callService('POST', self::API_FS_RENAME, [
+            'src' => base64_encode($sourceFilePath),
+            'dst' => $newFileName,
         ]);
 
-        return $rest->getSuccess();
+        $json = json_decode($result->getBody(), true);
+
+        return @$json['success'] ?: false;
     }
 
     /**
