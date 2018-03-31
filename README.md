@@ -24,18 +24,24 @@ Pensez à installer les dependences :)
 
 ## Fonctionnalités
 
-L'intégralité des fonctionnalités de l'API Freebox (v3) sont implémentées :
+Un document complet repertorie l'ensemble des services implémentées :
+ - Pour la v3 de l'API : [API v3](docs/services_v3/__NAMESPACE__.md)
+ - Pour la v4 de l'API : [API v4](docs/services_v4/__NAMESPACE__.md)
 
-- [AirMedia](docs/services/AirMedia/AirMedia.md)
-- [Call](docs/services/Call/Call.md)
-- [Configuration](docs/services/config/config.md)
-- [Download](docs/services/download/download.md)
-- [FileSystem](docs/services/FileSystem/FileSystem.md)
-- [Parental Control](docs/services/ParentalControl/ParentalControl.md)
-- [RRD](docs/services/RRD/RRD.md)
-- [Storage](docs/services/Storage/Storage.md)
+### API Freebox (v3)
 
-Un document complet repertorie l'ensemble des services implémentées : [services.md](docs/services/services.md)
+- [AirMedia](docs/services_v3/AirMedia/__NAMESPACE__.md)
+- [Call](docs/services_v3/Call/__NAMESPACE__.md)
+- [Configuration](docs/services_v3/config/__NAMESPACE__.md)
+- [Download](docs/services_v3/download/__NAMESPACE__.md)
+- [FileSystem](docs/services_v3/FileSystem/__NAMESPACE__.md)
+- [Parental Control](docs/services_v3/ParentalControl/__NAMESPACE__.md)
+- [RRD](docs/services_v3/RRD/__NAMESPACE__.md)
+- [Storage](docs/services_v3/Storage/__NAMESPACE__.md)
+
+### API Freebox (v4)
+
+- [FileSystem](docs/services_v4/FileSystem/__NAMESPACE__.md)
 
 ## Utilisation
 
@@ -70,7 +76,7 @@ $App->openSession();
 
 #### Accès local
 
-L'accès local est activé par défaut. Une fois l'application créer et la session ouverte, vous 
+L'accès local est activé par défaut. Une fois l'application créée et la session ouverte, vous 
 pouvez utiliser directement les services auquels l'application à acces.
 
 #### Accès distant
