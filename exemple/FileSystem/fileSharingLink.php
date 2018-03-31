@@ -9,7 +9,7 @@ $App->authorize();
 $App->openSession();
 
 /// Scan files in root
-$FileSharingLinkService = new \alphayax\freebox\api\v3\services\FileSystem\FileSharingLink( $App);
+$FileSharingLinkService = new \alphayax\freebox\api\v4\services\FileSystem\FileSharingLink( $App);
 $Links = $FileSharingLinkService->getAll();
 var_dump( $Links);
 

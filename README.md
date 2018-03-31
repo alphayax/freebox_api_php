@@ -1,5 +1,5 @@
 
-# Freebox v6 PHP API v3
+# Freebox v6 PHP API v3/v4
 
 ![stable](https://poser.pugx.org/alphayax/freebox_api_php/v/stable)
 ![unstable](https://poser.pugx.org/alphayax/freebox_api_php/v/unstable)
@@ -13,7 +13,9 @@
 [![Total Downloads](https://poser.pugx.org/alphayax/freebox_api_php/downloads)](https://packagist.org/packages/alphayax/freebox_api_php)
 
 
-Implementation PHP de l'API de la freebox (dans sa version 3).
+Implementation PHP de l'API de la freebox 
+- Intégralement dans sa version 3
+- Partiellement dans sa version 4
 
 ## Prérequis
 

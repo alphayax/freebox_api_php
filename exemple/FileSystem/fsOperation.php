@@ -8,7 +8,7 @@ $App = new \alphayax\freebox\utils\Application( 'com.alphayax.freebox.filesystem
 $App->authorize();
 $App->openSession();
 
-$FSListService = new \alphayax\freebox\api\v3\services\FileSystem\FileSystemOperation( $App);
+$FSListService = new \alphayax\freebox\api\v4\services\FileSystem\FileSystemOperation( $App);
 
 /// Uncomment following lines and give existing file names to test
 /*
@@ -48,7 +48,7 @@ var_dump( $j);
 
 /*
 sleep(1);
-$Task = new \alphayax\freebox\api\v3\services\FileSystem\FileSystemTask($App);
+$Task = new \alphayax\freebox\api\v4\services\FileSystem\FileSystemTask($App);
 $a = $Task->getTaskById($e->getId());
 var_dump( $a);
 */

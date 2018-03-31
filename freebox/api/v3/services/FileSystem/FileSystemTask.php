@@ -15,6 +15,7 @@ class FileSystemTask extends ServiceAuth {
     /**
      * Retrieve all FS tasks
      * @return models\FileSystem\FsTask[]
+     * @deprecated use v4 service
      */
     public function getAllTasks(){
         $rest = $this->getService( self::API_FS_TASK);
@@ -27,6 +28,7 @@ class FileSystemTask extends ServiceAuth {
      * Retrieve a FS task with the specified id
      * @param int $TaskId
      * @return models\FileSystem\FsTask
+     * @deprecated use v4 service
      */
     public function getTaskById( $TaskId){
         $rest = $this->getService( self::API_FS_TASK . $TaskId);
@@ -39,6 +41,7 @@ class FileSystemTask extends ServiceAuth {
      * Delete a FS task
      * @param models\FileSystem\FsTask $FsTask
      * @return bool
+     * @deprecated use v4 service
      */
     public function deleteTask( models\FileSystem\FsTask $FsTask){
         return $this->deleteTaskById( $FsTask->getId());
@@ -48,6 +51,7 @@ class FileSystemTask extends ServiceAuth {
      * Delete a FS task with the specified id
      * @param int $TaskId
      * @return bool
+     * @deprecated use v4 service
      */
     public function deleteTaskById( $TaskId){
         $rest = $this->getService( self::API_FS_TASK . $TaskId);
@@ -60,6 +64,7 @@ class FileSystemTask extends ServiceAuth {
      * Update a FS task
      * @param models\FileSystem\FsTask $FsTask
      * @return bool
+     * @deprecated use v4 service
      */
     public function updateTask( models\FileSystem\FsTask $FsTask){
         $rest = $this->getService( self::API_FS_TASK . $FsTask->getId());

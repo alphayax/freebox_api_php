@@ -1,30 +1,30 @@
 <?php
 
-namespace alphayax\freebox\api\v3\services\FileSystem;
+namespace alphayax\freebox\api\v4\services\FileSystem;
 
-use alphayax\freebox\api\v3\models;
+use alphayax\freebox\api\v4\models;
 use alphayax\freebox\utils\ServiceAuth;
 
 
 /**
  * Class FileSystemOperation
- * @package alphayax\freebox\api\v3\services\FileSystem
+ * @package alphayax\freebox\api\v4\services\FileSystem
  */
 class FileSystemOperation extends ServiceAuth
 {
 
-    const API_FS_MV        = '/api/v3/fs/mv/';
-    const API_FS_CP        = '/api/v3/fs/cp/';
-    const API_FS_RM        = '/api/v3/fs/rm/';
-    const API_FS_CAT       = '/api/v3/fs/cat/';
-    const API_FS_ARCHIVE   = '/api/v3/fs/archive/';
-    const API_FS_EXTRACT   = '/api/v3/fs/extract/';
-    const API_FS_REPAIR    = '/api/v3/fs/repair/';
-    const API_FS_HASH      = '/api/v3/fs/hash/';
-    const API_FS_TASK_HASH = '/api/v3/fs/tasks/%u/hash';
-    const API_FS_MKDIR     = '/api/v3/fs/mkdir/';
-    const API_FS_RENAME    = '/api/v3/fs/rename/';
-    const API_DOWNLOAD     = '/api/v3/dl/';
+    const API_FS_MV        = '/api/v4/fs/mv/';
+    const API_FS_CP        = '/api/v4/fs/cp/';
+    const API_FS_RM        = '/api/v4/fs/rm/';
+    const API_FS_CAT       = '/api/v4/fs/cat/';
+    const API_FS_ARCHIVE   = '/api/v4/fs/archive/';
+    const API_FS_EXTRACT   = '/api/v4/fs/extract/';
+    const API_FS_REPAIR    = '/api/v4/fs/repair/';
+    const API_FS_HASH      = '/api/v4/fs/hash/';
+    const API_FS_TASK_HASH = '/api/v4/fs/tasks/%u/hash';
+    const API_FS_MKDIR     = '/api/v4/fs/mkdir/';
+    const API_FS_RENAME    = '/api/v4/fs/rename/';
+    const API_DOWNLOAD     = '/api/v4/dl/';
 
     /**
      * Base64 encode paths
@@ -52,13 +52,12 @@ class FileSystemOperation extends ServiceAuth
 
     /**
      * Move files
-     * @param string[] $sourceFiles
-     * @param string   $destination
-     * @param string   $conflictMode
+     * @param string[] $sourceFiles  : array of file paths
+     * @param string   $destination  : destination path
+     * @param string   $conflictMode (overwrite, both, recent, skip)
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function move(array $sourceFiles, $destination, $conflictMode = 'recent')
     {
@@ -79,11 +78,10 @@ class FileSystemOperation extends ServiceAuth
      * Copy files
      * @param string[] $sourceFiles  : array of file paths
      * @param string   $destination  : destination path
-     * @param string   $conflictMode : Specify how to react if destination file already exists
+     * @param string   $conflictMode (overwrite, both, recent, skip)
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function copy(array $sourceFiles, $destination, $conflictMode = 'recent')
     {
@@ -102,16 +100,15 @@ class FileSystemOperation extends ServiceAuth
 
     /**
      * Delete files
-     * @param string[] $RemoveFiles
+     * @param string[] $removeFiles
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
-    public function remove(array $RemoveFiles = [])
+    public function remove(array $removeFiles = [])
     {
         /// Convert all paths in base64
-        $removedFiles_b64 = $this->encodePaths($RemoveFiles);
+        $removedFiles_b64 = $this->encodePaths($removeFiles);
 
         $result = $this->callService('POST', self::API_FS_RM, [
             'files' => $removedFiles_b64,
@@ -131,7 +128,6 @@ class FileSystemOperation extends ServiceAuth
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function cat(
         array $fileParts,
@@ -164,7 +160,6 @@ class FileSystemOperation extends ServiceAuth
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function archive(array $fileParts, $destination)
     {
@@ -190,7 +185,6 @@ class FileSystemOperation extends ServiceAuth
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function extract($source, $destination, $password = '', $isToDelete = false, $isToOverwrite = false)
     {
@@ -216,7 +210,6 @@ class FileSystemOperation extends ServiceAuth
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function repair($source, $isToDelete = false)
     {
@@ -234,13 +227,11 @@ class FileSystemOperation extends ServiceAuth
     /**
      * Hash a file. This operation can take some time. To get the hash value,
      * the returned task must have succeed and be in the state “done”.
-     * @see
      * @param string $source   : The file to hash
      * @param string $hashType : The type of hash (md5, sha1, ...) - Default is md5
      * @return models\FileSystem\FsTask
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function computeHash($source, $hashType = 'md5')
     {
@@ -261,7 +252,6 @@ class FileSystemOperation extends ServiceAuth
      * @param $fsTaskId
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @deprecated use v4 service
      */
     public function getHashValue($fsTaskId)
     {
@@ -281,7 +271,6 @@ class FileSystemOperation extends ServiceAuth
      * @return bool
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function createDirectory($parentDirectory, $newDirectoryName)
     {
@@ -302,7 +291,6 @@ class FileSystemOperation extends ServiceAuth
      * @return bool
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \alphayax\freebox\Exception\FreeboxApiException
-     * @deprecated use v4 service
      */
     public function rename($sourceFilePath, $newFileName)
     {
@@ -319,7 +307,6 @@ class FileSystemOperation extends ServiceAuth
      * @param string $sourceFilePath
      * @return mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @deprecated use v4 service
      */
     public function download($sourceFilePath)
     {

@@ -9,7 +9,7 @@ $App->authorize();
 $App->openSession();
 
 /// Scan files in root
-$FSListService = new \alphayax\freebox\api\v3\services\FileSystem\FileSystemListing( $App);
+$FSListService = new \alphayax\freebox\api\v4\services\FileSystem\FileSystemListing( $App);
 $FilesInRoot = $FSListService->getFilesFromDirectory( '/');
 print_r( $FilesInRoot);
 

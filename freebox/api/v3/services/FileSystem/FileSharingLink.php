@@ -15,6 +15,7 @@ class FileSharingLink extends ServiceAuth {
     /**
      * Retrieve all File Sharing links
      * @return models\FileSystem\ShareLink[]
+     * @deprecated use v4 service
      */
     public function getAll(){
         $rest = $this->getService( self::API_SHARE_LINK);
@@ -27,6 +28,7 @@ class FileSharingLink extends ServiceAuth {
      * Get a file sharing link from his token identifier
      * @param $Token
      * @return models\FileSystem\ShareLink
+     * @deprecated use v4 service
      */
     public function getFromToken( $Token){
         $rest = $this->getService( self::API_SHARE_LINK . $Token);
@@ -41,6 +43,7 @@ class FileSharingLink extends ServiceAuth {
      * No rollback is done, if a file as already been processed it will be left as is.
      * @param $Token
      * @return bool
+     * @deprecated use v4 service
      */
     public function deleteFromToken( $Token){
         $rest = $this->getService( self::API_SHARE_LINK . $Token);
@@ -55,6 +58,7 @@ class FileSharingLink extends ServiceAuth {
      * @param int       $expire
      * @param string    $fullUrl
      * @return models\FileSystem\ShareLink
+     * @deprecated use v4 service
      */
     public function create( $Path, $expire = 0, $fullUrl = ''){
         $Path_b64   = base64_encode( $Path);

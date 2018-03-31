@@ -20,6 +20,7 @@ class FileSystemListing extends ServiceAuth {
      * @param bool $countSubFolder  Return files and sub-folder count for folders
      * @param bool $removeHidden    Don’t return hidden files in directory listing
      * @return models\FileSystem\FileInfo[]
+     * @deprecated use v4 service
      */
     public function getFilesFromDirectory( $DirectoryName = '/Disque dur/', $onlyFolder = true, $countSubFolder = false, $removeHidden = true){
         $Directory_b64 = base64_encode( $DirectoryName);
@@ -38,6 +39,7 @@ class FileSystemListing extends ServiceAuth {
      * Get file information
      * @param string $DirectoryName
      * @return models\FileSystem\FileInfo
+     * @deprecated use v4 service
      */
     public function getFileInformation( $DirectoryName){
         $Directory_b64 = base64_encode( $DirectoryName);

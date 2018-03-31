@@ -50,18 +50,66 @@ class FreeboxResponse
 
     /**
      * @param string $className
-     * @return array|Model
+     * @return Model
+     * @throws \alphayax\freebox\Exception\FreeboxApiException
      */
-    public function getModel($className = '')
+    public function getModel($className)
     {
-        $Model = $this->getResult();
+        $this->getSuccess();
+        $model = $this->getResult();
 
-        /// Cast element
-        if ( ! empty($className) && ! empty($Model) && is_subclass_of($className, Model::class) && is_array($Model)) {
-            return new $className($Model);
+        return static::castToModel($model, $className);
+    }
+
+    /**
+     * @param string $className
+     * @return Model[]
+     * @throws \alphayax\freebox\Exception\FreeboxApiException
+     */
+    public function getModels($className)
+    {
+        $this->getSuccess();
+        $model_xs = $this->getResult() ?: [];
+
+        // Check model collection structure
+        if ( ! is_array($model_xs)) {
+            throw new FreeboxApiException('Invalid collection');
         }
 
-        return $Model;
+        // Check class name
+        if (empty($model_xs)) {
+            return [];
+        }
+
+        /// Cast elements
+        $models = [];
+        foreach ($model_xs as $model_x) {
+            $models[] = static::castToModel($model_x, $className);
+        }
+
+        return $models;
+    }
+
+    /**
+     * @param $model_x
+     * @param $className
+     * @return Model
+     * @throws \alphayax\freebox\Exception\FreeboxApiException
+     */
+    protected static function castToModel($model_x, $className)
+    {
+        // Check class name
+        if (empty($className) || ! class_exists($className) || ! is_subclass_of($className, Model::class)) {
+            throw new FreeboxApiException('Invalid class name');
+        }
+
+        // Check model structure
+        if (empty($model_x) || ! is_array($model_x)) {
+            throw new FreeboxApiException('Invalid model');
+        }
+
+        /// Cast element
+        return new $className($model_x);
     }
 
     /**

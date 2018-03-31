@@ -51,6 +51,7 @@ class FileUpload extends ServiceAuth {
     /**
      * Get the list of uploads
      * @return models\FileSystem\FileUpload[]
+     * @deprecated use v4 service
      */
     public function getAll(){
         $rest = $this->getService( self::API_UPLOAD);
@@ -63,6 +64,7 @@ class FileUpload extends ServiceAuth {
      * Track an upload status
      * @param int $FileUploadId
      * @return models\FileSystem\FileUpload
+     * @deprecated use v4 service
      */
     public function getFromId( $FileUploadId){
         $rest = $this->getService( self::API_UPLOAD . $FileUploadId);
@@ -76,6 +78,7 @@ class FileUpload extends ServiceAuth {
      * The upload status must be in_progress
      * @param int $FileUploadId
      * @return bool
+     * @deprecated use v4 service
      */
     public function cancelFromId( $FileUploadId){
         $Service = sprintf( self::API_UPLOAD_CANCEL, $FileUploadId);
@@ -89,6 +92,7 @@ class FileUpload extends ServiceAuth {
      * Delete the given FileUpload closing the connection if needed
      * @param int $FileUploadId
      * @return bool
+     * @deprecated use v4 service
      */
     public function deleteFromId( $FileUploadId){
         $rest = $this->getService( self::API_UPLOAD . $FileUploadId);
@@ -100,6 +104,7 @@ class FileUpload extends ServiceAuth {
     /**
      * Deletes all the FileUpload not in_progress
      * @return bool
+     * @deprecated use v4 service
      */
     public function cleanTerminated(){
         $rest = $this->getService( self::API_UPLOAD_CLEAN);
