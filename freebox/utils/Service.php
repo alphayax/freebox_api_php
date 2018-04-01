@@ -22,6 +22,7 @@ abstract class Service {
     /**
      * @param $service
      * @return \alphayax\freebox\utils\rest\Rest
+     * @deprecated
      */
     protected function getService( $service){
         return new utils\rest\Rest( $this->application->getFreeboxApiHost() . $service);

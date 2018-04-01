@@ -1,6 +1,6 @@
 <?php
 namespace alphayax\freebox\utils;
-use alphayax\freebox\api\v3\services;
+use alphayax\freebox\api\v4\services;
 use Monolog\Handler\ErrorLogHandler;
 use Monolog\Logger;
 
@@ -15,7 +15,7 @@ class Application {
 
     /**
      * @var array
-     * @see alphayax\freebox\api\v3\symbols\Permissions
+     * @see \alphayax\freebox\api\v4\symbols\Permissions
      */
     protected $permissions = [];
 
@@ -169,7 +169,7 @@ class Application {
     /**
      * Return true if the application have access to the given permission name
      * @param $permissionName
-     * @see alphayax\freebox\api\v3\symbols\Permissions
+     * @see \alphayax\freebox\api\v4\symbols\Permissions
      * @return bool
      */
     public function hasPermission( $permissionName) {
