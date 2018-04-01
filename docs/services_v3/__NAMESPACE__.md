@@ -87,18 +87,6 @@
         - [ContactEntry](Call/Contact/__NAMESPACE__.md#ContactEntry)
         - [ContactEmail](Call/Contact/__NAMESPACE__.md#ContactEmail)
     - [CallEntry](Call/__NAMESPACE__.md#CallEntry)
-- [ApiVersion](__NAMESPACE__.md#ApiVersion)
 
 
 ---
-<a name="ApiVersion"></a>
-## ApiVersion
-
-**Class**  : alphayax\freebox\api\v3\services\ApiVersion
-
-### Public methods
-
-| Method | Description |
-|---|---|
-| `getApiVersion` | Return a mapping of information about the api |
-
