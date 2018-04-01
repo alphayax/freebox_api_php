@@ -29,9 +29,9 @@ abstract class Service {
     }
 
     /**
-     * @param $verb
-     * @param $service
-     * @param $params
+     * @param       $verb
+     * @param       $service
+     * @param       $params
      * @return \alphayax\freebox\utils\FreeboxResponse
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -40,10 +40,6 @@ abstract class Service {
         $client = new Client();
 
         $options_x = [];
-        // $options_x['headers'] = [
-        //     'X-Fbx-App-Auth' => $this->application->getSessionToken(),
-        //     //  'Content-Type'   => 'Application/json',
-        // ];
 
         if( null != $params){
             $options_x['json'] = $params;
