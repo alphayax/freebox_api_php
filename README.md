@@ -41,6 +41,7 @@ Un document complet repertorie l'ensemble des services implémentées :
 
 ### API Freebox (v4)
 
+- [AirMedia](docs/services_v4/AirMedia/__NAMESPACE__.md)
 - [FileSystem](docs/services_v4/FileSystem/__NAMESPACE__.md)
 
 ## Utilisation
