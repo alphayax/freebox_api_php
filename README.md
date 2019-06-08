@@ -58,7 +58,7 @@ Pour acceder aux services proposés par l'API de la freebox, vous deverez
 autoriser votre application. Cette procedure impose que vous soyez connecté 
 au réseau local de votre Freebox lors de "l'association" et que vous ayez la
 Freebox a portée de main. L'application sauvegarde automatiquement le token 
-retourné par la frebox et cette procedure ne sera plus a reproduire.
+retourné par la freebox et cette procedure ne sera plus a reproduire.
  
 Notez que pour modifier les droits d'accès aux differents services, vous deverez 
 passer par l'interface web locale : [http://mafreebox.freebox.fr/login.php].
@@ -167,3 +167,11 @@ Les exemples sont disponibles dans le repertoire `exemple`. Ils sont classés pa
     - `Partition` : Retourne des infos sur ces disques. Possibilité de verification ou de formatage
 - `remote` : Un exemple de connexion distant
 - `version` : Affichage de la version de l'API de la freebox
+
+## Freebox Delta et accès aux objets connectés
+
+Pour accéder aux objets connectés, vous devez autoriser l'application à y accéder.
+Pour ce faire, allez dans l'interface d'administration de la freebox après avoir
+obtenu votre clé API, puis rendez vous dans `Paramètres de la Freebox` / 
+`Gestion des accès` / `Application` puis autorisez 
+`Gestion de l'alarme et maison connectée`. 
