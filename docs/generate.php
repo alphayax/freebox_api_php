@@ -5,6 +5,7 @@ require_once '../vendor/autoload.php';
 
 generateDocForService("v3");
 generateDocForService("v4");
+generateDocForService("v6");
 generateDocForService("common");
 
 
